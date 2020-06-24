@@ -1,3 +1,3 @@
-﻿  main.cpp
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\main.cpp(10,15): warning C4101: 'surface': unreferenced local variable
+﻿  GameManager.cpp
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\GameManager.cpp(87,2): warning C4551: function call missing argument list
   TowerDefence.vcxproj -> C:\Repos\Git\TowerDefence\TowerDefence\Debug\TowerDefence.exe
