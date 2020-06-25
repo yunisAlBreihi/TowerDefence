@@ -6,7 +6,7 @@ class SpriteManager
 {
 private:
 
-	std::vector<Sprite*> spriteList;
+	std::vector<Sprite*> sprites;
 
 public:
 

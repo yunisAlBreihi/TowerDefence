@@ -5,7 +5,7 @@
 class TileManager
 {
 private:
-	std::vector<Tile*> tileList;
+	std::vector<Tile*> tiles;
 
 public:
 

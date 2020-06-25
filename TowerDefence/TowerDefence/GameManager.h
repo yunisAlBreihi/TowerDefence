@@ -3,24 +3,29 @@
 #include "IRenderable.h"
 #include "TileManager.h"
 #include "SpriteManager.h"
+#include "MapReader.h"
 
 class GameManager : public IRenderable
 {
 
 private:
-	const int DEFAULT_SPRITE_SIZE = 64;
 
 	bool isRunning = false;
-
-	SDL_Window* window;
-	SDL_Renderer* renderer;
-	SDL_Surface* surface;
+	
+	SDL_Window* window = nullptr;
+	SDL_Renderer* renderer = nullptr;
+	SDL_Surface* surface = nullptr;
 	SDL_Rect dstRect;
 
-	TileManager* tileManager;
-	SpriteManager* spriteManager;
+	TileManager* tileManager = nullptr;
+	SpriteManager* spriteManager = nullptr;
+	MapManager* mapManager = nullptr;
+	MapReader* mapReader = nullptr;
+
 
 public:
+
+	static const int DEFAULT_SPRITE_SIZE = 48;
 
 private:
 

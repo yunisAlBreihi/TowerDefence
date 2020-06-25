@@ -36,6 +36,8 @@ GameManager::GameManager(const char* title, int posX, int posY, int width, int h
 	{
 		isRunning = false;
 	}
+	mapManager = new MapManager(renderer, spriteManager, tileManager);
+	mapReader = new MapReader();
 }
 
 GameManager::~GameManager()
@@ -44,20 +46,37 @@ GameManager::~GameManager()
 
 void GameManager::Start()
 {
-	Sprite* dakerSprite = new Sprite(renderer, SpriteName::daker);
-	spriteManager->AddSprite(dakerSprite);
+	Sprite* grassSprite = new Sprite(renderer, SpriteName::grass);
+	Sprite* waterSprite = new Sprite(renderer, SpriteName::water);
+	Sprite* tower01Sprite = new Sprite(renderer, SpriteName::tower01);
+	Sprite* tower02Sprite = new Sprite(renderer, SpriteName::tower02);
+	Sprite* startPositionSprite = new Sprite(renderer, SpriteName::startPosition);
+	Sprite* endPositionSprite = new Sprite(renderer, SpriteName::endPosition);
 
-	int col = 5;
-	int rows = 5;
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < col; j++)
-		{
-			Tile* tempTile = new Tile(renderer, spriteManager->GetSprite(SpriteName::daker), Vector2D(0,0),Vector2D(DEFAULT_SPRITE_SIZE, DEFAULT_SPRITE_SIZE));
-			tempTile->SetPosition(Vector2D(i * DEFAULT_SPRITE_SIZE,j * DEFAULT_SPRITE_SIZE));
-			tileManager->AddTile(tempTile);
-		}
-	}
+	spriteManager->AddSprite(grassSprite);
+	spriteManager->AddSprite(waterSprite);
+	spriteManager->AddSprite(tower01Sprite);
+	spriteManager->AddSprite(tower02Sprite);
+	spriteManager->AddSprite(startPositionSprite);
+	spriteManager->AddSprite(endPositionSprite);
+
+	mapManager->AddMap(mapReader->ReadMap("Maps/Map_1.txt"));
+	mapManager->AddMap(mapReader->ReadMap("Maps/Map_2.txt"));
+	mapManager->AddMap(mapReader->ReadMap("Maps/Map_3.txt"));
+
+	mapManager->CreateMap(1);
+
+	//int col = 5;
+	//int rows = 5;
+	//for (int i = 0; i < rows; i++)
+	//{
+	//	for (int j = 0; j < col; j++)
+	//	{
+	//		Tile* tempTile = new Tile(renderer, spriteManager->GetSprite(SpriteName::daker), Vector2D(0, 0), Vector2D(DEFAULT_SPRITE_SIZE, DEFAULT_SPRITE_SIZE));
+	//		tempTile->SetPosition(Vector2D(i * DEFAULT_SPRITE_SIZE, j * DEFAULT_SPRITE_SIZE));
+	//		tileManager->AddTile(tempTile);
+	//	}
+	//}
 }
 
 void GameManager::HandleEvent()

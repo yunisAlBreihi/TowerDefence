@@ -5,7 +5,12 @@
 
 enum class SpriteName
 {
-	daker,
+	grass = 0,
+	water = 1,
+	tower01 = 2,
+	tower02 = 3,
+	startPosition = 8,
+	endPosition = 9,
 };
 
 class Sprite

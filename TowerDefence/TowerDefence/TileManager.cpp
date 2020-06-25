@@ -2,7 +2,7 @@
 
 void TileManager::AddTile(Tile* tile)
 {
-	tileList.push_back(tile);
+	tiles.push_back(tile);
 }
 
 void TileManager::Start()
@@ -15,7 +15,7 @@ void TileManager::Update()
 
 void TileManager::Render()
 {
-	for (Tile* t : tileList)
+	for (Tile* t : tiles)
 	{
 		t->Render();
 	}
@@ -23,7 +23,7 @@ void TileManager::Render()
 
 void TileManager::Destroy()
 {
-	for (Tile* t : tileList)
+	for (Tile* t : tiles)
 	{
 		t->Destroy();
 	}
@@ -31,7 +31,7 @@ void TileManager::Destroy()
 
 void TileManager::DebugPositions()
 {
-	for (Tile* t: tileList)
+	for (Tile* t: tiles)
 	{
 		std::cout << "X position: " << t->GetPosition().x << " Y position: " << t->GetPosition().y << std::endl;
 	}

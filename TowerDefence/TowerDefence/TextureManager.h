@@ -5,5 +5,5 @@
 class TextureManager
 {
 private:
-	std::vector<SDL_Texture*> textureList;
+	std::vector<SDL_Texture*> textures;
 };

@@ -2,13 +2,13 @@
 
 void SpriteManager::AddSprite(Sprite* sprite)
 {
-	spriteList.push_back(sprite);
+	sprites.push_back(sprite);
 }
 
 Sprite* SpriteManager::GetSprite(SpriteName spriteName)
 {
 
-	for (Sprite* sprite : spriteList)
+	for (Sprite* sprite : sprites)
 	{
 		if (sprite->GetSpriteName() == spriteName)
 		{
@@ -16,6 +16,6 @@ Sprite* SpriteManager::GetSprite(SpriteName spriteName)
 		}
 	}
 
-	std::cout << "Could not find the sprite you specified, in the spriteManager" << std::endl;
+	std::cout << "Could not find the sprite you specified in the spriteManager" << std::endl;
 	return nullptr;
 }
