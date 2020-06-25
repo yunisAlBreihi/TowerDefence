@@ -1,18 +1,22 @@
 #pragma once
 #include <SDL.h>
+#include "IRenderedObject.h"
+#include "TileManager.h"
 
-class GameManager
+class GameManager : public IRenderedObject
 {
 
 private:
+	const int DEFAULT_SPRITE_SIZE = 64;
 
 	bool isRunning = false;
 
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	SDL_Surface* surface;
-	SDL_Texture* texture;
 	SDL_Rect dstRect;
+
+	TileManager* tileManager;
 
 public:
 
