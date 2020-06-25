@@ -1,9 +1,10 @@
 #pragma once
 #include <SDL.h>
-#include "IRenderedObject.h"
+#include "IRenderable.h"
 #include "TileManager.h"
+#include "SpriteManager.h"
 
-class GameManager : public IRenderedObject
+class GameManager : public IRenderable
 {
 
 private:
@@ -17,6 +18,7 @@ private:
 	SDL_Rect dstRect;
 
 	TileManager* tileManager;
+	SpriteManager* spriteManager;
 
 public:
 

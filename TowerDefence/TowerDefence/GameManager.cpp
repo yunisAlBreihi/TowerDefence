@@ -6,11 +6,12 @@
 GameManager::GameManager(const char* title, int posX, int posY, int width, int height, Uint32 flags)
 {
 	tileManager = new TileManager();
+	spriteManager = new SpriteManager();
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
 	{
-		window = SDL_CreateWindow("Tower Defence", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_SHOWN);
-	
+		window = SDL_CreateWindow(title, posX, posY, width, height, flags);
+
 		if (window == nullptr)
 		{
 			std::cout << "Window could not be created!" << std::endl;
@@ -18,7 +19,7 @@ GameManager::GameManager(const char* title, int posX, int posY, int width, int h
 		else
 		{
 			renderer = SDL_CreateRenderer(window, -1, 0);
-	
+
 			if (renderer == nullptr)
 			{
 				std::cout << "Renderer could not be created!" << std::endl;
@@ -43,14 +44,16 @@ GameManager::~GameManager()
 
 void GameManager::Start()
 {
+	Sprite* dakerSprite = new Sprite(renderer, SpriteName::daker);
+	spriteManager->AddSprite(dakerSprite);
+
 	int col = 5;
 	int rows = 5;
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < col; j++)
 		{
-			Tile* tempTile = new Tile();
-			tempTile->Start(renderer, "Sprites/daker.jpg", DEFAULT_SPRITE_SIZE, DEFAULT_SPRITE_SIZE);
+			Tile* tempTile = new Tile(renderer, spriteManager->GetSprite(SpriteName::daker), Vector2D(0,0),Vector2D(DEFAULT_SPRITE_SIZE, DEFAULT_SPRITE_SIZE));
 			tempTile->SetPosition(Vector2D(i * DEFAULT_SPRITE_SIZE,j * DEFAULT_SPRITE_SIZE));
 			tileManager->AddTile(tempTile);
 		}
@@ -80,7 +83,6 @@ void GameManager::Render()
 {
 	SDL_RenderClear(renderer);
 	tileManager->Render();
-	//tileManager->DebugPositions();
 	SDL_RenderPresent(renderer);
 }
 

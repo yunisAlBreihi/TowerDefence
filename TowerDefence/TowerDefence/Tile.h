@@ -2,16 +2,29 @@
 #include <string>
 #include <SDL.h>
 #include "Sprite.h"
+#include "IRenderable.h"
 
-class Tile : public Sprite
+class Tile : public IRenderable
 {
 private:
 
+	SDL_Renderer* renderer = nullptr;
+	Sprite* sprite = nullptr;
+	Vector2D position = { 0,0 };
+	Vector2D scale = { 0,0 };
+	SDL_Rect dstRect = { 0,0,0,0 };
+
 public:
 
 private:
 
-	void NotUsed() {};
-
 public:
+	Tile(SDL_Renderer* renderer, Sprite* sprite, Vector2D position, Vector2D scale);
+	void Start();
+	void Update();
+	void Render();
+	void Destroy();
+
+	void SetPosition(Vector2D vector2D);
+	Vector2D GetPosition();
 };
