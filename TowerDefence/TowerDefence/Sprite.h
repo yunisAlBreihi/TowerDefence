@@ -26,6 +26,8 @@ protected:
 	SDL_Texture* texture = nullptr;
 	SDL_Renderer* renderer = nullptr;
 
+	bool isWalkable = false;
+
 public:
 
 private:
