@@ -3,6 +3,7 @@
 #include "IRenderable.h"
 #include "TileManager.h"
 #include "SpriteManager.h"
+#include "EnemyManager.h"
 #include "MapReader.h"
 
 class GameManager : public IRenderable
@@ -19,6 +20,7 @@ private:
 
 	TileManager* tileManager = nullptr;
 	SpriteManager* spriteManager = nullptr;
+	EnemyManager* enemyManager = nullptr;
 	MapManager* mapManager = nullptr;
 	MapReader* mapReader = nullptr;
 

@@ -9,31 +9,27 @@ Sprite::Sprite(SDL_Renderer* renderer, SpriteName spriteName)
 	{
 	case SpriteName::grass:
 		filePath = "Sprites/grass.jpg";
-		isWalkable = true;
 		break;
 	case SpriteName::water:
 		filePath = "Sprites/water.jpg";
-		isWalkable = false;
 		break;
 	case SpriteName::tower01:
 		filePath = "Sprites/tower01.jpg";
-		isWalkable = false;
 		break;
 	case SpriteName::tower02:
 		filePath = "Sprites/tower02.jpg";
-		isWalkable = false;
 		break;
 	case SpriteName::startPosition:
 		filePath = "Sprites/startPosition.jpg";
-		isWalkable = true;
 		break;
 	case SpriteName::endPosition:
 		filePath = "Sprites/endPosition.jpg";
-		isWalkable = true;
+		break;
+	case SpriteName::Enemy01:
+		filePath = "Sprites/enemy01.jpg";
 		break;
 	default:
 		filePath = "Sprites/missing.jpg";
-		isWalkable = false;
 		break;
 	}
 	surface = IMG_Load(filePath.c_str());

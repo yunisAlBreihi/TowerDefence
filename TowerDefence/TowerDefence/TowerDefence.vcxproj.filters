@@ -45,6 +45,12 @@
     <ClCompile Include="Map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -81,6 +87,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

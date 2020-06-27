@@ -1,6 +1,6 @@
 #pragma once
-#include "Tile.h"
 #include <vector>
+#include "Tile.h"
 
 class TileManager
 {
@@ -13,6 +13,7 @@ private:
 
 public:
 	void AddTile(Tile* tile);
+	Tile* GetTile(SpriteName spriteName);
 
 	void Start();
 	void Update();

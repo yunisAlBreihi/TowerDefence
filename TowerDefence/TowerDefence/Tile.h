@@ -27,4 +27,5 @@ public:
 
 	void SetPosition(Vector2D vector2D);
 	Vector2D GetPosition();
+	Sprite* GetSprite();
 };

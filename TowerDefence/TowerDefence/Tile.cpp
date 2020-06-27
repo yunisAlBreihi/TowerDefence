@@ -34,3 +34,8 @@ Vector2D Tile::GetPosition()
 {
 	return Vector2D(dstRect.x, dstRect.y);
 }
+
+Sprite* Tile::GetSprite()
+{
+	return sprite;
+}

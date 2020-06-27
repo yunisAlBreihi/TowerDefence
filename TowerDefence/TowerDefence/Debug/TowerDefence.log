@@ -1,14 +1,2 @@
 ﻿  GameManager.cpp
-  Map.cpp
-  MapManager.cpp
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\MapManager.cpp(17,24): warning C4018: '<': signed/unsigned mismatch
-  MapReader.cpp
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\MapManager.cpp(19,25): warning C4018: '<': signed/unsigned mismatch
-  Sprite.cpp
-  SpriteManager.cpp
-  Tile.cpp
-  TileManager.cpp
-  main.cpp
-  Generating Code...
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\MapReader.cpp(20,22): warning C4018: '<': signed/unsigned mismatch
   TowerDefence.vcxproj -> C:\Repos\Git\TowerDefence\TowerDefence\Debug\TowerDefence.exe

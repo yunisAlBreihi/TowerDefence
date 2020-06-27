@@ -11,6 +11,7 @@ enum class SpriteName
 	tower02 = 3,
 	startPosition = 8,
 	endPosition = 9,
+	Enemy01 = 20,
 };
 
 class Sprite
@@ -25,8 +26,6 @@ protected:
 	SDL_Surface* surface = nullptr;
 	SDL_Texture* texture = nullptr;
 	SDL_Renderer* renderer = nullptr;
-
-	bool isWalkable = false;
 
 public:
 

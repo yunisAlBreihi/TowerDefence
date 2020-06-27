@@ -7,6 +7,7 @@ GameManager::GameManager(const char* title, int posX, int posY, int width, int h
 {
 	tileManager = new TileManager();
 	spriteManager = new SpriteManager();
+	enemyManager = new EnemyManager();
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
 	{
@@ -46,6 +47,7 @@ GameManager::~GameManager()
 
 void GameManager::Start()
 {
+	//Creates sprites for background tiles
 	Sprite* grassSprite = new Sprite(renderer, SpriteName::grass);
 	Sprite* waterSprite = new Sprite(renderer, SpriteName::water);
 	Sprite* tower01Sprite = new Sprite(renderer, SpriteName::tower01);
@@ -60,23 +62,23 @@ void GameManager::Start()
 	spriteManager->AddSprite(startPositionSprite);
 	spriteManager->AddSprite(endPositionSprite);
 
+	//Creates sprites for enemies
+	Sprite* enemy01Sprite = new Sprite(renderer, SpriteName::Enemy01);
+
+	spriteManager->AddSprite(enemy01Sprite);
+
+	//Create and add the maps to the map manager
 	mapManager->AddMap(mapReader->ReadMap("Maps/Map_1.txt"));
 	mapManager->AddMap(mapReader->ReadMap("Maps/Map_2.txt"));
 	mapManager->AddMap(mapReader->ReadMap("Maps/Map_3.txt"));
 
 	mapManager->CreateMap(1);
 
-	//int col = 5;
-	//int rows = 5;
-	//for (int i = 0; i < rows; i++)
-	//{
-	//	for (int j = 0; j < col; j++)
-	//	{
-	//		Tile* tempTile = new Tile(renderer, spriteManager->GetSprite(SpriteName::daker), Vector2D(0, 0), Vector2D(DEFAULT_SPRITE_SIZE, DEFAULT_SPRITE_SIZE));
-	//		tempTile->SetPosition(Vector2D(i * DEFAULT_SPRITE_SIZE, j * DEFAULT_SPRITE_SIZE));
-	//		tileManager->AddTile(tempTile);
-	//	}
-	//}
+	//Creates enemies
+	EnemyBase* enemy01 = new EnemyBase(renderer,enemy01Sprite,tileManager->GetTile(SpriteName::startPosition)->GetPosition(),Vector2D(DEFAULT_SPRITE_SIZE, DEFAULT_SPRITE_SIZE));
+	enemyManager->AddEnemy(enemy01);
+
+	enemyManager->DebugPositions();
 }
 
 void GameManager::HandleEvent()
@@ -102,6 +104,7 @@ void GameManager::Render()
 {
 	SDL_RenderClear(renderer);
 	tileManager->Render();
+	enemyManager->Render();
 	SDL_RenderPresent(renderer);
 }
 

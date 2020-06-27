@@ -1,10 +1,5 @@
 #include "TileManager.h"
 
-void TileManager::AddTile(Tile* tile)
-{
-	tiles.push_back(tile);
-}
-
 void TileManager::Start()
 {
 }
@@ -27,6 +22,24 @@ void TileManager::Destroy()
 	{
 		t->Destroy();
 	}
+}
+
+void TileManager::AddTile(Tile* tile)
+{
+	tiles.push_back(tile);
+}
+
+Tile* TileManager::GetTile(SpriteName spriteName)
+{
+	for (Tile* t : tiles)
+	{
+		if (t->GetSprite()->GetSpriteName() == spriteName)
+		{
+			return t;
+		}
+	}
+	std::cout << "Could not find the specified tile" << std::endl;
+	return nullptr;
 }
 
 void TileManager::DebugPositions()
