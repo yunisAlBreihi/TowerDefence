@@ -28,6 +28,5 @@ std::vector<std::vector<char>> Map::GetTileNumbers()
 	{
 		reversedTempTileNumbers.push_back(tempTileNumbers[i]);
 	}
-
 	return reversedTempTileNumbers;
 }

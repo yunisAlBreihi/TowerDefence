@@ -13,13 +13,15 @@ private:
 	Vector2D position = { 0,0 };
 	Vector2D scale = { 0,0 };
 	SDL_Rect dstRect = { 0,0,0,0 };
+	bool isWalkable = false;
 
 public:
 
 private:
 
 public:
-	Tile(SDL_Renderer* renderer, Sprite* sprite, Vector2D position, Vector2D scale);
+	Tile() {}
+	Tile(SDL_Renderer* renderer, Sprite* sprite, Vector2D position, Vector2D scale, bool isWalkable);
 	void Start();
 	void Update();
 	void Render();
@@ -28,4 +30,5 @@ public:
 	void SetPosition(Vector2D vector2D);
 	Vector2D GetPosition();
 	Sprite* GetSprite();
+	bool IsWalkable() { return isWalkable; }
 };

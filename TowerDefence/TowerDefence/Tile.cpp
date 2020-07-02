@@ -1,6 +1,6 @@
 #include "Tile.h"
 
-Tile::Tile(SDL_Renderer* renderer, Sprite* sprite, Vector2D position, Vector2D scale) : renderer(renderer), sprite(sprite), position(position), scale(scale)
+Tile::Tile(SDL_Renderer* renderer, Sprite* sprite, Vector2D position, Vector2D scale, bool isWalkable) : renderer(renderer), sprite(sprite), position(position), scale(scale), isWalkable(isWalkable)
 {
 	dstRect = { this->position.x,this->position.y,this->scale.x, this->scale.y };
 }
@@ -15,7 +15,7 @@ void Tile::Update()
 
 void Tile::Render()
 {
-	SDL_RenderCopy(renderer, sprite->Texture(), nullptr, &dstRect);
+	SDL_RenderCopy(renderer, sprite->GetTexture(), nullptr, &dstRect);
 }
 
 void Tile::Destroy()

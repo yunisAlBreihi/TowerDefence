@@ -7,7 +7,7 @@ GameManager::GameManager(const char* title, int posX, int posY, int width, int h
 {
 	tileManager = new TileManager();
 	spriteManager = new SpriteManager();
-	enemyManager = new EnemyManager();
+	dijkstra = new Dijkstra();
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
 	{
@@ -37,8 +37,9 @@ GameManager::GameManager(const char* title, int posX, int posY, int width, int h
 	{
 		isRunning = false;
 	}
-	mapManager = new MapManager(renderer, spriteManager, tileManager);
+	mapManager = new MapManager(renderer, spriteManager);
 	mapReader = new MapReader();
+	enemyManager = new EnemyManager(renderer,tileManager, dijkstra);
 }
 
 GameManager::~GameManager()
@@ -72,12 +73,13 @@ void GameManager::Start()
 	mapManager->AddMap(mapReader->ReadMap("Maps/Map_2.txt"));
 	mapManager->AddMap(mapReader->ReadMap("Maps/Map_3.txt"));
 
-	mapManager->CreateMap(1);
+	tileManager->CreateTilesFromMap(mapManager,1);
 
 	//Creates enemies
 	EnemyBase* enemy01 = new EnemyBase(renderer,enemy01Sprite,tileManager->GetTile(SpriteName::startPosition)->GetPosition(),Vector2D(DEFAULT_SPRITE_SIZE, DEFAULT_SPRITE_SIZE));
 	enemyManager->AddEnemy(enemy01);
 
+	enemyManager->Start();
 	enemyManager->DebugPositions();
 }
 
@@ -98,6 +100,7 @@ void GameManager::HandleEvent()
 
 void GameManager::Update()
 {
+	enemyManager->Update();
 }
 
 void GameManager::Render()

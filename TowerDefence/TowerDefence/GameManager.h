@@ -5,6 +5,7 @@
 #include "SpriteManager.h"
 #include "EnemyManager.h"
 #include "MapReader.h"
+#include "MapManager.h"
 
 class GameManager : public IRenderable
 {
@@ -16,13 +17,13 @@ private:
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
 	SDL_Surface* surface = nullptr;
-	SDL_Rect dstRect;
 
 	TileManager* tileManager = nullptr;
 	SpriteManager* spriteManager = nullptr;
 	EnemyManager* enemyManager = nullptr;
 	MapManager* mapManager = nullptr;
 	MapReader* mapReader = nullptr;
+	Dijkstra* dijkstra = nullptr;
 
 
 public:

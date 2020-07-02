@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
-#include "TileManager.h"
-#include "MapManager.h"
+#include <string>
+#include "Map.h"
 
 class MapReader
 {

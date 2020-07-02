@@ -28,5 +28,7 @@ public:
 	void Destroy();
 
 	void SetPosition(Vector2D vector2D);
-	Vector2D GetPosition();
+	Vector2D GetPosition() { return Vector2D(dstRect.x, dstRect.y); }
+	Sprite* GetSprite() { return sprite; }
+	SDL_Rect GetDstRect() { return dstRect; }
 };

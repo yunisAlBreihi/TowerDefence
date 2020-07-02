@@ -1,4 +1,5 @@
 #include "MapReader.h"
+#include <iostream>
 #include <fstream>
 
 Map* MapReader::ReadMap(std::string filePath)
@@ -17,7 +18,7 @@ Map* MapReader::ReadMap(std::string filePath)
 			getline(fileStream, line);
 			std::vector<char> mapRow;
 
-			for (int i = 0; i < line.size(); i++)
+			for (unsigned int i = 0; i < line.size(); i++)
 			{
 				mapRow.push_back(line[i]);
 			}

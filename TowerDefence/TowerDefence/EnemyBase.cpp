@@ -15,11 +15,12 @@ void EnemyBase::Start()
 
 void EnemyBase::Update()
 {
+
 }
 
 void EnemyBase::Render()
 {
-	SDL_RenderCopy(renderer, sprite->Texture(), nullptr, &dstRect);
+	SDL_RenderCopy(renderer, sprite->GetTexture(), nullptr, &dstRect);
 }
 
 void EnemyBase::Destroy()
@@ -31,9 +32,4 @@ void EnemyBase::SetPosition(Vector2D vector2D)
 	position = vector2D;
 	dstRect.x = position.x;
 	dstRect.y = position.y;
-}
-
-Vector2D EnemyBase::GetPosition()
-{
-	return Vector2D(dstRect.x, dstRect.y);
 }

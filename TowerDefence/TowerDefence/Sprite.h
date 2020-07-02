@@ -36,7 +36,7 @@ public:
 	Sprite(SDL_Renderer* renderer, SpriteName spriteName);
 	~Sprite();
 
-	SDL_Texture* Texture() { return texture; };
+	SDL_Texture* GetTexture() { return texture; };
 	SpriteName GetSpriteName() { return name; };
 };
 
