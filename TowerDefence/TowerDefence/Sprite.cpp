@@ -1,9 +1,8 @@
 #include "Sprite.h"
 #include <SDL_image.h>
 
-Sprite::Sprite(SDL_Renderer* renderer, SpriteName spriteName)
+Sprite::Sprite(SDL_Renderer* renderer, SpriteName spriteName) : renderer(renderer)
 {
-	this->renderer = renderer;
 	name = spriteName;
 	switch (spriteName)
 	{
@@ -25,8 +24,11 @@ Sprite::Sprite(SDL_Renderer* renderer, SpriteName spriteName)
 	case SpriteName::endPosition:
 		filePath = "Sprites/endPosition.jpg";
 		break;
-	case SpriteName::Enemy01:
-		filePath = "Sprites/enemy01.jpg";
+	case SpriteName::EnemySmall:
+		filePath = "Sprites/enemySmall.jpg";
+		break;
+	case SpriteName::EnemyBig:
+		filePath = "Sprites/enemyBig.jpg";
 		break;
 	default:
 		filePath = "Sprites/missing.jpg";

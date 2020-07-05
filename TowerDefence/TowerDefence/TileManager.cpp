@@ -93,7 +93,7 @@ Tile* TileManager::GetTileAtPosition(Vector2D position)
 			return tile;
 		}
 	}
-	std::cout << "Could not find a Tile at position: " << std::endl << "x: " << position.x << " y: " << position.y << std::endl;
+	//std::cout << "Could not find a Tile at position: " << std::endl << "x: " << position.x << " y: " << position.y << std::endl;
 	return nullptr;
 }
 
@@ -106,7 +106,7 @@ int TileManager::GetTileIndexInList(Tile* tile)
 			return i;
 		}
 	}
-	std::cout << "Could not find the tile in the tile list. Returning -1" << std::endl;
+	//std::cout << "Could not find the tile in the tile list. Returning -1" << std::endl;
 	return -1;
 }
 
@@ -120,14 +120,13 @@ void TileManager::DebugPositions()
 
 void TileManager::CreateTilesFromMap(MapManager* mapManager, int mapIndex)
 {
-	std::vector<std::vector<char>> tempTileNumbers = mapManager->GetMap(mapIndex)->GetTileNumbers();
+	std::vector<std::vector<int>> tempTileNumbers = mapManager->GetMap(mapIndex)->GetTileNumbers();
 
 	for (unsigned int col = 0; col < tempTileNumbers.size(); col++)
 	{
 		for (unsigned int row = 0; row < tempTileNumbers[col].size(); row++)
 		{
-			int spriteNameIndex = (int)(tempTileNumbers[col][row] - 48);
-			SpriteName tempSpriteName = (SpriteName)(spriteNameIndex);
+			SpriteName tempSpriteName = (SpriteName)(tempTileNumbers[col][row]);
 
 			//Set which tiles are walkable or not
 			bool tempWalkable = false;

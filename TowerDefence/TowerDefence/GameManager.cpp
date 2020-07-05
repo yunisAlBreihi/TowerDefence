@@ -2,6 +2,8 @@
 #include <SDL_image.h>
 #include "GameManager.h"
 #include "Sprite.h"
+#include "EnemySmall.h"
+#include "EnemyBig.h"
 
 GameManager::GameManager(const char* title, int posX, int posY, int width, int height, Uint32 flags)
 {
@@ -39,7 +41,7 @@ GameManager::GameManager(const char* title, int posX, int posY, int width, int h
 	}
 	mapManager = new MapManager(renderer, spriteManager);
 	mapReader = new MapReader();
-	enemyManager = new EnemyManager(renderer,tileManager, dijkstra);
+	enemyManager = new EnemyManager(renderer, tileManager, mapManager, dijkstra);
 }
 
 GameManager::~GameManager()
@@ -64,23 +66,26 @@ void GameManager::Start()
 	spriteManager->AddSprite(endPositionSprite);
 
 	//Creates sprites for enemies
-	Sprite* enemy01Sprite = new Sprite(renderer, SpriteName::Enemy01);
+	Sprite* enemySmallSprite = new Sprite(renderer, SpriteName::EnemySmall);
+	Sprite* enemyBigSprite = new Sprite(renderer, SpriteName::EnemyBig);
 
-	spriteManager->AddSprite(enemy01Sprite);
+	spriteManager->AddSprite(enemySmallSprite);
 
 	//Create and add the maps to the map manager
 	mapManager->AddMap(mapReader->ReadMap("Maps/Map_1.txt"));
 	mapManager->AddMap(mapReader->ReadMap("Maps/Map_2.txt"));
 	mapManager->AddMap(mapReader->ReadMap("Maps/Map_3.txt"));
 
-	tileManager->CreateTilesFromMap(mapManager,1);
+	tileManager->CreateTilesFromMap(mapManager, 1);
+	//mapManager->GetMap(1)->DebugMapData();
 
 	//Creates enemies
-	EnemyBase* enemy01 = new EnemyBase(renderer,enemy01Sprite,tileManager->GetTile(SpriteName::startPosition)->GetPosition(),Vector2D(DEFAULT_SPRITE_SIZE, DEFAULT_SPRITE_SIZE));
-	enemyManager->AddEnemy(enemy01);
+	enemyManager->AddEnemy(enemySmallSprite);
+	enemyManager->AddEnemy(enemyBigSprite);
 
 	enemyManager->Start();
-	enemyManager->DebugPositions();
+	//enemyManager->DebugPositions();
+	//mapManager->GetMap(1)->GetEnemyNumbers();
 }
 
 void GameManager::HandleEvent()
@@ -112,7 +117,7 @@ void GameManager::Render()
 }
 
 void GameManager::Destroy()
-{	
+{
 	SDL_DestroyRenderer(renderer);
 	renderer = nullptr;
 	SDL_DestroyWindow(window);

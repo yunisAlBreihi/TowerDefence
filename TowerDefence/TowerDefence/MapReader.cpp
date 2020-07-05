@@ -6,7 +6,7 @@ Map* MapReader::ReadMap(std::string filePath)
 {
 	std::ifstream fileStream;
 	fileStream.open(filePath);
-	std::vector<std::vector<char>> tempMapData;
+	std::vector<std::string> tempMapData;
 
 	if (fileStream.is_open())
 	{
@@ -16,7 +16,7 @@ Map* MapReader::ReadMap(std::string filePath)
 		while (fileStream)
 		{
 			getline(fileStream, line);
-			std::vector<char> mapRow;
+			std::string mapRow;
 
 			for (unsigned int i = 0; i < line.size(); i++)
 			{
@@ -24,6 +24,7 @@ Map* MapReader::ReadMap(std::string filePath)
 			}
 			tempMapData.push_back(mapRow);
 			//std::cout << line << std::endl;
+			fileStream >> std::ws;
 		}
 		fileStream.close();
 		return new Map(tempMapData);

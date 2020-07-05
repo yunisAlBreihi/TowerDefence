@@ -1,32 +1,80 @@
 #include "Map.h"
+#include <iostream>
+#include <sstream>
 
-Map::Map(std::vector<std::vector<char>> mapData) : mapData(mapData)
+Map::Map(std::vector<std::string> mapData) : mapData(mapData)
 {
 }
 
-std::vector<std::vector<char>> Map::GetTileNumbers()
+std::vector<std::vector<int>> Map::GetTileNumbers()
 {
-	std::vector<std::vector<char>> tempTileNumbers;
-	int rowIndex = 0;
+	std::vector<std::vector<int>> tempTileNumbers;
 
-	for (std::vector<char> row : mapData)
+	for (std::string row : mapData)
 	{
 		if (row.at(0) == '#')
 		{
 			break;
 		}
-		std::vector<char> tempTileNumberRow;
+		std::vector<int> tempTileNumberRow;
 		for (char number : row)
 		{
-			tempTileNumberRow.push_back(number);
+			tempTileNumberRow.push_back((int)(number - 48));
 		}
 		tempTileNumbers.push_back(tempTileNumberRow);
 	}
 	//Reverse the tile positions before returning them, so the map starts at bottom left and not top left
-	std::vector<std::vector<char>> reversedTempTileNumbers;
+	std::vector<std::vector<int>> reversedTempTileNumbers;
 	for (int i = tempTileNumbers.size() - 1; i >= 0; i--)
 	{
 		reversedTempTileNumbers.push_back(tempTileNumbers[i]);
 	}
 	return reversedTempTileNumbers;
+}
+
+std::vector<std::vector<int>> Map::GetEnemyNumbers()
+{
+	std::vector<std::vector<int>> tempEnemyNumbers;
+	int rowIndex = 0;
+	bool isOnEnemyNumbers = false;
+	int number = INT_MAX;
+
+	for (std::string row : mapData)
+	{
+		std::stringstream input(row);
+		if (isOnEnemyNumbers == true)
+		{
+			std::vector<int> tempEnemyNumberRow;
+
+			while (input.eof() == false)
+			{
+				input >> number;
+				tempEnemyNumberRow.push_back(number);
+			}
+			tempEnemyNumbers.push_back(tempEnemyNumberRow);
+		}
+
+		if (row.at(0) == '#')
+		{
+			isOnEnemyNumbers = true;
+		}
+
+	}
+	for (std::vector<int> row : tempEnemyNumbers)
+	{
+		for(int number : row)
+		{
+			std::cout << number;
+		}
+		std::cout << std::endl;
+	}
+	return tempEnemyNumbers;
+}
+
+void Map::DebugMapData()
+{
+	for (std::string row : mapData)
+	{
+		std::cout << row << std::endl;
+	}
 }

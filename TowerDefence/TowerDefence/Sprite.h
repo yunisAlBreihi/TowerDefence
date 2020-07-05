@@ -1,7 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include <iostream>
-#include "Vecto2D.h"
+#include "Vector2D.h"
 
 enum class SpriteName
 {
@@ -11,7 +11,8 @@ enum class SpriteName
 	tower02 = 3,
 	startPosition = 8,
 	endPosition = 9,
-	Enemy01 = 20,
+	EnemySmall = 20,
+	EnemyBig = 21,
 };
 
 class Sprite
