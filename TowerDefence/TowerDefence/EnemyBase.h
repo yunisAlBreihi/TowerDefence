@@ -30,7 +30,7 @@ public:
 
 	EnemyBase();
 	EnemyBase(SDL_Renderer* renderer, std::vector<Tile*> path, Sprite* sprite, Vector2D position, Vector2D scale);
-	~EnemyBase();
+	virtual ~EnemyBase() = 0;
 
 	void Start();
 	void Update();

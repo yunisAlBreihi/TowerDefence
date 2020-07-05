@@ -42,6 +42,7 @@ GameManager::GameManager(const char* title, int posX, int posY, int width, int h
 	mapManager = new MapManager(renderer, spriteManager);
 	mapReader = new MapReader();
 	enemyManager = new EnemyManager(renderer, tileManager, mapManager, dijkstra);
+	towerManager = new TowerManager(renderer,tileManager);
 }
 
 GameManager::~GameManager()
@@ -69,7 +70,17 @@ void GameManager::Start()
 	Sprite* enemySmallSprite = new Sprite(renderer, SpriteName::EnemySmall);
 	Sprite* enemyBigSprite = new Sprite(renderer, SpriteName::EnemyBig);
 
+	//Creates sprites for towers
+	Sprite* towerSmallSprite = new Sprite(renderer, SpriteName::TowerSmall);
+	Sprite* towerBigSprite = new Sprite(renderer, SpriteName::TowerBig);
+
+	//Add enemy sprites to the sprite manager
 	spriteManager->AddSprite(enemySmallSprite);
+	spriteManager->AddSprite(enemyBigSprite);
+
+	//Add tower sprites to the sprite manager
+	spriteManager->AddSprite(towerSmallSprite);
+	spriteManager->AddSprite(towerBigSprite);
 
 	//Create and add the maps to the map manager
 	mapManager->AddMap(mapReader->ReadMap("Maps/Map_1.txt"));
@@ -79,11 +90,16 @@ void GameManager::Start()
 	tileManager->CreateTilesFromMap(mapManager, 1);
 	//mapManager->GetMap(1)->DebugMapData();
 
-	//Creates enemies
+	//Add enemy sprites to the enemy manager
 	enemyManager->AddEnemy(enemySmallSprite);
 	enemyManager->AddEnemy(enemyBigSprite);
 
+	//Add tower sprites to the tower manager
+	towerManager->AddTower(towerSmallSprite);
+	towerManager->AddTower(towerBigSprite);
+
 	enemyManager->Start();
+	towerManager->Start();
 	//enemyManager->DebugPositions();
 	//mapManager->GetMap(1)->GetEnemyNumbers();
 }
@@ -106,6 +122,7 @@ void GameManager::HandleEvent()
 void GameManager::Update()
 {
 	enemyManager->Update();
+	towerManager->Update();
 }
 
 void GameManager::Render()
@@ -113,6 +130,7 @@ void GameManager::Render()
 	SDL_RenderClear(renderer);
 	tileManager->Render();
 	enemyManager->Render();
+	towerManager->Render();
 	SDL_RenderPresent(renderer);
 }
 

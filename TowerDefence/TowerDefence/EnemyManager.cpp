@@ -15,51 +15,19 @@ void EnemyManager::Start()
 	mapEnemyNumbers = mapManager->GetMap(1)->GetEnemyNumbers();
 	enemies.push_back(std::vector<EnemyBase*>());
 	enemies.push_back(std::vector<EnemyBase*>());
+
+	for (const auto& enemyRow : enemies)
+	{
+		for (EnemyBase* e : enemyRow)
+		{
+			e->Start();
+		}
+	}
 }
 
 void EnemyManager::Update()
 {
-	if (mapIsComplete == false)
-	{
-		spawnTimer++;
-		if (waveIsComplete == false)
-		{
-			if (spawnTimer >= maxSpawnTime)
-			{
-				if (mapEnemyNumbers[waveIndex][enemyIndex] > 0)
-				{
-					enemies[enemyIndex].push_back(CreateEnemy(sprites[enemyIndex]));
-				}
-				spawnIndex += 1;
-
-				if (spawnIndex >= mapEnemyNumbers[waveIndex][enemyIndex])
-				{
-					enemyIndex += 1;
-					spawnIndex = 0;
-				}
-
-				if (enemyIndex > enemies.size() - 1)
-				{
-					waveIsComplete = true;
-					waveIndex += 1;
-					enemyIndex = 0;
-					if (waveIndex == mapEnemyNumbers.size())
-					{
-						mapIsComplete = true;
-					}
-				}
-				spawnTimer = 0;
-			}
-		}
-		else
-		{
-			if (spawnTimer >= maxWaveTime)
-			{
-				waveIsComplete = false;
-			}
-		}
-	}	
-
+	SpawnEnemyWaves();
 
 	for (const auto& enemyRow : enemies)
 	{
@@ -119,5 +87,49 @@ EnemyBase* EnemyManager::CreateEnemy(Sprite* enemySprite)
 	{
 		EnemyBig* enemy = new EnemyBig(renderer, path, sprites[1], tileManager->GetTile(SpriteName::startPosition)->GetPosition(), Vector2D(GameManager::DEFAULT_SPRITE_SIZE, GameManager::DEFAULT_SPRITE_SIZE));
 		return enemy;
+	}
+}
+
+void EnemyManager::SpawnEnemyWaves()
+{
+	if (mapIsComplete == false)
+	{
+		spawnTimer++;
+		if (waveIsComplete == false)
+		{
+			if (spawnTimer >= maxSpawnTime)
+			{
+				if (mapEnemyNumbers[waveIndex][enemyIndex] > 0)
+				{
+					enemies[enemyIndex].push_back(CreateEnemy(sprites[enemyIndex]));
+				}
+				spawnIndex += 1;
+
+				if (spawnIndex >= mapEnemyNumbers[waveIndex][enemyIndex])
+				{
+					enemyIndex += 1;
+					spawnIndex = 0;
+				}
+
+				if (enemyIndex > enemies.size() - 1)
+				{
+					waveIsComplete = true;
+					waveIndex += 1;
+					enemyIndex = 0;
+					if (waveIndex == mapEnemyNumbers.size())
+					{
+						mapIsComplete = true;
+					}
+				}
+				spawnTimer = 0;
+			}
+		}
+		else
+		{
+			if (spawnTimer >= maxWaveTime)
+			{
+				waveIsComplete = false;
+			}
+		}
 	}
 }

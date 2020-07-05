@@ -13,6 +13,8 @@ enum class SpriteName
 	endPosition = 9,
 	EnemySmall = 20,
 	EnemyBig = 21,
+	TowerSmall = 30,
+	TowerBig = 31,
 };
 
 class Sprite

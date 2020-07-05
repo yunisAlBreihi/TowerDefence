@@ -27,8 +27,11 @@ public:
 	void Render();
 	void Destroy();
 
-	void SetPosition(Vector2D vector2D);
-	Vector2D GetPosition();
-	Sprite* GetSprite();
+	void SetPosition(Vector2D position);
+	void SetScale(Vector2D scale);
+	
+	Vector2D GetPosition() { return position; }
+	Vector2D GetScale() { return scale; }
+	Sprite* GetSprite() { return sprite; }
 	bool IsWalkable() { return isWalkable; }
 };

@@ -23,19 +23,16 @@ void Tile::Destroy()
 	renderer = nullptr;
 }
 
-void Tile::SetPosition(Vector2D vector2D)
+void Tile::SetPosition(Vector2D position)
 {
-	position = vector2D;
-	dstRect.x = position.x;
-	dstRect.y = position.y;
+	this->position = position;
+	dstRect.x = this->position.x;
+	dstRect.y = this->position.y;
 }
 
-Vector2D Tile::GetPosition()
+void Tile::SetScale(Vector2D scale)
 {
-	return Vector2D(dstRect.x, dstRect.y);
-}
-
-Sprite* Tile::GetSprite()
-{
-	return sprite;
+	this->scale = scale;
+	dstRect.w = this->scale.x;
+	dstRect.h = this->scale.y;
 }

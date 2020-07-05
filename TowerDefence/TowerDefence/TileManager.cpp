@@ -44,6 +44,27 @@ Tile* TileManager::GetTile(SpriteName spriteName)
 	return nullptr;
 }
 
+std::vector<Tile*> TileManager::GetTiles(SpriteName spriteName)
+{
+	std::vector<Tile*> tempTiles;
+
+	for (Tile* tile : tiles)
+	{
+		if (tile->GetSprite()->GetSpriteName() == spriteName)
+		{
+			tempTiles.push_back(tile);
+		}
+	}
+
+	if (tempTiles.empty() == true)
+	{
+		std::cout << "Could not find any tiles with the sprite specified. Returning empty list" << std::endl;
+		return std::vector<Tile*>();
+	}
+
+	return tempTiles;
+}
+
 std::vector<Tile*> TileManager::GetWalkableTiles()
 {
 	std::vector<Tile*> walkables;
@@ -55,6 +76,13 @@ std::vector<Tile*> TileManager::GetWalkableTiles()
 			walkables.push_back(tile);
 		}
 	}
+
+	if (walkables.empty() == true)
+	{
+		std::cout << "Could not find any walkable tiles with the sprite specified. Returning empty list" << std::endl;
+		return std::vector<Tile*>();
+	}
+
 	return walkables;
 }
 
