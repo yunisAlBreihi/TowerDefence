@@ -139,7 +139,9 @@
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="TowerBase.cpp" />
+    <ClCompile Include="TowerBig.cpp" />
     <ClCompile Include="TowerManager.cpp" />
+    <ClCompile Include="TowerSmall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -161,7 +163,9 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileManager.h" />
     <ClInclude Include="TowerBase.h" />
+    <ClInclude Include="TowerBig.h" />
     <ClInclude Include="TowerManager.h" />
+    <ClInclude Include="TowerSmall.h" />
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

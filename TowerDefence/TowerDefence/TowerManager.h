@@ -17,7 +17,7 @@ private:
 public:
 
 private:
-	TowerBase* CreateTower(Sprite* towerSprite);
+	TowerBase* CreateTower(Sprite* towerSprite, Vector2D position, Vector2D scale);
 
 public:
 	TowerManager(SDL_Renderer* renderer, TileManager* tileManager);

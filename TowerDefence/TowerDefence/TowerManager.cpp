@@ -1,4 +1,6 @@
 #include "TowerManager.h"
+#include "TowerSmall.h"
+#include "TowerBig.h"
 
 TowerManager::TowerManager(SDL_Renderer* renderer, TileManager* tileManager) : renderer(renderer), tileManager(tileManager)
 {
@@ -11,12 +13,12 @@ void TowerManager::Start()
 
 	for (Tile* tile : tileManager->GetTiles(SpriteName::tower01))
 	{
-		towers[0].push_back(new TowerBase(renderer,sprites[0],tile->GetPosition(), tile->GetScale()));
+		towers[0].push_back(CreateTower(sprites[0], tile->GetPosition(), tile->GetScale()));
 	}
 
 	for (Tile* tile : tileManager->GetTiles(SpriteName::tower02))
 	{
-		towers[1].push_back(new TowerBase(renderer, sprites[1], tile->GetPosition(), tile->GetScale()));
+		towers[1].push_back(CreateTower(sprites[1], tile->GetPosition(), tile->GetScale()));
 	}
 
 	for (const auto& towerRow : towers)
@@ -66,7 +68,16 @@ void TowerManager::AddTower(Sprite* towerSprite)
 	sprites.push_back(towerSprite);
 }
 
-TowerBase* TowerManager::CreateTower(Sprite* towerSprite)
+TowerBase* TowerManager::CreateTower(Sprite* towerSprite, Vector2D position, Vector2D scale)
 {
-	return nullptr;
+	if (towerSprite->GetSpriteName() == SpriteName::TowerSmall)
+	{
+		TowerSmall* tower = new TowerSmall(renderer, towerSprite, position, scale);
+		return tower;
+	}
+	else if(towerSprite->GetSpriteName() == SpriteName::TowerBig)
+	{
+		TowerBig* tower = new TowerBig(renderer, towerSprite, position, scale);
+		return tower;
+	}
 }

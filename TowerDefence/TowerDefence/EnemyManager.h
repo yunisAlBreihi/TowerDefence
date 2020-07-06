@@ -45,6 +45,5 @@ public:
 	void Render();
 	void Destroy();
 
-
 	void DebugPositions();
 };

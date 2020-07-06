@@ -13,7 +13,6 @@ int main(int argc, char* argv[])
 		gameManager->Update();
 		gameManager->Render();
 	}
-
 	gameManager->Destroy();
 
 	return 0;

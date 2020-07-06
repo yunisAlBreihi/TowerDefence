@@ -6,6 +6,7 @@
 class TowerBase : public IRenderable
 {
 private:
+protected:
 	SDL_Renderer* renderer = nullptr;
 	Sprite* sprite = nullptr;
 	Vector2D position = { 0,0 };
@@ -19,7 +20,7 @@ private:
 public:
 	TowerBase();
 	TowerBase(SDL_Renderer* renderer, Sprite* sprite, Vector2D position, Vector2D scale);
-	~TowerBase();
+	virtual ~TowerBase() = 0;
 
 	void Start();
 	void Update();
