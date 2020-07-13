@@ -71,6 +71,11 @@ void EnemyManager::DebugPositions()
 	}
 }
 
+EnemyBase* EnemyManager::GetEnemyTypeAtIndex(EnemyType enemyType, int index)
+{
+	return enemies[(int)enemyType][index];
+}
+
 void EnemyManager::AddEnemy(Sprite* enemySprite)
 {
 	sprites.push_back(enemySprite);

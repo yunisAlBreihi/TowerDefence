@@ -7,6 +7,7 @@
 #include "TowerManager.h"
 #include "MapReader.h"
 #include "MapManager.h"
+#include "BulletBase.h"
 
 class GameManager : public IRenderable
 {
@@ -26,6 +27,9 @@ private:
 	MapManager* mapManager = nullptr;
 	MapReader* mapReader = nullptr;
 	Dijkstra* dijkstra = nullptr;
+
+	//Temporary
+	BulletBase* bullet = nullptr;
 
 public:
 

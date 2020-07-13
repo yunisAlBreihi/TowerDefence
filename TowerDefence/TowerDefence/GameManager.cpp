@@ -102,6 +102,9 @@ void GameManager::Start()
 	towerManager->Start();
 	//enemyManager->DebugPositions();
 	//mapManager->GetMap(1)->GetEnemyNumbers();
+
+	bullet = new BulletBase(renderer, towerSmallSprite, Vector2D(DEFAULT_SPRITE_SIZE / 4, DEFAULT_SPRITE_SIZE / 4), Vector2D(0, 0));
+	bullet->StartMoving(Vector2D(0, 0), tileManager->GetTile(SpriteName::startPosition)->GetPosition());
 }
 
 void GameManager::HandleEvent()
@@ -123,6 +126,7 @@ void GameManager::Update()
 {
 	enemyManager->Update();
 	towerManager->Update();
+	bullet->Update();
 }
 
 void GameManager::Render()
@@ -131,6 +135,7 @@ void GameManager::Render()
 	tileManager->Render();
 	enemyManager->Render();
 	towerManager->Render();
+	bullet->Render();
 	SDL_RenderPresent(renderer);
 }
 

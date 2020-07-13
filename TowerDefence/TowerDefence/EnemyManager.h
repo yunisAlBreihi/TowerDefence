@@ -5,6 +5,11 @@
 #include "MapManager.h"
 #include "IRenderable.h"
 
+enum class EnemyType
+{
+	smallEnemy,
+	bigEnemy,
+};
 
 class SDL_Renderer;
 
@@ -46,4 +51,5 @@ public:
 	void Destroy();
 
 	void DebugPositions();
+	EnemyBase* GetEnemyTypeAtIndex(EnemyType enemyType, int index);
 };

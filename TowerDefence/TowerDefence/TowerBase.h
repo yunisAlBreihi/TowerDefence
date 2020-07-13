@@ -32,4 +32,3 @@ public:
 	Sprite* GetSprite() { return sprite; }
 	SDL_Rect GetDstRect() { return dstRect; }
 };
-
