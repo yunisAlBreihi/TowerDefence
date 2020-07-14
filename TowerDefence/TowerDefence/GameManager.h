@@ -5,6 +5,7 @@
 #include "SpriteManager.h"
 #include "EnemyManager.h"
 #include "TowerManager.h"
+#include "BulletManager.h"
 #include "MapReader.h"
 #include "MapManager.h"
 #include "BulletBase.h"
@@ -24,6 +25,7 @@ private:
 	SpriteManager* spriteManager = nullptr;
 	EnemyManager* enemyManager = nullptr;
 	TowerManager* towerManager = nullptr;
+	BulletManager* bulletManager = nullptr;
 	MapManager* mapManager = nullptr;
 	MapReader* mapReader = nullptr;
 	Dijkstra* dijkstra = nullptr;

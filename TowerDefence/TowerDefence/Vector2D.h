@@ -26,15 +26,8 @@ struct Vector2D
 
 	static Vector2D Lerp(Vector2D startPosition, Vector2D endPosition, float delta)
 	{
-		float tempDelta = delta;
-
-		if (tempDelta >= 1)
-		{
-			tempDelta = 1.0f;
-		}
-
-		float currentX = Lerp(startPosition.x, endPosition.x, tempDelta);
-		float currentY = Lerp(startPosition.y, endPosition.y, tempDelta);
+		float currentX = Lerp(startPosition.x, endPosition.x, delta);
+		float currentY = Lerp(startPosition.y, endPosition.y, delta);
 		return Vector2D(currentX, currentY);
 	}
 
@@ -45,5 +38,10 @@ struct Vector2D
 			return true;
 		}
 		return false;
+	}
+	
+	const Vector2D operator+(const Vector2D other) 
+	{
+		return Vector2D(x + other.x, y + other.y);
 	}
 };

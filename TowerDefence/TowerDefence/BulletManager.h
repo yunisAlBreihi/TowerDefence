@@ -17,7 +17,7 @@ private:
 public:
 	BulletManager(SDL_Renderer* renderer);
 
-	void AddBullet(Sprite* bulletSprite);
+	void AddBullet(BulletBase* bullet);
 
 	void Start();
 	void Update();

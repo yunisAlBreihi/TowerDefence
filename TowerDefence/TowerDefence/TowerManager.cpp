@@ -2,7 +2,7 @@
 #include "TowerSmall.h"
 #include "TowerBig.h"
 
-TowerManager::TowerManager(SDL_Renderer* renderer, TileManager* tileManager) : renderer(renderer), tileManager(tileManager)
+TowerManager::TowerManager(SDL_Renderer* renderer, SpriteManager* spriteManager, TileManager* tileManager, EnemyManager* enemyManager, BulletManager* bulletManager) : renderer(renderer), spriteManager(spriteManager), tileManager(tileManager), enemyManager(enemyManager), bulletManager(bulletManager)
 {
 }
 
@@ -72,12 +72,12 @@ TowerBase* TowerManager::CreateTower(Sprite* towerSprite, Vector2D position, Vec
 {
 	if (towerSprite->GetSpriteName() == SpriteName::TowerSmall)
 	{
-		TowerSmall* tower = new TowerSmall(renderer, towerSprite, position, scale);
+		TowerSmall* tower = new TowerSmall(renderer, enemyManager, spriteManager, bulletManager, towerSprite, position, scale);
 		return tower;
 	}
-	else if(towerSprite->GetSpriteName() == SpriteName::TowerBig)
+	else if (towerSprite->GetSpriteName() == SpriteName::TowerBig)
 	{
-		TowerBig* tower = new TowerBig(renderer, towerSprite, position, scale);
+		TowerBig* tower = new TowerBig(renderer, enemyManager, spriteManager, bulletManager, towerSprite, position, scale);
 		return tower;
 	}
 }

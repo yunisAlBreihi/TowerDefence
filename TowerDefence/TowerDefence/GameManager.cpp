@@ -41,8 +41,9 @@ GameManager::GameManager(const char* title, int posX, int posY, int width, int h
 	}
 	mapManager = new MapManager(renderer, spriteManager);
 	mapReader = new MapReader();
+	bulletManager = new BulletManager(renderer);
 	enemyManager = new EnemyManager(renderer, tileManager, mapManager, dijkstra);
-	towerManager = new TowerManager(renderer,tileManager);
+	towerManager = new TowerManager(renderer,spriteManager,tileManager, enemyManager, bulletManager);
 }
 
 GameManager::~GameManager()
@@ -100,11 +101,9 @@ void GameManager::Start()
 
 	enemyManager->Start();
 	towerManager->Start();
+	bulletManager->Update();
 	//enemyManager->DebugPositions();
 	//mapManager->GetMap(1)->GetEnemyNumbers();
-
-	bullet = new BulletBase(renderer, towerSmallSprite, Vector2D(DEFAULT_SPRITE_SIZE / 4, DEFAULT_SPRITE_SIZE / 4), Vector2D(0, 0));
-	bullet->StartMoving(Vector2D(0, 0), tileManager->GetTile(SpriteName::startPosition)->GetPosition());
 }
 
 void GameManager::HandleEvent()
@@ -126,7 +125,7 @@ void GameManager::Update()
 {
 	enemyManager->Update();
 	towerManager->Update();
-	bullet->Update();
+	bulletManager->Update();
 }
 
 void GameManager::Render()
@@ -135,7 +134,7 @@ void GameManager::Render()
 	tileManager->Render();
 	enemyManager->Render();
 	towerManager->Render();
-	bullet->Render();
+	bulletManager->Render();
 	SDL_RenderPresent(renderer);
 }
 

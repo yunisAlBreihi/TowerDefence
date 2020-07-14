@@ -17,8 +17,9 @@ protected:
 	Sprite* sprite = nullptr;
 	Vector2D position = { 0,0 };
 	Vector2D scale = { 0,0 };
+	Vector2D currentStartPosition = { 0,0 };
 	SDL_Rect dstRect = { 0,0,0,0 };
-	float timer = 0;
+	float delta = 0;
 	float timeToMove = 1000;
 	bool hasReachedEnd = false;
 

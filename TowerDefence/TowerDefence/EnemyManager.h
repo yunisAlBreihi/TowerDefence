@@ -52,4 +52,5 @@ public:
 
 	void DebugPositions();
 	EnemyBase* GetEnemyTypeAtIndex(EnemyType enemyType, int index);
+	std::vector<std::vector<EnemyBase*>> GetEnemies() { return enemies; }
 };

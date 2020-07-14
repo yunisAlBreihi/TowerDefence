@@ -86,11 +86,13 @@ EnemyBase* EnemyManager::CreateEnemy(Sprite* enemySprite)
 	if (enemySprite->GetSpriteName() == SpriteName::EnemySmall)
 	{
 		EnemySmall* enemy = new EnemySmall(renderer, path, sprites[0], tileManager->GetTile(SpriteName::startPosition)->GetPosition(), Vector2D(GameManager::DEFAULT_SPRITE_SIZE, GameManager::DEFAULT_SPRITE_SIZE));
+		enemy->Start();
 		return enemy;
 	}
 	else if (enemySprite->GetSpriteName() == SpriteName::EnemyBig)
 	{
 		EnemyBig* enemy = new EnemyBig(renderer, path, sprites[1], tileManager->GetTile(SpriteName::startPosition)->GetPosition(), Vector2D(GameManager::DEFAULT_SPRITE_SIZE, GameManager::DEFAULT_SPRITE_SIZE));
+		enemy->Start();
 		return enemy;
 	}
 }

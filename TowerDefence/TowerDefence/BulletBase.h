@@ -25,7 +25,7 @@ private:
 
 public:
 	//BulletBase();
-	BulletBase(SDL_Renderer* renderer, Sprite* sprite, Vector2D scale, Vector2D position);
+	BulletBase(SDL_Renderer* renderer, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale);
 	~BulletBase();
 
 	void Start();
