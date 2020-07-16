@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="BulletBase.cpp" />
     <ClCompile Include="BulletManager.cpp" />
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Dijkstra.cpp" />
     <ClCompile Include="EffectsManager.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
@@ -153,6 +154,7 @@
   <ItemGroup>
     <ClInclude Include="BulletBase.h" />
     <ClInclude Include="BulletManager.h" />
+    <ClInclude Include="Collider.h" />
     <ClInclude Include="Dijkstra.h" />
     <ClInclude Include="EffectsManager.h" />
     <ClInclude Include="EnemyBase.h" />

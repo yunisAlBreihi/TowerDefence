@@ -1,4 +1,5 @@
 #include "EnemyBase.h"
+
 EnemyBase::EnemyBase()
 {
 }
@@ -6,7 +7,6 @@ EnemyBase::EnemyBase()
 EnemyBase::EnemyBase(SDL_Renderer* renderer, std::vector<Tile*> path, Sprite* sprite, Vector2D position, Vector2D scale) : renderer(renderer), path(path), sprite(sprite), position(position), scale(scale)
 {
 	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
-
 }
 
 EnemyBase::~EnemyBase()
@@ -20,9 +20,29 @@ void EnemyBase::Start()
 
 void EnemyBase::Update()
 {
+	if (IsDead() == false)
+	{
+		MoveToEnd();
+	}
+}
+
+void EnemyBase::Render()
+{
+	if (IsDead() == false)
+	{
+		SDL_RenderCopy(renderer, sprite->GetTexture(), nullptr, &dstRect);
+	}
+}
+
+void EnemyBase::Destroy()
+{
+}
+
+void EnemyBase::MoveToEnd()
+{
 	if (hasReachedEnd == false)
 	{
-		delta+= 0.002f;
+		delta += 0.002f;
 
 		if (delta >= 1)
 		{
@@ -39,18 +59,18 @@ void EnemyBase::Update()
 		}
 		else
 		{
-			SetPosition(Vector2D::Lerp(currentStartPosition,path[pathIndex]->GetPosition(), delta));
+			SetPosition(Vector2D::Lerp(currentStartPosition, path[pathIndex]->GetPosition(), delta));
 		}
 	}
 }
 
-void EnemyBase::Render()
+bool EnemyBase::IsDead()
 {
-	SDL_RenderCopy(renderer, sprite->GetTexture(), nullptr, &dstRect);
-}
-
-void EnemyBase::Destroy()
-{
+	if (health <= 0)
+	{
+		return true;
+	}
+	return false;
 }
 
 void EnemyBase::SetPosition(Vector2D vector2D)
@@ -58,4 +78,9 @@ void EnemyBase::SetPosition(Vector2D vector2D)
 	position = vector2D;
 	dstRect.x = position.x;
 	dstRect.y = position.y;
+}
+
+void EnemyBase::TakeDamage(float damage)
+{
+	health -= damage;
 }

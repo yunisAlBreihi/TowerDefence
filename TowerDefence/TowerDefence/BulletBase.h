@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include "IRenderable.h"
+#include "EnemyManager.h"
 #include "EffectsManager.h"
 #include "Sprite.h"
 #include "Vector2D.h"
@@ -11,6 +12,7 @@ private:
 
 protected:
 	SDL_Renderer* renderer = nullptr;
+	EnemyManager* enemyManager = nullptr;
 	EffectsManager* effectsManager = nullptr;
 	Sprite* sprite = nullptr;
 	Vector2D position = { 0,0 };
@@ -27,7 +29,7 @@ private:
 
 public:
 	BulletBase();
-	BulletBase(SDL_Renderer* renderer,EffectsManager* effectsManager, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale);
+	BulletBase(SDL_Renderer* renderer,EnemyManager* enemyManager,EffectsManager* effectsManager, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale);
 	~BulletBase();
 
 	void Start();

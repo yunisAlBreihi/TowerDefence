@@ -5,6 +5,7 @@
 #include "EnemyManager.h"
 #include "BulletManager.h"
 #include "EffectsManager.h"
+#include "Collider.h"
 
 class TowerBase : public IRenderable
 {
@@ -16,6 +17,7 @@ protected:
 	BulletManager* bulletManager = nullptr;
 	EffectsManager* effectsManager = nullptr;
 	EnemyBase* currentEnemyTarget = nullptr;
+	Collider* collider = nullptr;
 	Sprite* sprite = nullptr;
 	Vector2D position = { 0,0 };
 	Vector2D scale = { 0,0 };
@@ -39,9 +41,6 @@ public:
 	void Update();
 	void Render();
 	void Destroy();
-
-	bool isPointInCircle(Vector2D firstPosition, Vector2D secondPosition, float radius);
-	void DrawDebugCircle();
 
 	void SetPosition(Vector2D vector2D);
 

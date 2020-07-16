@@ -1,13 +1,15 @@
 #include "EffectBase.h"
+#include <iostream>
 #include "GameManager.h"
 
-EffectBase::EffectBase(SDL_Renderer* renderer, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale) : renderer(renderer), sprite(sprite), position(position), startScale(startScale), endScale(endScale)
+EffectBase::EffectBase(SDL_Renderer* renderer,EnemyManager* enemyManager, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale) : renderer(renderer),enemyManager(enemyManager), sprite(sprite), position(position), startScale(startScale), endScale(endScale)
 {
 	startPosition = position;
 	endPosition = startPosition - (endScale * 0.5f);
 	scale = startScale;
 	dstRect = { this->startPosition.x, this->startPosition.y, this->scale.x, this->scale.y };
 	startScale = this->scale;
+	collider = new Collider(startPosition,  startScale.x * 0.5f);
 }
 
 void EffectBase::Start()
@@ -16,12 +18,33 @@ void EffectBase::Start()
 
 void EffectBase::Update()
 {
-	Expand();
+	if (reachedMaxSize == false)
+	{
+		Expand();
+
+		for (std::vector<EnemyBase*> enemies : enemyManager->GetEnemies())
+		{
+			for (EnemyBase* enemy : enemies)
+			{
+				if (enemy->IsDead() == false)
+				{
+					if (collider->isPointInCircle(position, enemy->GetPosition() + GameManager::DEFAULT_SPRITE_SIZE * 0.5f, scale.x * 0.5f))
+					{
+						enemy->TakeDamage(1.0f);
+						//std::cout << "Enemy is inside explosion!" << std::endl;
+					}
+				}
+			}
+		}
+	}
 }
 
 void EffectBase::Render()
 {
-	SDL_RenderCopy(renderer, sprite->GetTexture(), nullptr, &dstRect);
+	if (reachedMaxSize == false)
+	{
+		SDL_RenderCopy(renderer, sprite->GetTexture(), nullptr, &dstRect);
+	}
 }
 
 void EffectBase::Destroy()
@@ -47,8 +70,16 @@ void EffectBase::Expand()
 	SetScale(Vector2D::Lerp(startScale, endScale, delta));
 	SetPosition(Vector2D::Lerp(startPosition, endPosition, delta));
 
+	//Scales the collider with the effect
+	collider->SetPosition(position);
+	collider->SetRadius(scale.x * 0.5f);
+
 	if (delta <= 1.0f)
 	{
 		delta += 0.003f;
+	}
+	else
+	{
+		reachedMaxSize = true;
 	}
 }

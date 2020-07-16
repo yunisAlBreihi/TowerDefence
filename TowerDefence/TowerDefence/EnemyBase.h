@@ -23,9 +23,13 @@ protected:
 	float timeToMove = 1000;
 	bool hasReachedEnd = false;
 
+	float health = 3.0f;
+
 public:
 
 private:
+
+	void MoveToEnd();
 
 public:
 
@@ -37,6 +41,9 @@ public:
 	void Update();
 	void Render();
 	void Destroy();
+
+	void TakeDamage(float damage);
+	bool IsDead();
 
 	void SetPosition(Vector2D vector2D);
 	Vector2D GetPosition() { return Vector2D(dstRect.x, dstRect.y); }

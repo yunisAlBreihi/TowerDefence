@@ -9,7 +9,7 @@ BulletBase::BulletBase()
 {
 }
 
-BulletBase::BulletBase(SDL_Renderer* renderer, EffectsManager* effectsManager, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale) : renderer(renderer), effectsManager(effectsManager), sprite(sprite), position(startPosition), endPosition(endPosition), scale(scale)
+BulletBase::BulletBase(SDL_Renderer* renderer,EnemyManager* enemyManager, EffectsManager* effectsManager, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale) : renderer(renderer),enemyManager(enemyManager), effectsManager(effectsManager), sprite(sprite), position(startPosition), endPosition(endPosition), scale(scale)
 {
 	this->startPosition = startPosition;
 	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
@@ -36,7 +36,7 @@ void BulletBase::Update()
 		else
 		{
 			isMoving = false;
-			EffectBase* explosion = new EffectBase(renderer, sprite, position,Vector2D::Zero(), Vector2D::One() * (GameManager::DEFAULT_SPRITE_SIZE * 2.0f));
+			EffectBase* explosion = new EffectBase(renderer,enemyManager, sprite, position,Vector2D::Zero(), Vector2D::One() * (GameManager::DEFAULT_SPRITE_SIZE * 2.0f));
 			effectsManager->AddEffect(explosion);
 		}
 	}
