@@ -162,6 +162,7 @@
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="EnemySmall.h" />
     <ClInclude Include="EffectBase.h" />
+    <ClInclude Include="Enums.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="IRenderable.h" />
     <ClInclude Include="Map.h" />

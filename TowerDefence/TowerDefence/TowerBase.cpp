@@ -6,7 +6,7 @@ TowerBase::TowerBase()
 {
 }
 
-TowerBase::TowerBase(SDL_Renderer* renderer, EnemyManager* enemyManager, SpriteManager* spriteManager, BulletManager* bulletManager, EffectsManager* effectsManager, Sprite* sprite, Vector2D position, Vector2D scale) : renderer(renderer), enemyManager(enemyManager), spriteManager(spriteManager), bulletManager(bulletManager), effectsManager(effectsManager), sprite(sprite), position(position), scale(scale)
+TowerBase::TowerBase(SDL_Renderer* renderer, EnemyManager* enemyManager, SpriteManager* spriteManager, BulletManager* bulletManager, EffectsManager* effectsManager, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale) : renderer(renderer), enemyManager(enemyManager), spriteManager(spriteManager), bulletManager(bulletManager), effectsManager(effectsManager), bulletType(bulletType), sprite(sprite), position(position), scale(scale)
 {
 	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
 	collider = new Collider(this->position, 90.0f);
@@ -35,6 +35,10 @@ void TowerBase::Update()
 						if (collider->isPointInCircle(position + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2),
 							enemy->GetPosition() + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2), collisionRadius))
 						{
+							if (enemy->IsDead())
+							{
+								continue;
+							}
 							currentEnemyTarget = enemy;
 							break;
 						}
@@ -43,7 +47,7 @@ void TowerBase::Update()
 			}
 		}
 	}
-	else if (collider->isPointInCircle(position + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2),
+	else if (currentEnemyTarget->IsDead() == true || collider->isPointInCircle(position + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2),
 		currentEnemyTarget->GetPosition() + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2),
 		collisionRadius) == false)
 	{
@@ -56,7 +60,7 @@ void TowerBase::Update()
 
 		if (shootTimer >= shootMaxTime)
 		{
-			BulletBase* bullet = new BulletBase(renderer, enemyManager, effectsManager, spriteManager->GetSprite(SpriteName::startPosition),
+			BulletBase* bullet = new BulletBase(renderer, enemyManager, effectsManager, bulletType, spriteManager->GetSprite(SpriteName::startPosition),
 				position + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2),
 				currentEnemyTarget->GetPosition() + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2),
 				Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 4, GameManager::DEFAULT_SPRITE_SIZE / 4));

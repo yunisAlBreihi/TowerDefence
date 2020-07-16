@@ -2,6 +2,7 @@
 
 EnemyBig::EnemyBig(SDL_Renderer* renderer, std::vector<Tile*> path, Sprite* sprite, Vector2D position, Vector2D scale)
 {
+	health = 10.0f;
 	this->renderer = renderer;
 	this->path = path;
 	this->sprite = sprite;

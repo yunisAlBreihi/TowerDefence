@@ -20,15 +20,20 @@ void EnemyBase::Start()
 
 void EnemyBase::Update()
 {
-	if (IsDead() == false)
+	if (IsDead() == false || hasReachedEnd == false)
 	{
 		MoveToEnd();
+
+		if (isFrozen == true)
+		{
+			FreezeTimer();
+		}
 	}
 }
 
 void EnemyBase::Render()
 {
-	if (IsDead() == false)
+	if (IsDead() == false || hasReachedEnd == false)
 	{
 		SDL_RenderCopy(renderer, sprite->GetTexture(), nullptr, &dstRect);
 	}
@@ -42,9 +47,9 @@ void EnemyBase::MoveToEnd()
 {
 	if (hasReachedEnd == false)
 	{
-		delta += 0.002f;
+		delta += 0.002f * speed;
 
-		if (delta >= 1)
+		if (delta >= 1.0f)
 		{
 			delta = 0;
 			currentStartPosition = GetPosition();
@@ -80,7 +85,34 @@ void EnemyBase::SetPosition(Vector2D vector2D)
 	dstRect.y = position.y;
 }
 
+void EnemyBase::SetSpeed(float speed)
+{
+	this->speed = speed;
+}
+
 void EnemyBase::TakeDamage(float damage)
 {
 	health -= damage;
+}
+
+void EnemyBase::Freeze(float freezeTime, float freezeSpeed)
+{
+	isFrozen = true;
+	maxFreezeTime = freezeTime;
+	speed = freezeSpeed;
+}
+
+bool EnemyBase::IsFrozen()
+{
+	return isFrozen;
+}
+
+void EnemyBase::FreezeTimer()
+{
+	if (freezeTimer >= maxFreezeTime)
+	{
+		isFrozen = false;
+		speed = originalSpeed;
+	}
+	freezeTimer += 0.001f;
 }

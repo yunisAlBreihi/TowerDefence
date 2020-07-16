@@ -2,7 +2,7 @@
 #include <iostream>
 #include "GameManager.h"
 
-EffectBase::EffectBase(SDL_Renderer* renderer,EnemyManager* enemyManager, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale) : renderer(renderer),enemyManager(enemyManager), sprite(sprite), position(position), startScale(startScale), endScale(endScale)
+EffectBase::EffectBase(SDL_Renderer* renderer,EnemyManager* enemyManager,BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale) : renderer(renderer),enemyManager(enemyManager),bulletType(bulletType), sprite(sprite), position(position), startScale(startScale), endScale(endScale)
 {
 	startPosition = position;
 	endPosition = startPosition - (endScale * 0.5f);
@@ -28,9 +28,25 @@ void EffectBase::Update()
 			{
 				if (enemy->IsDead() == false)
 				{
-					if (collider->isPointInCircle(position, enemy->GetPosition() + GameManager::DEFAULT_SPRITE_SIZE * 0.5f, scale.x * 0.5f))
+					if (collider->isPointInCircle(position, enemy->GetPosition(), scale.x * 0.5f))
 					{
-						enemy->TakeDamage(1.0f);
+						//Makes sure the enemy can only be hit once
+						if (enemy != currentTarget)
+						{
+							if (bulletType == BulletType::Regular)
+							{
+								enemy->TakeDamage(1.0f);
+							}
+							else if (bulletType == BulletType::Freezing)
+							{
+								if (enemy->IsFrozen() == false)
+								{
+									enemy->Freeze(3.0f, 0.5f);
+								}
+							}
+
+							currentTarget = enemy;
+						}
 						//std::cout << "Enemy is inside explosion!" << std::endl;
 					}
 				}

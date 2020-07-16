@@ -5,6 +5,7 @@
 #include "EffectsManager.h"
 #include "Sprite.h"
 #include "Vector2D.h"
+#include "Enums.h"
 
 class BulletBase : public IRenderable
 {
@@ -14,6 +15,7 @@ protected:
 	SDL_Renderer* renderer = nullptr;
 	EnemyManager* enemyManager = nullptr;
 	EffectsManager* effectsManager = nullptr;
+	BulletType bulletType;
 	Sprite* sprite = nullptr;
 	Vector2D position = { 0,0 };
 	Vector2D startPosition = { 0,0 };
@@ -29,7 +31,7 @@ private:
 
 public:
 	BulletBase();
-	BulletBase(SDL_Renderer* renderer,EnemyManager* enemyManager,EffectsManager* effectsManager, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale);
+	BulletBase(SDL_Renderer* renderer,EnemyManager* enemyManager,EffectsManager* effectsManager,BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale);
 	~BulletBase();
 
 	void Start();

@@ -20,16 +20,24 @@ protected:
 	Vector2D currentStartPosition = { 0,0 };
 	SDL_Rect dstRect = { 0,0,0,0 };
 	float delta = 0;
-	float timeToMove = 1000;
 	bool hasReachedEnd = false;
 
 	float health = 3.0f;
+
+	//For when the enemy is frozen
+	float speed = 1.0f;
+	float originalSpeed = 1.0f;
+	float frozenSpeed = 0.5f;
+	float freezeTimer = 0.0f;
+	float maxFreezeTime = 2.0f;
+	bool isFrozen = false;
 
 public:
 
 private:
 
 	void MoveToEnd();
+	void FreezeTimer();
 
 public:
 
@@ -45,8 +53,14 @@ public:
 	void TakeDamage(float damage);
 	bool IsDead();
 
+	//For when the enemy is frozen
+	void Freeze(float freezeTime, float freezeSpeed);
+	bool IsFrozen();
+
 	void SetPosition(Vector2D vector2D);
 	Vector2D GetPosition() { return Vector2D(dstRect.x, dstRect.y); }
+	void SetSpeed(float speed);
+	float GetSpeed() { return speed; }
 	Sprite* GetSprite() { return sprite; }
 	SDL_Rect GetDstRect() { return dstRect; }
 	bool HasReachedEnd() { return hasReachedEnd; }

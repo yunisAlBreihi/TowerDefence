@@ -6,12 +6,14 @@
 #include "Vector2D.h"
 #include "Collider.h"
 #include "EnemyBase.h"
+#include "Enums.h"
 
 class EffectBase : public IRenderable
 {
 private:
 	SDL_Renderer* renderer = nullptr;
 	EnemyManager* enemyManager = nullptr;
+	BulletType bulletType;
 	Sprite* sprite = nullptr;
 	Collider* collider = nullptr;
 	Vector2D position = { 0,0 };
@@ -26,6 +28,8 @@ private:
 	float endRadius = 0.0f;
 	bool reachedMaxSize = false;
 
+	EnemyBase* currentTarget = nullptr;
+
 	std::vector<EnemyBase*> enemiesHit;
 
 public:
@@ -33,7 +37,7 @@ public:
 private:
 
 public:
-	EffectBase(SDL_Renderer* renderer,EnemyManager* enemyManager, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale);
+	EffectBase(SDL_Renderer* renderer,EnemyManager* enemyManager, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale);
 
 	void Start();
 	void Update();
