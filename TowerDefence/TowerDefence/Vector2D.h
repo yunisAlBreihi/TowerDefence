@@ -8,7 +8,8 @@ struct Vector2D
 
 	Vector2D(int x, int y) : x(x), y(y) {}
 
-	Vector2D Zero() { return Vector2D(0, 0); }
+	static Vector2D Zero() { return Vector2D(0, 0); }
+	static Vector2D One() { return Vector2D(1, 1); }
 
 	static float Distance(Vector2D startPosition, Vector2D endPosition)
 	{
@@ -43,5 +44,25 @@ struct Vector2D
 	const Vector2D operator+(const Vector2D other) 
 	{
 		return Vector2D(x + other.x, y + other.y);
+	}
+
+	const Vector2D operator-(const Vector2D other)
+	{
+		return Vector2D(x - other.x, y - other.y);
+	}
+
+	const Vector2D operator+(const int other)
+	{
+		return Vector2D(x + other, y + other);
+	}
+
+	const Vector2D operator*(const float other) 
+	{
+		return Vector2D(x * other, y * other);
+	}
+
+	const Vector2D operator/(const float other)
+	{
+		return Vector2D(x / other, y / other);
 	}
 };

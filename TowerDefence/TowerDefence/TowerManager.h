@@ -16,6 +16,7 @@ private:
 	TileManager* tileManager = nullptr;
 	EnemyManager* enemyManager = nullptr;
 	BulletManager* bulletManager = nullptr;
+	EffectsManager* effectsManager = nullptr;
 
 public:
 
@@ -23,7 +24,7 @@ private:
 	TowerBase* CreateTower(Sprite* towerSprite, Vector2D position, Vector2D scale);
 
 public:
-	TowerManager(SDL_Renderer* renderer,SpriteManager* spriteManager, TileManager* tileManager, EnemyManager* enemyManager, BulletManager* bulletManager);
+	TowerManager(SDL_Renderer* renderer,SpriteManager* spriteManager, TileManager* tileManager, EnemyManager* enemyManager, BulletManager* bulletManager,EffectsManager* effectsManager);
 
 	void AddTower(Sprite* towerSprite);
 

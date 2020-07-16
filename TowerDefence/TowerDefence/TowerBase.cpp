@@ -6,7 +6,7 @@ TowerBase::TowerBase()
 {
 }
 
-TowerBase::TowerBase(SDL_Renderer* renderer, EnemyManager* enemyManager, SpriteManager* spriteManager, BulletManager* bulletManager, Sprite* sprite, Vector2D position, Vector2D scale) : renderer(renderer), enemyManager(enemyManager), spriteManager(spriteManager),bulletManager(bulletManager), sprite(sprite), position(position), scale(scale)
+TowerBase::TowerBase(SDL_Renderer* renderer, EnemyManager* enemyManager, SpriteManager* spriteManager, BulletManager* bulletManager,EffectsManager* effectsManager, Sprite* sprite, Vector2D position, Vector2D scale) : renderer(renderer), enemyManager(enemyManager), spriteManager(spriteManager),bulletManager(bulletManager), effectsManager(effectsManager), sprite(sprite), position(position), scale(scale)
 {
 	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
 }
@@ -55,7 +55,7 @@ void TowerBase::Update()
 
 		if (shootTimer >= shootMaxTime)
 		{
-			BulletBase* bullet = new BulletBase(renderer, spriteManager->GetSprite(SpriteName::startPosition),
+			BulletBase* bullet = new BulletBase(renderer, effectsManager, spriteManager->GetSprite(SpriteName::startPosition),
 				position + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2),
 				currentEnemyTarget->GetPosition() + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2),
 				Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 4 , GameManager::DEFAULT_SPRITE_SIZE / 4));

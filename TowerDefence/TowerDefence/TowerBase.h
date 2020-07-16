@@ -4,6 +4,7 @@
 #include "Sprite.h"
 #include "EnemyManager.h"
 #include "BulletManager.h"
+#include "EffectsManager.h"
 
 class TowerBase : public IRenderable
 {
@@ -13,6 +14,7 @@ protected:
 	EnemyManager* enemyManager = nullptr;
 	SpriteManager* spriteManager = nullptr;
 	BulletManager* bulletManager = nullptr;
+	EffectsManager* effectsManager = nullptr;
 	EnemyBase* currentEnemyTarget = nullptr;
 	Sprite* sprite = nullptr;
 	Vector2D position = { 0,0 };
@@ -30,7 +32,7 @@ private:
 
 public:
 	TowerBase();
-	TowerBase(SDL_Renderer* renderer, EnemyManager* enemeyManager,SpriteManager* spriteManager, BulletManager* bulletManager, Sprite* sprite, Vector2D position, Vector2D scale);
+	TowerBase(SDL_Renderer* renderer, EnemyManager* enemeyManager,SpriteManager* spriteManager, BulletManager* bulletManager,EffectsManager* effectsManager, Sprite* sprite, Vector2D position, Vector2D scale);
 	virtual ~TowerBase() = 0;
 
 	void Start();

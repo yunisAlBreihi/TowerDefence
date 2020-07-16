@@ -6,6 +6,7 @@
 #include "EnemyManager.h"
 #include "TowerManager.h"
 #include "BulletManager.h"
+#include "EffectsManager.h"
 #include "MapReader.h"
 #include "MapManager.h"
 #include "BulletBase.h"
@@ -26,6 +27,7 @@ private:
 	EnemyManager* enemyManager = nullptr;
 	TowerManager* towerManager = nullptr;
 	BulletManager* bulletManager = nullptr;
+	EffectsManager* effectsManager = nullptr;
 	MapManager* mapManager = nullptr;
 	MapReader* mapReader = nullptr;
 	Dijkstra* dijkstra = nullptr;
