@@ -20,7 +20,7 @@ void EnemyBase::Start()
 
 void EnemyBase::Update()
 {
-	if (IsDead() == false || hasReachedEnd == false)
+	if (IsDead() == false)
 	{
 		MoveToEnd();
 
@@ -33,7 +33,7 @@ void EnemyBase::Update()
 
 void EnemyBase::Render()
 {
-	if (IsDead() == false || hasReachedEnd == false)
+	if (IsDead() == false)
 	{
 		SDL_RenderCopy(renderer, sprite->GetTexture(), nullptr, &dstRect);
 	}
@@ -71,7 +71,7 @@ void EnemyBase::MoveToEnd()
 
 bool EnemyBase::IsDead()
 {
-	if (health <= 0)
+	if (health <= 0 || hasReachedEnd == true)
 	{
 		return true;
 	}

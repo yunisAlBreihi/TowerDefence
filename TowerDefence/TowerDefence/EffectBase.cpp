@@ -44,10 +44,8 @@ void EffectBase::Update()
 									enemy->Freeze(3.0f, 0.5f);
 								}
 							}
-
 							currentTarget = enemy;
 						}
-						//std::cout << "Enemy is inside explosion!" << std::endl;
 					}
 				}
 			}
@@ -92,7 +90,7 @@ void EffectBase::Expand()
 
 	if (delta <= 1.0f)
 	{
-		delta += 0.003f;
+		delta += 0.007f;
 	}
 	else
 	{
