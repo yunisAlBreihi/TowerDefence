@@ -10,10 +10,10 @@
 #include "MapReader.h"
 #include "MapManager.h"
 #include "BulletBase.h"
+#include "Managers.h"
 
 class GameManager : public IRenderable
 {
-
 private:
 
 	bool isRunning = false;
@@ -22,6 +22,7 @@ private:
 	SDL_Renderer* renderer = nullptr;
 	SDL_Surface* surface = nullptr;
 
+	Managers* managers = nullptr;
 	TileManager* tileManager = nullptr;
 	SpriteManager* spriteManager = nullptr;
 	EnemyManager* enemyManager = nullptr;

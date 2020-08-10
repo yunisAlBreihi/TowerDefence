@@ -2,6 +2,7 @@
 
 BulletManager::BulletManager(SDL_Renderer* renderer) : renderer(renderer)
 {
+	name = ManagerName::BulletManager;
 }
 
 void BulletManager::Start()

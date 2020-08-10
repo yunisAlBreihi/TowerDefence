@@ -1,10 +1,11 @@
 #pragma once
 #include <vector>
+#include "ManagerBase.h"
 #include "Tile.h"
 
 class MapManager;
 
-class TileManager
+class TileManager : public ManagerBase
 {
 private:
 	std::vector<Tile*> tiles;
@@ -14,6 +15,9 @@ public:
 private:
 
 public:
+	TileManager();
+	~TileManager();
+
 	void AddTile(Tile* tile);
 	Tile* GetTile(SpriteName spriteName);
 	std::vector<Tile*> GetTiles(SpriteName spriteName);

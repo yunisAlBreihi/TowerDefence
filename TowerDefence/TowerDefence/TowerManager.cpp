@@ -2,14 +2,20 @@
 #include "TowerSmall.h"
 #include "TowerBig.h"
 
-TowerManager::TowerManager(SDL_Renderer* renderer, SpriteManager* spriteManager, TileManager* tileManager, EnemyManager* enemyManager, BulletManager* bulletManager, EffectsManager* effectsManager) : renderer(renderer), spriteManager(spriteManager), tileManager(tileManager), enemyManager(enemyManager), bulletManager(bulletManager), effectsManager(effectsManager)
+TowerManager::TowerManager(SDL_Renderer* renderer, Managers* managers) : renderer(renderer), managers(managers)
 {
+	name = ManagerName::TowerManager;
 }
 
 void TowerManager::Start()
 {
 	towers.push_back(std::vector<TowerBase*>());
 	towers.push_back(std::vector<TowerBase*>());
+	tileManager = (TileManager*)managers->GetManager(ManagerName::TileManager);
+	enemyManager = (EnemyManager*)managers->GetManager(ManagerName::EnemyManager);
+	spriteManager = (SpriteManager*)managers->GetManager(ManagerName::SpriteManager);
+	bulletManager = (BulletManager*)managers->GetManager(ManagerName::BulletManager);
+	effectsManager = (EffectsManager*)managers->GetManager(ManagerName::EffectsManager);
 
 	for (Tile* tile : tileManager->GetTiles(SpriteName::tower01))
 	{
@@ -70,14 +76,15 @@ void TowerManager::AddTower(Sprite* towerSprite)
 
 TowerBase* TowerManager::CreateTower(Sprite* towerSprite, Vector2D position, Vector2D scale)
 {
+
 	if (towerSprite->GetSpriteName() == SpriteName::TowerSmall)
 	{
-		TowerSmall* tower = new TowerSmall(renderer, enemyManager, spriteManager, bulletManager, effectsManager,BulletType::Regular, towerSprite, position, scale);
+		TowerSmall* tower = new TowerSmall(renderer, enemyManager, spriteManager, bulletManager, effectsManager, BulletType::Regular, towerSprite, position, scale);
 		return tower;
 	}
 	else if (towerSprite->GetSpriteName() == SpriteName::TowerBig)
 	{
-		TowerBig* tower = new TowerBig(renderer, enemyManager, spriteManager, bulletManager, effectsManager,BulletType::Freezing, towerSprite, position, scale);
+		TowerBig* tower = new TowerBig(renderer, enemyManager, spriteManager, bulletManager, effectsManager, BulletType::Freezing, towerSprite, position, scale);
 		return tower;
 	}
 }

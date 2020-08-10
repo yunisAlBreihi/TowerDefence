@@ -7,6 +7,7 @@
 
 GameManager::GameManager(const char* title, int posX, int posY, int width, int height, Uint32 flags)
 {
+	managers = new Managers();
 	tileManager = new TileManager();
 	spriteManager = new SpriteManager();
 	dijkstra = new Dijkstra();
@@ -39,12 +40,20 @@ GameManager::GameManager(const char* title, int posX, int posY, int width, int h
 	{
 		isRunning = false;
 	}
-	mapManager = new MapManager(renderer, spriteManager);
+	mapManager = new MapManager(renderer, managers);
 	mapReader = new MapReader();
 	effectsManager = new EffectsManager(renderer);
 	bulletManager = new BulletManager(renderer);
-	enemyManager = new EnemyManager(renderer, tileManager, mapManager, dijkstra);
-	towerManager = new TowerManager(renderer,spriteManager,tileManager, enemyManager, bulletManager, effectsManager);
+	enemyManager = new EnemyManager(renderer, managers, dijkstra);
+	towerManager = new TowerManager(renderer,managers);
+
+	managers->AddManager(tileManager);
+	managers->AddManager(spriteManager);
+	managers->AddManager(mapManager);
+	managers->AddManager(effectsManager);
+	managers->AddManager(bulletManager);
+	managers->AddManager(enemyManager);
+	managers->AddManager(towerManager);
 }
 
 GameManager::~GameManager()

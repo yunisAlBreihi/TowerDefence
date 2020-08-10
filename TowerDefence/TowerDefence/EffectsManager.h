@@ -2,9 +2,10 @@
 #include <SDL.h>
 #include <vector>
 #include "IRenderable.h"
+#include "ManagerBase.h"
 #include "EffectBase.h"
 
-class EffectsManager : public IRenderable
+class EffectsManager : public IRenderable , public ManagerBase
 {
 private:
 	std::vector<EffectBase*> effects;

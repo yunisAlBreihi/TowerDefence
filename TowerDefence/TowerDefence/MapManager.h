@@ -1,16 +1,16 @@
 #pragma once
 #include "SpriteManager.h"
-#include "TileManager.h"
 #include "Tile.h"
 #include "Map.h"
+#include "Managers.h"
 
-class MapManager
+class MapManager : public ManagerBase
 {
 private:
 
 	std::vector<Map*> maps;
 	SDL_Renderer* renderer = nullptr;
-	SpriteManager* spriteManager = nullptr;
+	Managers* managers = nullptr;
 
 public:
 
@@ -18,12 +18,11 @@ private:
 
 public:
 
-	MapManager(SDL_Renderer* renderer, SpriteManager* spriteManager);
+	MapManager(SDL_Renderer* renderer, Managers* managers);
 	void AddMap(Map* map);
 	//void CreateTilesFromMap(int mapIndex);
 	SDL_Renderer* GetRenderer() { return renderer; }
-	SpriteManager* GetSpriteManager() { return spriteManager; }
+	SpriteManager* GetSpriteManager() { return (SpriteManager*)managers->GetManager(ManagerName::SpriteManager); }
 	Map* GetMap(int index) { return maps[index]; }
-
 };
 

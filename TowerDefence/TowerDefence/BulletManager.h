@@ -1,8 +1,9 @@
 #pragma once
 #include <vector>
+#include "ManagerBase.h"
 #include "BulletBase.h"
 
-class BulletManager : public IRenderable
+class BulletManager : public IRenderable , public ManagerBase
 {
 private:
 	EffectsManager* effectsManager = nullptr;

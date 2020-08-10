@@ -135,6 +135,8 @@
     <ClCompile Include="EffectBase.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ManagerBase.cpp" />
+    <ClCompile Include="Managers.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="MapReader.cpp" />
@@ -165,6 +167,8 @@
     <ClInclude Include="Enums.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="IRenderable.h" />
+    <ClInclude Include="ManagerBase.h" />
+    <ClInclude Include="Managers.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="MapReader.h" />

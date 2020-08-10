@@ -2,6 +2,15 @@
 #include "GameManager.h"
 #include "MapManager.h"
 
+TileManager::TileManager()
+{
+	name = ManagerName::TileManager;
+}
+
+TileManager::~TileManager()
+{
+}
+
 void TileManager::Start()
 {
 }

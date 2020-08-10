@@ -4,6 +4,8 @@
 #include "Dijkstra.h"
 #include "MapManager.h"
 #include "IRenderable.h"
+#include "ManagerBase.h"
+#include "Managers.h"
 
 enum class EnemyType
 {
@@ -13,7 +15,7 @@ enum class EnemyType
 
 class SDL_Renderer;
 
-class EnemyManager : IRenderable
+class EnemyManager : public IRenderable, public ManagerBase
 {
 private:
 	std::vector<Sprite*> sprites;
@@ -22,6 +24,7 @@ private:
 	Dijkstra* dijkstra = nullptr;
 	TileManager* tileManager = nullptr;
 	MapManager* mapManager = nullptr;
+	Managers* managers = nullptr;
 	std::vector<Tile*> path;
 	std::vector<std::vector<int>> mapEnemyNumbers;
 	int enemyIndex = 0;
@@ -40,7 +43,7 @@ private:
 	EnemyBase* CreateEnemy(Sprite* enemySprite);
 
 public:
-	EnemyManager(SDL_Renderer* renderer, TileManager* tileManager, MapManager* mapManager, Dijkstra* dijkstra);
+	EnemyManager(SDL_Renderer* renderer, Managers* managers, Dijkstra* dijkstra);
 
 	void AddEnemy(Sprite* enemySprite);
 	void SpawnEnemyWaves();

@@ -2,6 +2,7 @@
 
 EffectsManager::EffectsManager(SDL_Renderer* renderer) : renderer(renderer)
 {
+	name = ManagerName::EffectsManager;
 }
 
 void EffectsManager::Start()

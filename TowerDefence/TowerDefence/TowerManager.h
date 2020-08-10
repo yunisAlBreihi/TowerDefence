@@ -5,16 +5,18 @@
 #include "TowerBase.h"
 #include "TileManager.h"
 #include "IRenderable.h"
+#include "Managers.h"
 
-class TowerManager
+class TowerManager : public ManagerBase
 {
 private:
 	std::vector<Sprite*> sprites;
 	std::vector<std::vector<TowerBase*>> towers;
 	SDL_Renderer* renderer = nullptr;
-	SpriteManager* spriteManager = nullptr;
+	Managers* managers = nullptr;
 	TileManager* tileManager = nullptr;
 	EnemyManager* enemyManager = nullptr;
+	SpriteManager* spriteManager = nullptr;
 	BulletManager* bulletManager = nullptr;
 	EffectsManager* effectsManager = nullptr;
 
@@ -24,7 +26,7 @@ private:
 	TowerBase* CreateTower(Sprite* towerSprite, Vector2D position, Vector2D scale);
 
 public:
-	TowerManager(SDL_Renderer* renderer,SpriteManager* spriteManager, TileManager* tileManager, EnemyManager* enemyManager, BulletManager* bulletManager,EffectsManager* effectsManager);
+	TowerManager(SDL_Renderer* renderer,Managers* managers);
 
 	void AddTower(Sprite* towerSprite);
 

@@ -4,15 +4,16 @@
 #include "EnemySmall.h"
 #include "EnemyBig.h"
 
-EnemyManager::EnemyManager(SDL_Renderer* renderer, TileManager* tileManager, MapManager* mapManager, Dijkstra* dijkstra) : renderer(renderer), tileManager(tileManager), mapManager(mapManager), dijkstra(dijkstra)
+EnemyManager::EnemyManager(SDL_Renderer* renderer, Managers* managers, Dijkstra* dijkstra) : renderer(renderer), managers(managers), dijkstra(dijkstra)
 {
+	name = ManagerName::EnemyManager;
 }
 
 void EnemyManager::Start()
 {
-	path = dijkstra->FindShortestPath(tileManager, tileManager->GetTile(SpriteName::startPosition), tileManager->GetTile(SpriteName::endPosition));
+	path = dijkstra->FindShortestPath((TileManager*)managers->GetManager(ManagerName::TileManager), ((TileManager*)managers->GetManager(ManagerName::TileManager))->GetTile(SpriteName::startPosition), ((TileManager*)managers->GetManager(ManagerName::TileManager))->GetTile(SpriteName::endPosition));
 
-	mapEnemyNumbers = mapManager->GetMap(1)->GetEnemyNumbers();
+	mapEnemyNumbers = ((MapManager*)managers->GetManager(ManagerName::MapManager))->GetMap(1)->GetEnemyNumbers();
 	enemies.push_back(std::vector<EnemyBase*>());
 	enemies.push_back(std::vector<EnemyBase*>());
 
@@ -85,13 +86,13 @@ EnemyBase* EnemyManager::CreateEnemy(Sprite* enemySprite)
 {
 	if (enemySprite->GetSpriteName() == SpriteName::EnemySmall)
 	{
-		EnemySmall* enemy = new EnemySmall(renderer, path, sprites[0], tileManager->GetTile(SpriteName::startPosition)->GetPosition(), Vector2D(GameManager::DEFAULT_SPRITE_SIZE, GameManager::DEFAULT_SPRITE_SIZE));
+		EnemySmall* enemy = new EnemySmall(renderer, path, sprites[0], ((TileManager*)managers->GetManager(ManagerName::TileManager))->GetTile(SpriteName::startPosition)->GetPosition(), Vector2D(GameManager::DEFAULT_SPRITE_SIZE, GameManager::DEFAULT_SPRITE_SIZE));
 		enemy->Start();
 		return enemy;
 	}
 	else if (enemySprite->GetSpriteName() == SpriteName::EnemyBig)
 	{
-		EnemyBig* enemy = new EnemyBig(renderer, path, sprites[1], tileManager->GetTile(SpriteName::startPosition)->GetPosition(), Vector2D(GameManager::DEFAULT_SPRITE_SIZE, GameManager::DEFAULT_SPRITE_SIZE));
+		EnemyBig* enemy = new EnemyBig(renderer, path, sprites[1], ((TileManager*)managers->GetManager(ManagerName::TileManager))->GetTile(SpriteName::startPosition)->GetPosition(), Vector2D(GameManager::DEFAULT_SPRITE_SIZE, GameManager::DEFAULT_SPRITE_SIZE));
 		enemy->Start();
 		return enemy;
 	}
