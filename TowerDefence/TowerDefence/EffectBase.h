@@ -39,10 +39,10 @@ private:
 public:
 	EffectBase(SDL_Renderer* renderer,EnemyManager* enemyManager, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale);
 
-	void Start();
-	void Update();
-	void Render();
-	void Destroy();
+	void Start() override;
+	void Update() override;
+	void Render() override;
+	void Destroy() override;
 
 	void SetPosition(Vector2D position);
 	void SetScale(Vector2D scale);

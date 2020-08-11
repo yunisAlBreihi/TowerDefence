@@ -3,25 +3,26 @@
 #include <vector>
 #include "IRenderable.h"
 #include "ManagerBase.h"
+#include "Managers.h"
 #include "EffectBase.h"
 
 class EffectsManager : public IRenderable , public ManagerBase
 {
 private:
+	Managers* managers = nullptr;
 	std::vector<EffectBase*> effects;
-	SDL_Renderer* renderer = nullptr;
 
 public:
 
 private:
 
 public:
-	EffectsManager(SDL_Renderer* renderer);
+	EffectsManager(Managers* managers);
 
-	void Start();
-	void Update();
-	void Render();
-	void Destroy();
+	void Start() override;
+	void Update() override;
+	void Render() override;
+	void Destroy() override;
 
 	void AddEffect(EffectBase* effect);
 };

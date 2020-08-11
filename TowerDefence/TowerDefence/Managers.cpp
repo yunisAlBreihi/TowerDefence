@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Managers.h"
 
-Managers::Managers()
+Managers::Managers(SDL_Renderer* renderer) : renderer(renderer)
 {
 }
 

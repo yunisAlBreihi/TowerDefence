@@ -1,12 +1,12 @@
 #include "TowerSmall.h"
 
-TowerSmall::TowerSmall(SDL_Renderer* renderer, EnemyManager* enemyManager, SpriteManager* spriteManager,BulletManager* bulletManager,EffectsManager* effectsManager,BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale)
+TowerSmall::TowerSmall(Managers* managers,BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale)
 {
-	this->renderer = renderer;
-	this->enemyManager = enemyManager;
-	this->spriteManager = spriteManager;
-	this->bulletManager = bulletManager;
-	this->effectsManager = effectsManager;
+	this->managers = managers;
+	enemyManager = (EnemyManager*)managers->GetManager(ManagerName::EnemyManager);
+	spriteManager = (SpriteManager*)managers->GetManager(ManagerName::SpriteManager);
+	bulletManager = (BulletManager*)managers->GetManager(ManagerName::BulletManager);
+	effectsManager = (EffectsManager*)managers->GetManager(ManagerName::EffectsManager);
 	this->bulletType = bulletType;
 	this->sprite = sprite;
 	this->position = position;

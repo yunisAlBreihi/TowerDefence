@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "ManagerBase.h"
+#include "Managers.h"
 #include "Tile.h"
 
 class MapManager;
@@ -33,5 +34,5 @@ public:
 	void Destroy();
 
 	void DebugPositions();
-	void CreateTilesFromMap(MapManager* mapManager, int mapIndex);
+	void CreateTilesFromMap(Managers* managers, int mapIndex);
 };

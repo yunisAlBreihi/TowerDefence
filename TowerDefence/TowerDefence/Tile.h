@@ -22,10 +22,10 @@ private:
 public:
 	Tile() {}
 	Tile(SDL_Renderer* renderer, Sprite* sprite, Vector2D position, Vector2D scale, bool isWalkable);
-	void Start();
-	void Update();
-	void Render();
-	void Destroy();
+	void Start() override;
+	void Update() override;
+	void Render() override;
+	void Destroy() override;
 
 	void SetPosition(Vector2D position);
 	void SetScale(Vector2D scale);

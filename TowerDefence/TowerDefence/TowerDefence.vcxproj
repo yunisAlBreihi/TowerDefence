@@ -134,6 +134,7 @@
     <ClCompile Include="EnemySmall.cpp" />
     <ClCompile Include="EffectBase.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ManagerBase.cpp" />
     <ClCompile Include="Managers.cpp" />
@@ -142,7 +143,6 @@
     <ClCompile Include="MapReader.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteManager.cpp" />
-    <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="TowerBase.cpp" />
@@ -167,6 +167,7 @@
     <ClInclude Include="Enums.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="IRenderable.h" />
+    <ClInclude Include="LevelManager.h" />
     <ClInclude Include="ManagerBase.h" />
     <ClInclude Include="Managers.h" />
     <ClInclude Include="Map.h" />
@@ -174,7 +175,6 @@
     <ClInclude Include="MapReader.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteManager.h" />
-    <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileManager.h" />
     <ClInclude Include="TowerBase.h" />

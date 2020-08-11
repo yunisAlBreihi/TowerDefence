@@ -18,4 +18,5 @@ enum class ManagerName
 	TextureManager,
 	TileManager,
 	TowerManager,
+	LevelManager,
 };

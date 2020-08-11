@@ -7,5 +7,5 @@ private:
 public:
 private:
 public:
-	TowerSmall(SDL_Renderer* renderer, EnemyManager* enemyManager, SpriteManager* spriteManager, BulletManager* bulletManager, EffectsManager* effectsManager,BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale);
+	TowerSmall(Managers* managers,BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale);
 };

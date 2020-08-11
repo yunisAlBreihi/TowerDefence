@@ -12,7 +12,6 @@ class TowerManager : public ManagerBase
 private:
 	std::vector<Sprite*> sprites;
 	std::vector<std::vector<TowerBase*>> towers;
-	SDL_Renderer* renderer = nullptr;
 	Managers* managers = nullptr;
 	TileManager* tileManager = nullptr;
 	EnemyManager* enemyManager = nullptr;
@@ -26,7 +25,7 @@ private:
 	TowerBase* CreateTower(Sprite* towerSprite, Vector2D position, Vector2D scale);
 
 public:
-	TowerManager(SDL_Renderer* renderer,Managers* managers);
+	TowerManager(Managers* managers);
 
 	void AddTower(Sprite* towerSprite);
 

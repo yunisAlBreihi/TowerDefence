@@ -20,16 +20,15 @@ class EnemyManager : public IRenderable, public ManagerBase
 private:
 	std::vector<Sprite*> sprites;
 	std::vector<std::vector<EnemyBase*>> enemies;
-	SDL_Renderer* renderer = nullptr;
 	Dijkstra* dijkstra = nullptr;
-	TileManager* tileManager = nullptr;
-	MapManager* mapManager = nullptr;
 	Managers* managers = nullptr;
 	std::vector<Tile*> path;
 	std::vector<std::vector<int>> mapEnemyNumbers;
 	int enemyIndex = 0;
 	int spawnIndex = 0;
 	int waveIndex = 0;
+	int enemyCount = 0;
+	int enemyDeathCount = 0;
 	float spawnTimer = 0;
 	float maxSpawnTime = 2000;
 	float maxWaveTime = 10000;
@@ -41,17 +40,20 @@ public:
 private:
 
 	EnemyBase* CreateEnemy(Sprite* enemySprite);
+	void SetEnemyCountFromMap();
+	void ResetEnemyCount();
 
 public:
-	EnemyManager(SDL_Renderer* renderer, Managers* managers, Dijkstra* dijkstra);
+	EnemyManager(Managers* managers, Dijkstra* dijkstra);
 
-	void AddEnemy(Sprite* enemySprite);
+	void AddEnemyType(Sprite* enemySprite);
+	void IncreaseEnemyDeathCount(int increaseBy);
 	void SpawnEnemyWaves();
 
-	void Start();
-	void Update();
-	void Render();
-	void Destroy();
+	void Start() override;
+	void Update() override;
+	void Render() override;
+	void Destroy() override;
 
 	void DebugPositions();
 	EnemyBase* GetEnemyTypeAtIndex(EnemyType enemyType, int index);

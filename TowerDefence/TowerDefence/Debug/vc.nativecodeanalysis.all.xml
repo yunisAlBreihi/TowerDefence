@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?><DEFECTS><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Repos\Git\TowerDefence\TowerDefence\packages\sdl2.nuget.2.0.12\build\native\include\</FILEPATH>
+      <FILENAME>SDL_rect.h</FILENAME>
+      <LINE>102</LINE>
+      <COLUMN>28</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'SDL_bool' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION>SDL_PointInRect</FUNCTION>
+    <DECORATED>SDL_PointInRect</DECORATED>
+    <FUNCLINE>99</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\</FILEPATH>
+      <FILENAME>BulletBase.cpp</FILENAME>
+      <LINE>4</LINE>
+      <COLUMN>12</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'BulletBase::bulletType' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>BulletBase::{ctor}</FUNCTION>
+    <DECORATED>??0BulletBase@@QAE@XZ</DECORATED>
+    <FUNCLINE>4</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>BulletBase::bulletType</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\</FILEPATH>
+      <FILENAME>TowerBase.cpp</FILENAME>
+      <LINE>5</LINE>
+      <COLUMN>11</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'TowerBase::bulletType' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>TowerBase::{ctor}</FUNCTION>
+    <DECORATED>??0TowerBase@@QAE@XZ</DECORATED>
+    <FUNCLINE>5</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>TowerBase::bulletType</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT></DEFECTS>

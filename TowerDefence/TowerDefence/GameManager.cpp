@@ -5,48 +5,26 @@
 #include "EnemySmall.h"
 #include "EnemyBig.h"
 
+
 GameManager::GameManager(const char* title, int posX, int posY, int width, int height, Uint32 flags)
 {
-	managers = new Managers();
 	tileManager = new TileManager();
 	spriteManager = new SpriteManager();
 	dijkstra = new Dijkstra();
 
-	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
-	{
-		window = SDL_CreateWindow(title, posX, posY, width, height, flags);
+	//Create the SDL window and sets the game to running
+	CreateWindow(title, posX, posY, width, height, flags);
 
-		if (window == nullptr)
-		{
-			std::cout << "Window could not be created!" << std::endl;
-		}
-		else
-		{
-			renderer = SDL_CreateRenderer(window, -1, 0);
-
-			if (renderer == nullptr)
-			{
-				std::cout << "Renderer could not be created!" << std::endl;
-			}
-			else
-			{
-				SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-
-				isRunning = true;
-			}
-		}
-	}
-	else
-	{
-		isRunning = false;
-	}
-	mapManager = new MapManager(renderer, managers);
+	managers = new Managers(renderer);
+	mapManager = new MapManager(managers);
 	mapReader = new MapReader();
-	effectsManager = new EffectsManager(renderer);
-	bulletManager = new BulletManager(renderer);
-	enemyManager = new EnemyManager(renderer, managers, dijkstra);
-	towerManager = new TowerManager(renderer,managers);
+	effectsManager = new EffectsManager(managers);
+	bulletManager = new BulletManager(managers);
+	enemyManager = new EnemyManager(managers, dijkstra);
+	towerManager = new TowerManager(managers);
+	levelManager = new LevelManager(managers);
 
+	managers->AddManager(this);
 	managers->AddManager(tileManager);
 	managers->AddManager(spriteManager);
 	managers->AddManager(mapManager);
@@ -54,6 +32,7 @@ GameManager::GameManager(const char* title, int posX, int posY, int width, int h
 	managers->AddManager(bulletManager);
 	managers->AddManager(enemyManager);
 	managers->AddManager(towerManager);
+	managers->AddManager(levelManager);
 }
 
 GameManager::~GameManager()
@@ -98,18 +77,16 @@ void GameManager::Start()
 	mapManager->AddMap(mapReader->ReadMap("Maps/Map_2.txt"));
 	mapManager->AddMap(mapReader->ReadMap("Maps/Map_3.txt"));
 
-	tileManager->CreateTilesFromMap(mapManager, 1);
-	//mapManager->GetMap(1)->DebugMapData();
-
 	//Add enemy sprites to the enemy manager
-	enemyManager->AddEnemy(enemySmallSprite);
-	enemyManager->AddEnemy(enemyBigSprite);
+	enemyManager->AddEnemyType(enemySmallSprite);
+	enemyManager->AddEnemyType(enemyBigSprite);
 
 	//Add tower sprites to the tower manager
 	towerManager->AddTower(towerSmallSprite);
 	towerManager->AddTower(towerBigSprite);
 
 	//Starts the managers
+	levelManager->Start();
 	enemyManager->Start();
 	towerManager->Start();
 	bulletManager->Start();
@@ -158,4 +135,36 @@ void GameManager::Destroy()
 	window = nullptr;
 
 	SDL_Quit();
+}
+
+void GameManager::CreateWindow(const char* title, int posX, int posY, int width, int height, Uint32 flags)
+{
+	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
+	{
+		window = SDL_CreateWindow(title, posX, posY, width, height, flags);
+
+		if (window == nullptr)
+		{
+			std::cout << "Window could not be created!" << std::endl;
+		}
+		else
+		{
+			renderer = SDL_CreateRenderer(window, -1, 0);
+
+			if (renderer == nullptr)
+			{
+				std::cout << "Renderer could not be created!" << std::endl;
+			}
+			else
+			{
+				SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+
+				isRunning = true;
+			}
+		}
+	}
+	else
+	{
+		isRunning = false;
+	}
 }

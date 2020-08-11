@@ -155,8 +155,10 @@ void TileManager::DebugPositions()
 	}
 }
 
-void TileManager::CreateTilesFromMap(MapManager* mapManager, int mapIndex)
+void TileManager::CreateTilesFromMap(Managers* managers, int mapIndex)
 {
+	MapManager* mapManager = ((MapManager*)managers->GetManager(ManagerName::MapManager));
+	SpriteManager* spriteManager = ((SpriteManager*)managers->GetManager(ManagerName::SpriteManager));
 	std::vector<std::vector<int>> tempTileNumbers = mapManager->GetMap(mapIndex)->GetTileNumbers();
 
 	for (unsigned int col = 0; col < tempTileNumbers.size(); col++)
@@ -171,7 +173,7 @@ void TileManager::CreateTilesFromMap(MapManager* mapManager, int mapIndex)
 			{
 				tempWalkable = true;
 			}
-			Tile* tempTile = new Tile(mapManager->GetRenderer(), mapManager->GetSpriteManager()->GetSprite(tempSpriteName), Vector2D(row * GameManager::DEFAULT_SPRITE_SIZE, col * GameManager::DEFAULT_SPRITE_SIZE), Vector2D(GameManager::DEFAULT_SPRITE_SIZE, GameManager::DEFAULT_SPRITE_SIZE), tempWalkable);
+			Tile* tempTile = new Tile(managers->GetRenderer(), spriteManager->GetSprite(tempSpriteName), Vector2D(row * GameManager::DEFAULT_SPRITE_SIZE, col * GameManager::DEFAULT_SPRITE_SIZE), Vector2D(GameManager::DEFAULT_SPRITE_SIZE, GameManager::DEFAULT_SPRITE_SIZE), tempWalkable);
 
 			AddTile(tempTile);
 		}

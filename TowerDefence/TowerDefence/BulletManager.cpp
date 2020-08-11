@@ -1,6 +1,6 @@
 #include "BulletManager.h"
 
-BulletManager::BulletManager(SDL_Renderer* renderer) : renderer(renderer)
+BulletManager::BulletManager(Managers* managers) : managers(managers)
 {
 	name = ManagerName::BulletManager;
 }
@@ -36,12 +36,6 @@ void BulletManager::Destroy()
 		bullet->Destroy();
 	}
 }
-
-BulletBase* BulletManager::CreateBullet(Sprite* bulletSprite, Vector2D position, Vector2D scale)
-{
-	return nullptr;
-}
-
 
 void BulletManager::AddBullet(BulletBase* bullet)
 {

@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include "IRenderable.h"
 #include "Sprite.h"
+#include "Managers.h"
 #include "EnemyManager.h"
 #include "BulletManager.h"
 #include "EffectsManager.h"
@@ -12,7 +13,7 @@ class TowerBase : public IRenderable
 {
 private:
 protected:
-	SDL_Renderer* renderer = nullptr;
+	Managers* managers = nullptr;
 	EnemyManager* enemyManager = nullptr;
 	SpriteManager* spriteManager = nullptr;
 	BulletManager* bulletManager = nullptr;
@@ -36,13 +37,13 @@ private:
 
 public:
 	TowerBase();
-	TowerBase(SDL_Renderer* renderer, EnemyManager* enemeyManager,SpriteManager* spriteManager, BulletManager* bulletManager,EffectsManager* effectsManager,BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale);
+	TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale);
 	virtual ~TowerBase() = 0;
 
-	void Start();
-	void Update();
-	void Render();
-	void Destroy();
+	void Start() override;
+	void Update() override;
+	void Render() override;
+	void Destroy() override;
 
 	void SetPosition(Vector2D vector2D);
 

@@ -1,7 +1,7 @@
 #include "MapManager.h"
 #include "GameManager.h"
 
-MapManager::MapManager(SDL_Renderer* renderer, Managers* managers) : renderer(renderer), managers(managers)
+MapManager::MapManager(Managers* managers) : managers(managers)
 {
 	name = ManagerName::MapManager;
 }

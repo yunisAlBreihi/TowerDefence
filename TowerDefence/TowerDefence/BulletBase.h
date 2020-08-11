@@ -34,10 +34,10 @@ public:
 	BulletBase(SDL_Renderer* renderer,EnemyManager* enemyManager,EffectsManager* effectsManager,BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale);
 	~BulletBase();
 
-	void Start();
-	void Update();
-	void Render();
-	void Destroy();
+	void Start() override;
+	void Update() override;
+	void Render() override;
+	void Destroy() override;
 
 	void SetPosition(Vector2D vector2D);
 	Vector2D GetPosition() { return Vector2D(dstRect.x, dstRect.y); }

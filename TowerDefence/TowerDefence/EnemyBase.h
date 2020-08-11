@@ -45,10 +45,10 @@ public:
 	EnemyBase(SDL_Renderer* renderer, std::vector<Tile*> path, Sprite* sprite, Vector2D position, Vector2D scale);
 	virtual ~EnemyBase() = 0;
 
-	void Start();
-	void Update();
-	void Render();
-	void Destroy();
+	void Start() override;
+	void Update() override;
+	void Render() override;
+	void Destroy() override;
 
 	void TakeDamage(float damage);
 	bool IsDead();

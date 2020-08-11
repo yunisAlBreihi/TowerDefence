@@ -9,10 +9,11 @@
 #include "EffectsManager.h"
 #include "MapReader.h"
 #include "MapManager.h"
+#include "LevelManager.h"
 #include "BulletBase.h"
 #include "Managers.h"
 
-class GameManager : public IRenderable
+class GameManager : public IRenderable, public ManagerBase
 {
 private:
 
@@ -30,6 +31,7 @@ private:
 	BulletManager* bulletManager = nullptr;
 	EffectsManager* effectsManager = nullptr;
 	MapManager* mapManager = nullptr;
+	LevelManager* levelManager = nullptr;
 	MapReader* mapReader = nullptr;
 	Dijkstra* dijkstra = nullptr;
 
@@ -41,17 +43,18 @@ public:
 	static const int DEFAULT_SPRITE_SIZE = 48;
 
 private:
+	void CreateWindow(const char* title, int posX, int posY, int width, int height, Uint32 flags);
 
 public:
 
 	GameManager(const char* title, int posX, int posY, int width, int height, Uint32 flags);
 	~GameManager();
 	
-	void Start();
+	void Start() override;
 	void HandleEvent();
-	void Update();
-	void Render();
-	void Destroy();
+	void Update() override;
+	void Render() override;
+	void Destroy() override;
 
 	bool IsRunning() { return isRunning; }
 };

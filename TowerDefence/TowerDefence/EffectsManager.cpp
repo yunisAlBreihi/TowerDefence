@@ -1,6 +1,6 @@
 #include "EffectsManager.h"
 
-EffectsManager::EffectsManager(SDL_Renderer* renderer) : renderer(renderer)
+EffectsManager::EffectsManager(Managers* managers) : managers(managers)
 {
 	name = ManagerName::EffectsManager;
 }
