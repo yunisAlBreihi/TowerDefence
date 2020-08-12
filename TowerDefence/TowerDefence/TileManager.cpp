@@ -179,3 +179,8 @@ void TileManager::CreateTilesFromMap(Managers* managers, int mapIndex)
 		}
 	}
 }
+
+void TileManager::ClearTiles()
+{
+	tiles.clear();
+}

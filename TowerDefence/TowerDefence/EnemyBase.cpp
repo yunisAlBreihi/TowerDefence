@@ -1,10 +1,11 @@
 #include "EnemyBase.h"
+#include "EnemyManager.h"
 
 EnemyBase::EnemyBase()
 {
 }
 
-EnemyBase::EnemyBase(SDL_Renderer* renderer, std::vector<Tile*> path, Sprite* sprite, Vector2D position, Vector2D scale) : renderer(renderer), path(path), sprite(sprite), position(position), scale(scale)
+EnemyBase::EnemyBase(Managers* managers, std::vector<Tile*> path, Sprite* sprite, Vector2D position, Vector2D scale) : managers(managers), path(path), sprite(sprite), position(position), scale(scale)
 {
 	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
 }
@@ -35,7 +36,7 @@ void EnemyBase::Render()
 {
 	if (IsDead() == false)
 	{
-		SDL_RenderCopy(renderer, sprite->GetTexture(), nullptr, &dstRect);
+		SDL_RenderCopy(managers->GetRenderer(), sprite->GetTexture(), nullptr, &dstRect);
 	}
 }
 
@@ -73,6 +74,11 @@ bool EnemyBase::IsDead()
 {
 	if (health <= 0 || hasReachedEnd == true)
 	{
+		if (hasCountedDeath == false)
+		{
+			((EnemyManager*)managers->GetManager(ManagerName::EnemyManager))->IncreaseEnemyDeathCount(1);
+			hasCountedDeath = true;
+		}
 		return true;
 	}
 	return false;

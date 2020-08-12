@@ -26,11 +26,13 @@ private:
 
 public:
 	TowerManager(Managers* managers);
-
-	void AddTower(Sprite* towerSprite);
+	~TowerManager();
 
 	void Start();
 	void Update();
 	void Render();
 	void Destroy();
+	void AddTower(Sprite* towerSprite);
+	void CreateTowers();
+	void ClearTowers();
 };

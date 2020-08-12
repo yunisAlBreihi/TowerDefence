@@ -7,7 +7,7 @@ class LevelManager : public IRenderable ,public ManagerBase
 {
 private:
 	Managers* managers = nullptr;
-	int currentLevelIndex = 0;
+	int currentLevelIndex = 1;
 public:
 
 private:
@@ -21,4 +21,6 @@ public:
 	void Destroy() override;
 
 	void LoadCurrentLevel();
+	void LoadNextLevel();
+	int GetCurrentLevelIndex() { return currentLevelIndex; }
 };

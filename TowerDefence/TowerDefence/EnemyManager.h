@@ -2,10 +2,12 @@
 #include <vector>
 #include "EnemyBase.h"
 #include "Dijkstra.h"
-#include "MapManager.h"
 #include "IRenderable.h"
 #include "ManagerBase.h"
 #include "Managers.h"
+#include "MapManager.h"
+#include "LevelManager.h"
+#include "TileManager.h"
 
 enum class EnemyType
 {
@@ -22,6 +24,9 @@ private:
 	std::vector<std::vector<EnemyBase*>> enemies;
 	Dijkstra* dijkstra = nullptr;
 	Managers* managers = nullptr;
+	MapManager* mapManager = nullptr;
+	LevelManager* levelManager = nullptr;
+	TileManager* tileManager = nullptr;
 	std::vector<Tile*> path;
 	std::vector<std::vector<int>> mapEnemyNumbers;
 	int enemyIndex = 0;
@@ -55,7 +60,10 @@ public:
 	void Render() override;
 	void Destroy() override;
 
+	void CreateEnemies();
+	void ClearEnemies();
 	void DebugPositions();
+
 	EnemyBase* GetEnemyTypeAtIndex(EnemyType enemyType, int index);
 	std::vector<std::vector<EnemyBase*>> GetEnemies() { return enemies; }
 };

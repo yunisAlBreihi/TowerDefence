@@ -35,4 +35,5 @@ public:
 
 	void DebugPositions();
 	void CreateTilesFromMap(Managers* managers, int mapIndex);
+	void ClearTiles();
 };

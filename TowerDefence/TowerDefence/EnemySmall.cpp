@@ -1,8 +1,8 @@
 #include "EnemySmall.h"
 
-EnemySmall::EnemySmall(SDL_Renderer* renderer, std::vector<Tile*> path, Sprite* sprite, Vector2D position, Vector2D scale)
+EnemySmall::EnemySmall(Managers* managers, std::vector<Tile*> path, Sprite* sprite, Vector2D position, Vector2D scale)
 {
-	this->renderer = renderer;
+	this->managers = managers;
 	this->path = path;
 	this->sprite = sprite;
 	this->position = position;

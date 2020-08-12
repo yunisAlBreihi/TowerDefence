@@ -5,28 +5,19 @@
 TowerManager::TowerManager(Managers* managers) :  managers(managers)
 {
 	name = ManagerName::TowerManager;
-}
-
-void TowerManager::Start()
-{
-	towers.push_back(std::vector<TowerBase*>());
-	towers.push_back(std::vector<TowerBase*>());
 	tileManager = (TileManager*)managers->GetManager(ManagerName::TileManager);
 	enemyManager = (EnemyManager*)managers->GetManager(ManagerName::EnemyManager);
 	spriteManager = (SpriteManager*)managers->GetManager(ManagerName::SpriteManager);
 	bulletManager = (BulletManager*)managers->GetManager(ManagerName::BulletManager);
 	effectsManager = (EffectsManager*)managers->GetManager(ManagerName::EffectsManager);
+}
 
-	for (Tile* tile : tileManager->GetTiles(SpriteName::tower01))
-	{
-		towers[0].push_back(CreateTower(sprites[0], tile->GetPosition(), tile->GetScale()));
-	}
+TowerManager::~TowerManager()
+{ 
+}
 
-	for (Tile* tile : tileManager->GetTiles(SpriteName::tower02))
-	{
-		towers[1].push_back(CreateTower(sprites[1], tile->GetPosition(), tile->GetScale()));
-	}
-
+void TowerManager::Start()
+{
 	for (const auto& towerRow : towers)
 	{
 		for (TowerBase* t : towerRow)
@@ -86,4 +77,24 @@ TowerBase* TowerManager::CreateTower(Sprite* towerSprite, Vector2D position, Vec
 		TowerBig* tower = new TowerBig(managers, BulletType::Freezing, towerSprite, position, scale);
 		return tower;
 	}
+}
+
+void TowerManager::CreateTowers()
+{
+	towers.push_back(std::vector<TowerBase*>());
+	towers.push_back(std::vector<TowerBase*>());
+	for (Tile* tile : tileManager->GetTiles(SpriteName::tower01))
+	{
+		towers[0].push_back(CreateTower(sprites[0], tile->GetPosition(), tile->GetScale()));
+	}
+
+	for (Tile* tile : tileManager->GetTiles(SpriteName::tower02))
+	{
+		towers[1].push_back(CreateTower(sprites[1], tile->GetPosition(), tile->GetScale()));
+	}
+}
+
+void TowerManager::ClearTowers()
+{
+	towers.clear();
 }

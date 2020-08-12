@@ -1,9 +1,9 @@
 #include "EnemyBig.h"
 
-EnemyBig::EnemyBig(SDL_Renderer* renderer, std::vector<Tile*> path, Sprite* sprite, Vector2D position, Vector2D scale)
+EnemyBig::EnemyBig(Managers* managers, std::vector<Tile*> path, Sprite* sprite, Vector2D position, Vector2D scale)
 {
 	health = 10.0f;
-	this->renderer = renderer;
+	this->managers = managers;
 	this->path = path;
 	this->sprite = sprite;
 	this->position = position;

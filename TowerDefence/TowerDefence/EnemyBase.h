@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include "IRenderable.h"
+#include "Managers.h"
 #include "Vector2D.h"
 #include "Sprite.h"
 #include "Dijkstra.h"
@@ -11,7 +12,7 @@ class EnemyBase : public IRenderable
 private:
 
 protected:
-	SDL_Renderer* renderer = nullptr;
+	Managers* managers = nullptr;
 	std::vector<Tile*> path;
 	int pathIndex = 0;
 	Sprite* sprite = nullptr;
@@ -31,6 +32,7 @@ protected:
 	float freezeTimer = 0.0f;
 	float maxFreezeTime = 2.0f;
 	bool isFrozen = false;
+	bool hasCountedDeath = false;
 
 public:
 
@@ -42,7 +44,7 @@ private:
 public:
 
 	EnemyBase();
-	EnemyBase(SDL_Renderer* renderer, std::vector<Tile*> path, Sprite* sprite, Vector2D position, Vector2D scale);
+	EnemyBase(Managers* managers, std::vector<Tile*> path, Sprite* sprite, Vector2D position, Vector2D scale);
 	virtual ~EnemyBase() = 0;
 
 	void Start() override;

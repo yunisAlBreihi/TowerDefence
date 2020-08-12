@@ -8,31 +8,33 @@
 
 GameManager::GameManager(const char* title, int posX, int posY, int width, int height, Uint32 flags)
 {
-	tileManager = new TileManager();
-	spriteManager = new SpriteManager();
 	dijkstra = new Dijkstra();
+	name = ManagerName::GameManager;
 
 	//Create the SDL window and sets the game to running
 	CreateWindow(title, posX, posY, width, height, flags);
 
 	managers = new Managers(renderer);
+	managers->AddManager(this);
+	tileManager = new TileManager();
+	managers->AddManager(tileManager);
+	spriteManager = new SpriteManager();
+	managers->AddManager(spriteManager);
 	mapManager = new MapManager(managers);
+	managers->AddManager(mapManager);
 	mapReader = new MapReader();
 	effectsManager = new EffectsManager(managers);
-	bulletManager = new BulletManager(managers);
-	enemyManager = new EnemyManager(managers, dijkstra);
-	towerManager = new TowerManager(managers);
-	levelManager = new LevelManager(managers);
-
-	managers->AddManager(this);
-	managers->AddManager(tileManager);
-	managers->AddManager(spriteManager);
-	managers->AddManager(mapManager);
 	managers->AddManager(effectsManager);
+	bulletManager = new BulletManager(managers);
 	managers->AddManager(bulletManager);
+	enemyManager = new EnemyManager(managers, dijkstra);
 	managers->AddManager(enemyManager);
+	towerManager = new TowerManager(managers);
 	managers->AddManager(towerManager);
+	levelManager = new LevelManager(managers);
 	managers->AddManager(levelManager);
+
+
 }
 
 GameManager::~GameManager()

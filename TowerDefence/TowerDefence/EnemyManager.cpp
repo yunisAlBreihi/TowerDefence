@@ -3,29 +3,28 @@
 #include "EnemySmall.h"
 #include "EnemyBig.h"
 
-EnemyManager::EnemyManager( Managers* managers, Dijkstra* dijkstra) :  managers(managers), dijkstra(dijkstra)
+EnemyManager::EnemyManager(Managers* managers, Dijkstra* dijkstra) : managers(managers), dijkstra(dijkstra)
 {
 	name = ManagerName::EnemyManager;
+	mapManager = ((MapManager*)managers->GetManager(ManagerName::MapManager));
+	levelManager = ((LevelManager*)managers->GetManager(ManagerName::LevelManager));
+	tileManager = ((TileManager*)managers->GetManager(ManagerName::TileManager));
 }
 
 void EnemyManager::Start()
 {
-	path = dijkstra->FindShortestPath((TileManager*)managers->GetManager(ManagerName::TileManager), ((TileManager*)managers->GetManager(ManagerName::TileManager))->GetTile(SpriteName::startPosition), ((TileManager*)managers->GetManager(ManagerName::TileManager))->GetTile(SpriteName::endPosition));
-
-	MapManager* mapManager = ((MapManager*)managers->GetManager(ManagerName::MapManager));
-	LevelManager* levelManager = ((LevelManager*)managers->GetManager(ManagerName::LevelManager));
-	mapEnemyNumbers = mapManager->GetMap(1)->GetEnemyNumbers();
-
-	enemies.push_back(std::vector<EnemyBase*>());
-	enemies.push_back(std::vector<EnemyBase*>());
-
-	SetEnemyCountFromMap();
-
-	for (const auto& enemyRow : enemies)
+	CreateEnemies();
+	if (enemies.empty() == false)
 	{
-		for (EnemyBase* e : enemyRow)
+		for (const auto& enemyRow : enemies)
 		{
-			e->Start();
+			if (enemyRow.empty() == false)
+			{
+				for (EnemyBase* e : enemyRow)
+				{
+					e->Start();
+				}
+			}
 		}
 	}
 }
@@ -34,22 +33,35 @@ void EnemyManager::Update()
 {
 	SpawnEnemyWaves();
 
-	for (const auto& enemyRow : enemies)
+	if (enemies.empty() == false)
 	{
-		for (EnemyBase* e : enemyRow)
+		for (const auto& enemyRow : enemies)
 		{
-			e->Update();
+			if (enemyRow.empty() == false)
+			{
+				for (EnemyBase* e : enemyRow)
+				{
+					e->Update();
+				}
+			}
 		}
 	}
 }
 
 void EnemyManager::Render()
 {
-	for (const auto& enemyRow : enemies)
+	if (enemies.size() != 0)
 	{
-		for (EnemyBase* e : enemyRow)
+		for (const auto& enemyRow : enemies)
 		{
-			e->Render();
+			if (enemyRow.size() != 0)
+			{
+				for (EnemyBase* e : enemyRow)
+				{
+					e->Render();
+				}
+			}
+
 		}
 	}
 }
@@ -63,6 +75,24 @@ void EnemyManager::Destroy()
 			e->Destroy();
 		}
 	}
+}
+
+void EnemyManager::CreateEnemies()
+{
+	path = dijkstra->FindShortestPath(tileManager, tileManager->GetTile(SpriteName::startPosition), tileManager->GetTile(SpriteName::endPosition));
+
+	LevelManager* levelManager = ((LevelManager*)managers->GetManager(ManagerName::LevelManager));
+
+	mapEnemyNumbers = mapManager->GetMap(levelManager->GetCurrentLevelIndex())->GetEnemyNumbers();
+	enemies.push_back(std::vector<EnemyBase*>());
+	enemies.push_back(std::vector<EnemyBase*>());
+
+	SetEnemyCountFromMap();
+}
+
+void EnemyManager::ClearEnemies()
+{
+	enemies.clear();
 }
 
 void EnemyManager::DebugPositions()
@@ -89,20 +119,23 @@ void EnemyManager::AddEnemyType(Sprite* enemySprite)
 void EnemyManager::IncreaseEnemyDeathCount(int increaseBy)
 {
 	enemyDeathCount += increaseBy;
+	if (enemyDeathCount == 2)
+	{
+		((LevelManager*)managers->GetManager(ManagerName::LevelManager))->LoadNextLevel();
+	}
 }
 
 EnemyBase* EnemyManager::CreateEnemy(Sprite* enemySprite)
 {
-	TileManager* tileManager = ((TileManager*)managers->GetManager(ManagerName::TileManager));
 	if (enemySprite->GetSpriteName() == SpriteName::EnemySmall)
 	{
-		EnemySmall* enemy = new EnemySmall(managers->GetRenderer(), path, sprites[0], tileManager->GetTile(SpriteName::startPosition)->GetPosition(), Vector2D(GameManager::DEFAULT_SPRITE_SIZE, GameManager::DEFAULT_SPRITE_SIZE));
+		EnemySmall* enemy = new EnemySmall(managers, path, sprites[0], tileManager->GetTile(SpriteName::startPosition)->GetPosition(), Vector2D(GameManager::DEFAULT_SPRITE_SIZE, GameManager::DEFAULT_SPRITE_SIZE));
 		enemy->Start();
 		return enemy;
 	}
 	else if (enemySprite->GetSpriteName() == SpriteName::EnemyBig)
 	{
-		EnemyBig* enemy = new EnemyBig(managers->GetRenderer(), path, sprites[1], tileManager->GetTile(SpriteName::startPosition)->GetPosition(), Vector2D(GameManager::DEFAULT_SPRITE_SIZE, GameManager::DEFAULT_SPRITE_SIZE));
+		EnemyBig* enemy = new EnemyBig(managers, path, sprites[1], tileManager->GetTile(SpriteName::startPosition)->GetPosition(), Vector2D(GameManager::DEFAULT_SPRITE_SIZE, GameManager::DEFAULT_SPRITE_SIZE));
 		enemy->Start();
 		return enemy;
 	}
@@ -113,18 +146,23 @@ void EnemyManager::SetEnemyCountFromMap()
 	ResetEnemyCount();
 	for (std::vector<int> enemyType : mapEnemyNumbers)
 	{
-		for (int enemy : enemyType)
+		for (int enemyNumbers : enemyType)
 		{
-			enemyCount += 1;
+			enemyCount += enemyNumbers;
 		}
 	}
-	
 }
 
 void EnemyManager::ResetEnemyCount()
 {
 	enemyCount = 0;
 	enemyDeathCount = 0;
+	mapIsComplete = false;
+	waveIsComplete = false;
+	waveIndex = 0;
+	enemyIndex = 0;
+	spawnIndex = 0;
+	spawnTimer = 0;
 }
 
 void EnemyManager::SpawnEnemyWaves()
@@ -148,7 +186,7 @@ void EnemyManager::SpawnEnemyWaves()
 					spawnIndex = 0;
 				}
 
-				if (enemyIndex > enemies.size() - 1)
+				if (enemyIndex > mapEnemyNumbers[waveIndex].size() - 1)
 				{
 					waveIsComplete = true;
 					waveIndex += 1;
