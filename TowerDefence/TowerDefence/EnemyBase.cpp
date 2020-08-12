@@ -74,11 +74,6 @@ bool EnemyBase::IsDead()
 {
 	if (health <= 0 || hasReachedEnd == true)
 	{
-		if (hasCountedDeath == false)
-		{
-			((EnemyManager*)managers->GetManager(ManagerName::EnemyManager))->IncreaseEnemyDeathCount(1);
-			hasCountedDeath = true;
-		}
 		return true;
 	}
 	return false;
@@ -99,6 +94,11 @@ void EnemyBase::SetSpeed(float speed)
 void EnemyBase::TakeDamage(float damage)
 {
 	health -= damage;
+	if (health <= 0 && hasCountedDeath == false)
+	{
+		((EnemyManager*)managers->GetManager(ManagerName::EnemyManager))->IncreaseEnemyDeathCount(1);
+		hasCountedDeath = true;
+	}
 }
 
 void EnemyBase::Freeze(float freezeTime, float freezeSpeed)

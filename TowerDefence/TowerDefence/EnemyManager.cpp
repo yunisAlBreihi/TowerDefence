@@ -54,14 +54,13 @@ void EnemyManager::Render()
 	{
 		for (const auto& enemyRow : enemies)
 		{
-			if (enemyRow.size() != 0)
+			if (enemyRow.empty() == false)
 			{
 				for (EnemyBase* e : enemyRow)
 				{
 					e->Render();
 				}
 			}
-
 		}
 	}
 }
@@ -92,6 +91,18 @@ void EnemyManager::CreateEnemies()
 
 void EnemyManager::ClearEnemies()
 {
+	//TODO: temp solution: destroy enemies
+	if (enemies.empty() == false)
+	{
+		for (auto enemyRow : enemies)
+		{
+			for (auto e : enemyRow)
+			{
+				e->Destroy();
+			}
+		}
+	}
+
 	enemies.clear();
 }
 
@@ -119,7 +130,8 @@ void EnemyManager::AddEnemyType(Sprite* enemySprite)
 void EnemyManager::IncreaseEnemyDeathCount(int increaseBy)
 {
 	enemyDeathCount += increaseBy;
-	if (enemyDeathCount == 2)
+	//TODO: Change to enemyCount instead of a hard number
+	if (enemyDeathCount == 50)
 	{
 		((LevelManager*)managers->GetManager(ManagerName::LevelManager))->LoadNextLevel();
 	}

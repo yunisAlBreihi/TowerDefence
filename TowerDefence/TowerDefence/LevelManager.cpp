@@ -29,19 +29,42 @@ void LevelManager::Destroy()
 {
 }
 
-void LevelManager::LoadCurrentLevel()
+void LevelManager::ShowGameOverScreen()
+{
+}
+
+void LevelManager::ShowCongratulationsScreen()
+{
+}
+
+void LevelManager::ClearScreen()
 {
 	TileManager* tileManager = ((TileManager*)managers->GetManager(ManagerName::TileManager));
 	tileManager->ClearTiles();
-	tileManager->CreateTilesFromMap(managers, currentLevelIndex);
 
 	TowerManager* towerManager = ((TowerManager*)managers->GetManager(ManagerName::TowerManager));
 	towerManager->ClearTowers();
-	towerManager->CreateTowers();
 
 	EnemyManager* enemyManager = ((EnemyManager*)managers->GetManager(ManagerName::EnemyManager));
 	enemyManager->ClearEnemies();
+}
+
+void LevelManager::CreateScreen()
+{
+	TileManager* tileManager = ((TileManager*)managers->GetManager(ManagerName::TileManager));
+	tileManager->CreateTilesFromMap(managers, currentLevelIndex);
+
+	TowerManager* towerManager = ((TowerManager*)managers->GetManager(ManagerName::TowerManager));
+	towerManager->CreateTowers();
+
+	EnemyManager* enemyManager = ((EnemyManager*)managers->GetManager(ManagerName::EnemyManager));
 	enemyManager->CreateEnemies();
+}
+
+void LevelManager::LoadCurrentLevel()
+{
+	ClearScreen();
+	CreateScreen();
 }
 
 void LevelManager::LoadNextLevel()

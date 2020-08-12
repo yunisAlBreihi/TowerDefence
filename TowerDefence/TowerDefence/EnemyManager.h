@@ -35,8 +35,8 @@ private:
 	int enemyCount = 0;
 	int enemyDeathCount = 0;
 	float spawnTimer = 0;
-	float maxSpawnTime = 2000;
-	float maxWaveTime = 10000;
+	float maxSpawnTime = 1000;
+	float maxWaveTime = 5000;
 	bool waveIsComplete = false;
 	bool mapIsComplete = false;
 

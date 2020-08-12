@@ -35,13 +35,14 @@ void EffectBase::Update()
 						{
 							if (bulletType == BulletType::Regular)
 							{
-								enemy->TakeDamage(1.0f);
+								enemy->TakeDamage(0.75f);
 							}
 							else if (bulletType == BulletType::Freezing)
 							{
 								if (enemy->IsFrozen() == false)
 								{
-									enemy->Freeze(3.0f, 0.5f);
+									enemy->TakeDamage(0.5f);
+									enemy->Freeze(3.0f, 0.15f);
 								}
 							}
 							currentTarget = enemy;
