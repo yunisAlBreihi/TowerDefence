@@ -6,9 +6,9 @@
 EnemyManager::EnemyManager(Managers* managers, Dijkstra* dijkstra) : managers(managers), dijkstra(dijkstra)
 {
 	name = ManagerName::EnemyManager;
-	mapManager = ((MapManager*)managers->GetManager(ManagerName::MapManager));
-	levelManager = ((LevelManager*)managers->GetManager(ManagerName::LevelManager));
-	tileManager = ((TileManager*)managers->GetManager(ManagerName::TileManager));
+	mapManager = managers->GetManager<MapManager>(ManagerName::MapManager);
+	levelManager = managers->GetManager<LevelManager>(ManagerName::LevelManager);
+	tileManager = managers->GetManager<TileManager>(ManagerName::TileManager);
 }
 
 void EnemyManager::Start()
@@ -80,7 +80,7 @@ void EnemyManager::CreateEnemies()
 {
 	path = dijkstra->FindShortestPath(tileManager, tileManager->GetTile(SpriteName::startPosition), tileManager->GetTile(SpriteName::endPosition));
 
-	LevelManager* levelManager = ((LevelManager*)managers->GetManager(ManagerName::LevelManager));
+	LevelManager* levelManager = managers->GetManager<LevelManager>(ManagerName::LevelManager);
 
 	mapEnemyNumbers = mapManager->GetMap(levelManager->GetCurrentLevelIndex())->GetEnemyNumbers();
 	enemies.push_back(std::vector<EnemyBase*>());
@@ -131,9 +131,9 @@ void EnemyManager::IncreaseEnemyDeathCount(int increaseBy)
 {
 	enemyDeathCount += increaseBy;
 	//TODO: Change to enemyCount instead of a hard number
-	if (enemyDeathCount == 50)
+	if (enemyDeathCount == 10)
 	{
-		((LevelManager*)managers->GetManager(ManagerName::LevelManager))->LoadNextLevel();
+		managers->GetManager<LevelManager>(ManagerName::LevelManager)->LoadNextLevel();
 	}
 }
 

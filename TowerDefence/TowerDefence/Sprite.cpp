@@ -36,6 +36,12 @@ Sprite::Sprite(SDL_Renderer* renderer, SpriteName spriteName) : renderer(rendere
 	case SpriteName::TowerBig:
 		filePath = "Sprites/TowerBig.jpg";
 		break;
+	case SpriteName::Congratulations:
+		filePath = "Sprites/Congratulations.jpg";
+		break;
+	case SpriteName::GameOver:
+		filePath = "Sprites/GameOver.jpg";
+		break;
 	default:
 		filePath = "Sprites/missing.jpg";
 		break;

@@ -8,10 +8,10 @@ TowerBase::TowerBase()
 
 TowerBase::TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale) : managers(managers), bulletType(bulletType), sprite(sprite), position(position), scale(scale)
 {
-	enemyManager = (EnemyManager*)managers->GetManager(ManagerName::EnemyManager);
-	spriteManager = (SpriteManager*)managers->GetManager(ManagerName::SpriteManager);
-	bulletManager = (BulletManager*)managers->GetManager(ManagerName::BulletManager);
-	effectsManager = (EffectsManager*)managers->GetManager(ManagerName::EffectsManager);
+	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
+	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
+	bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
+	effectsManager = managers->GetManager<EffectsManager>(ManagerName::EffectsManager);
 
 	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
 	collider = new Collider(this->position, 90.0f);

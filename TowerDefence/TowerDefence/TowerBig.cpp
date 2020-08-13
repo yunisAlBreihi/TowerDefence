@@ -3,10 +3,10 @@
 TowerBig::TowerBig(Managers* managers,BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale)
 {
 	this->managers = managers;
-	enemyManager = (EnemyManager*)managers->GetManager(ManagerName::EnemyManager);
-	spriteManager = (SpriteManager*)managers->GetManager(ManagerName::SpriteManager);
-	bulletManager = (BulletManager*)managers->GetManager(ManagerName::BulletManager);
-	effectsManager = (EffectsManager*)managers->GetManager(ManagerName::EffectsManager);
+	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
+	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
+	bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
+	effectsManager = managers->GetManager<EffectsManager>(ManagerName::EffectsManager);
 	this->bulletType = bulletType;
 	this->sprite = sprite;
 	this->position = position;

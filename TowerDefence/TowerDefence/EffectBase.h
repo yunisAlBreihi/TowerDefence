@@ -50,5 +50,5 @@ public:
 	Vector2D GetPosition() { return position; }
 	Vector2D GetScale() { return scale; }
 
-	void Expand();
+	void LerpExplosionScale();
 };

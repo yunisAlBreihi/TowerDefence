@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <SDL.h>
+#include <iostream>
 #include "ManagerBase.h"
 #include "Enums.h"
 
@@ -15,6 +16,25 @@ public:
 	~Managers();
 
 	void AddManager(ManagerBase* managerBase);
-	ManagerBase* GetManager(ManagerName managerName);
+
+	template<typename Manager>
+	Manager* GetManager(ManagerName managerName)
+	{
+		for (ManagerBase* managerBase : managers)
+		{
+			if (managerName == managerBase->GetName())
+			{
+				if (managerBase == nullptr)
+				{
+					std::cout << "Found the manager, but it is not assigned yet!" << std::endl;
+					return nullptr;
+				}
+				return (Manager*)managerBase;
+			}
+		}
+		std::cout << "Could not find the specified manager in the list!" << std::endl;
+		return nullptr;
+	};
+
 	SDL_Renderer* GetRenderer() { return renderer; }
 };

@@ -10,8 +10,10 @@
 #include "MapReader.h"
 #include "MapManager.h"
 #include "LevelManager.h"
+#include "UIManager.h"
 #include "BulletBase.h"
 #include "Managers.h"
+#include "UIBase.h"
 
 class GameManager : public IRenderable, public ManagerBase
 {
@@ -32,8 +34,11 @@ private:
 	EffectsManager* effectsManager = nullptr;
 	MapManager* mapManager = nullptr;
 	LevelManager* levelManager = nullptr;
+	UIManager* uiManager = nullptr;
 	MapReader* mapReader = nullptr;
 	Dijkstra* dijkstra = nullptr;
+
+	UIBase* uiBase = nullptr;
 
 	//Temporary
 	BulletBase* bullet = nullptr;
@@ -41,6 +46,8 @@ private:
 public:
 
 	static const int DEFAULT_SPRITE_SIZE = 48;
+	static const int DEFAULT_SCREENSIZE_W = 1280;
+	static const int DEFAULT_SCREENSIZE_H = 720;
 
 private:
 	void CreateWindow(const char* title, int posX, int posY, int width, int height, Uint32 flags);

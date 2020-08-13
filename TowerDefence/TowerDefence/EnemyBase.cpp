@@ -96,7 +96,7 @@ void EnemyBase::TakeDamage(float damage)
 	health -= damage;
 	if (health <= 0 && hasCountedDeath == false)
 	{
-		((EnemyManager*)managers->GetManager(ManagerName::EnemyManager))->IncreaseEnemyDeathCount(1);
+		managers->GetManager<EnemyManager>(ManagerName::EnemyManager)->IncreaseEnemyDeathCount(1);
 		hasCountedDeath = true;
 	}
 }

@@ -126,6 +126,7 @@
     <ClCompile Include="BulletBase.cpp" />
     <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="CongratulationsScreen.cpp" />
     <ClCompile Include="Dijkstra.cpp" />
     <ClCompile Include="EffectsManager.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
@@ -149,6 +150,8 @@
     <ClCompile Include="TowerBig.cpp" />
     <ClCompile Include="TowerManager.cpp" />
     <ClCompile Include="TowerSmall.cpp" />
+    <ClCompile Include="UIBase.cpp" />
+    <ClCompile Include="UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -157,6 +160,7 @@
     <ClInclude Include="BulletBase.h" />
     <ClInclude Include="BulletManager.h" />
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="CongratulationsScreen.h" />
     <ClInclude Include="Dijkstra.h" />
     <ClInclude Include="EffectsManager.h" />
     <ClInclude Include="EnemyBase.h" />
@@ -181,6 +185,8 @@
     <ClInclude Include="TowerBig.h" />
     <ClInclude Include="TowerManager.h" />
     <ClInclude Include="TowerSmall.h" />
+    <ClInclude Include="UIBase.h" />
+    <ClInclude Include="UIManager.h" />
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

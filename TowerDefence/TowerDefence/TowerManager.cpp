@@ -5,11 +5,11 @@
 TowerManager::TowerManager(Managers* managers) :  managers(managers)
 {
 	name = ManagerName::TowerManager;
-	tileManager = (TileManager*)managers->GetManager(ManagerName::TileManager);
-	enemyManager = (EnemyManager*)managers->GetManager(ManagerName::EnemyManager);
-	spriteManager = (SpriteManager*)managers->GetManager(ManagerName::SpriteManager);
-	bulletManager = (BulletManager*)managers->GetManager(ManagerName::BulletManager);
-	effectsManager = (EffectsManager*)managers->GetManager(ManagerName::EffectsManager);
+	tileManager = managers->GetManager<TileManager>(ManagerName::TileManager);
+	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
+	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
+	bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
+	effectsManager = managers->GetManager<EffectsManager>(ManagerName::EffectsManager);
 }
 
 TowerManager::~TowerManager()

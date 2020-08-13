@@ -21,5 +21,6 @@ public:
 	void AddMap(Map* map);
 	//void CreateTilesFromMap(int mapIndex);
 	Map* GetMap(int index) { return maps[index]; }
+	std::vector<Map*> GetMaps() { return maps; }
 };
 

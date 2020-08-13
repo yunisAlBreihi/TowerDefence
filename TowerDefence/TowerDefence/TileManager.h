@@ -3,10 +3,11 @@
 #include "ManagerBase.h"
 #include "Managers.h"
 #include "Tile.h"
+#include "IRenderable.h"
 
 class MapManager;
 
-class TileManager : public ManagerBase
+class TileManager :public IRenderable, public ManagerBase
 {
 private:
 	std::vector<Tile*> tiles;
@@ -28,10 +29,10 @@ public:
 	Tile* GetTileAtPosition(Vector2D position);
 	int GetTileIndexInList(Tile* tile);
 
-	void Start();
-	void Update();
-	void Render();
-	void Destroy();
+	void Start() override;
+	void Update() override;
+	void Render() override;
+	void Destroy() override;
 
 	void DebugPositions();
 	void CreateTilesFromMap(Managers* managers, int mapIndex);

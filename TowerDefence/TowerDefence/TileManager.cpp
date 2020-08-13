@@ -157,8 +157,8 @@ void TileManager::DebugPositions()
 
 void TileManager::CreateTilesFromMap(Managers* managers, int mapIndex)
 {
-	MapManager* mapManager = ((MapManager*)managers->GetManager(ManagerName::MapManager));
-	SpriteManager* spriteManager = ((SpriteManager*)managers->GetManager(ManagerName::SpriteManager));
+	MapManager* mapManager = managers->GetManager<MapManager>(ManagerName::MapManager);
+	SpriteManager* spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
 	std::vector<std::vector<int>> tempTileNumbers = mapManager->GetMap(mapIndex)->GetTileNumbers();
 
 	for (unsigned int col = 0; col < tempTileNumbers.size(); col++)
