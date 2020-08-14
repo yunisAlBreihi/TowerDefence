@@ -1,5 +1,6 @@
 #include "EnemyBase.h"
 #include "EnemyManager.h"
+#include "GameManager.h"
 
 EnemyBase::EnemyBase()
 {
@@ -61,6 +62,7 @@ void EnemyBase::MoveToEnd()
 			else
 			{
 				hasReachedEnd = true;
+				managers->GetManager<GameManager>(ManagerName::GameManager)->ReducePlayerHealth(2);
 			}
 		}
 		else

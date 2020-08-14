@@ -28,12 +28,12 @@ GameManager::GameManager(const char* title, int posX, int posY, int width, int h
 	managers->AddManager(effectsManager);
 	bulletManager = new BulletManager(managers);
 	managers->AddManager(bulletManager);
+	levelManager = new LevelManager(managers);
+	managers->AddManager(levelManager);
 	enemyManager = new EnemyManager(managers, dijkstra);
 	managers->AddManager(enemyManager);
 	towerManager = new TowerManager(managers);
 	managers->AddManager(towerManager);
-	levelManager = new LevelManager(managers);
-	managers->AddManager(levelManager);
 	uiManager = new UIManager(managers);
 	managers->AddManager(uiManager);
 }
@@ -129,23 +129,29 @@ void GameManager::HandleEvent()
 
 void GameManager::Update()
 {
-	enemyManager->Update();
-	towerManager->Update();
-	bulletManager->Update();
-	effectsManager->Update();
-	//uiManager->Update();
+	if (gameHasEnded == false)
+	{
+		enemyManager->Update();
+		towerManager->Update();
+		bulletManager->Update();
+		effectsManager->Update();
+	}
+	uiManager->Update();
 	levelManager->Update();
 }
 
 void GameManager::Render()
 {
 	SDL_RenderClear(renderer);
-	tileManager->Render();
-	enemyManager->Render();
-	towerManager->Render();
-	bulletManager->Render();
-	effectsManager->Render();
-	//uiManager->Render();
+	if (gameHasEnded == false)
+	{
+		tileManager->Render();
+		enemyManager->Render();
+		towerManager->Render();
+		bulletManager->Render();
+		effectsManager->Render();
+	}
+	uiManager->Render();
 	SDL_RenderPresent(renderer);
 }
 
@@ -157,6 +163,26 @@ void GameManager::Destroy()
 	window = nullptr;
 
 	SDL_Quit();
+}
+
+void GameManager::SetGameHasEnded(bool value)
+{
+	gameHasEnded = value;
+}
+
+void GameManager::ReducePlayerHealth(unsigned int reduceBy)
+{
+	playerHealth -= reduceBy;
+
+	if (playerHealth <= 0)
+	{
+		levelManager->LoadGameOverScreen();
+	}
+}
+
+void GameManager::IncreasePlayerHealth(unsigned int increasyBy)
+{
+	playerHealth += increasyBy;
 }
 
 void GameManager::CreateWindow(const char* title, int posX, int posY, int width, int height, Uint32 flags)

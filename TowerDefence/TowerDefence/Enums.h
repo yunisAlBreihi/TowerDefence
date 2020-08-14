@@ -1,6 +1,5 @@
 #pragma once
 
-
 enum class SpriteName
 {
 	grass = 0,

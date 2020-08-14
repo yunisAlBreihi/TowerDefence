@@ -13,6 +13,7 @@ EnemyManager::EnemyManager(Managers* managers, Dijkstra* dijkstra) : managers(ma
 
 void EnemyManager::Start()
 {
+
 	CreateEnemies();
 	if (enemies.empty() == false)
 	{

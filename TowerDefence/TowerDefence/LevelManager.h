@@ -2,19 +2,23 @@
 #include "ManagerBase.h"
 #include "IRenderable.h"
 #include "Managers.h"
+#include "MapManager.h"
 
-class LevelManager : public IRenderable ,public ManagerBase
+class LevelManager : public IRenderable, public ManagerBase
 {
 private:
 	Managers* managers = nullptr;
+	MapManager* mapManager = nullptr;
 	int currentLevelIndex = 0;
 	bool loadNextLevel = false;
-	//bool showGameOverScreen = false;
-	//bool showCongratulationsScreen = false;
+	bool loadGameOver = false;
+	bool loadCongratulations = false;
 public:
 
 private:
 	void OnLoadNextLevel();
+	void OnLoadCongratulationsSceen();
+	void OnLoadGameOverScreen();
 
 public:
 	LevelManager(Managers* managers);
@@ -30,6 +34,7 @@ public:
 	void LoadCurrentLevel();
 	void LoadNextLevel();
 	void LoadCongratulationsSceen();
+	void LoadGameOverScreen();
 	int GetCurrentLevelIndex() { return currentLevelIndex; }
 	bool GetLoadNextLevel() { return loadNextLevel; }
 };

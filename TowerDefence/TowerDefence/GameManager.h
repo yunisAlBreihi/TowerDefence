@@ -20,7 +20,10 @@ class GameManager : public IRenderable, public ManagerBase
 private:
 
 	bool isRunning = false;
-	
+	bool gameHasEnded = false;
+
+	int playerHealth = 10;
+
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
 	SDL_Surface* surface = nullptr;
@@ -43,6 +46,7 @@ private:
 	//Temporary
 	BulletBase* bullet = nullptr;
 
+
 public:
 
 	static const int DEFAULT_SPRITE_SIZE = 48;
@@ -56,7 +60,7 @@ public:
 
 	GameManager(const char* title, int posX, int posY, int width, int height, Uint32 flags);
 	~GameManager();
-	
+
 	void Start() override;
 	void HandleEvent();
 	void Update() override;
@@ -64,5 +68,10 @@ public:
 	void Destroy() override;
 
 	bool IsRunning() { return isRunning; }
+	bool GameHasEnded() { return gameHasEnded; }
+	void SetGameHasEnded(bool value);
+
+	void ReducePlayerHealth(unsigned int reduceBy);
+	void IncreasePlayerHealth(unsigned int increasyBy);
 };
 
