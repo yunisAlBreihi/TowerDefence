@@ -130,7 +130,6 @@ Tile* TileManager::GetTileAtPosition(Vector2D position)
 			return tile;
 		}
 	}
-	//std::cout << "Could not find a Tile at position: " << std::endl << "x: " << position.x << " y: " << position.y << std::endl;
 	return nullptr;
 }
 
@@ -143,7 +142,6 @@ int TileManager::GetTileIndexInList(Tile* tile)
 			return i;
 		}
 	}
-	//std::cout << "Could not find the tile in the tile list. Returning -1" << std::endl;
 	return -1;
 }
 

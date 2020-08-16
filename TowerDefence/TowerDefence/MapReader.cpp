@@ -23,7 +23,6 @@ Map* MapReader::ReadMap(std::string filePath)
 				mapRow.push_back(line[i]);
 			}
 			tempMapData.push_back(mapRow);
-			//std::cout << line << std::endl;
 			fileStream >> std::ws;
 		}
 		fileStream.close();

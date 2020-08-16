@@ -146,6 +146,7 @@
     <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileManager.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TowerBase.cpp" />
     <ClCompile Include="TowerBig.cpp" />
     <ClCompile Include="TowerManager.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="SpriteManager.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileManager.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="TowerBase.h" />
     <ClInclude Include="TowerBig.h" />
     <ClInclude Include="TowerManager.h" />

@@ -1,5 +1,4 @@
 #pragma once
-#include "SpriteManager.h"
 #include "Tile.h"
 #include "Map.h"
 #include "Managers.h"
@@ -19,7 +18,6 @@ public:
 
 	MapManager( Managers* managers);
 	void AddMap(Map* map);
-	//void CreateTilesFromMap(int mapIndex);
 	Map* GetMap(int index) { return maps[index]; }
 	std::vector<Map*> GetMaps() { return maps; }
 };

@@ -6,6 +6,7 @@
 #include "EnemyManager.h"
 #include "BulletManager.h"
 #include "EffectsManager.h"
+#include "SpriteManager.h"
 #include "Collider.h"
 #include "Enums.h"
 

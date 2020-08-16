@@ -37,7 +37,7 @@ std::vector<std::vector<int>> Map::GetEnemyNumbers()
 	std::vector<std::vector<int>> tempEnemyNumbers;
 	int rowIndex = 0;
 	bool isOnEnemyNumbers = false;
-	int number = INT_MAX;
+	int enemyNumber = INT_MAX;
 
 	for (std::string row : mapData)
 	{
@@ -48,8 +48,8 @@ std::vector<std::vector<int>> Map::GetEnemyNumbers()
 
 			while (input.eof() == false)
 			{
-				input >> number;
-				tempEnemyNumberRow.push_back(number);
+				input >> enemyNumber;
+				tempEnemyNumberRow.push_back(enemyNumber);
 			}
 			tempEnemyNumbers.push_back(tempEnemyNumberRow);
 		}
@@ -60,14 +60,15 @@ std::vector<std::vector<int>> Map::GetEnemyNumbers()
 		}
 
 	}
-	for (std::vector<int> row : tempEnemyNumbers)
-	{
-		for(int number : row)
-		{
-			std::cout << number;
-		}
-		std::cout << std::endl;
-	}
+	//Prints out the enemy numbers for the map
+	//for (std::vector<int> row : tempEnemyNumbers)
+	//{
+	//	for(int number : row)
+	//	{
+	//		std::cout << number;
+	//	}
+	//	std::cout << std::endl;
+	//}
 	return tempEnemyNumbers;
 }
 
