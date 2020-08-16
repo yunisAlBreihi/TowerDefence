@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include "IRenderable.h"
+#include "Managers.h"
 #include "EnemyManager.h"
 #include "EffectsManager.h"
 #include "Sprite.h"
@@ -12,12 +13,11 @@ class BulletBase : public IRenderable
 private:
 
 protected:
+	Managers* managers = nullptr;
 	SDL_Renderer* renderer = nullptr;
-	EnemyManager* enemyManager = nullptr;
-	EffectsManager* effectsManager = nullptr;
 	BulletType bulletType;
 	Sprite* sprite = nullptr;
-	float speed = 3.0f;
+	float speed = 5.0f;
 	Vector2D position = { 0,0 };
 	Vector2D startPosition = { 0,0 };
 	Vector2D endPosition = { 0,0 };
@@ -32,7 +32,7 @@ private:
 
 public:
 	BulletBase();
-	BulletBase(SDL_Renderer* renderer,EnemyManager* enemyManager,EffectsManager* effectsManager,BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale);
+	BulletBase(Managers* managers,BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale);
 	~BulletBase();
 
 	void Start() override;

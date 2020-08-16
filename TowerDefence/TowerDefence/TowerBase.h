@@ -30,7 +30,7 @@ protected:
 	float collisionRadius = 80.0f;
 
 	float shootTimer = 0.0f;
-	float shootMaxTime = 750.0f;
+	float shootMaxTime = 0.75f;
 
 public:
 
@@ -45,6 +45,9 @@ public:
 	void Update(float deltaTime) override;
 	void Render() override;
 	void Destroy() override;
+
+	void SetEnemyTarget();
+	void Shoot(float deltaTime);
 
 	void SetPosition(Vector2D vector2D);
 

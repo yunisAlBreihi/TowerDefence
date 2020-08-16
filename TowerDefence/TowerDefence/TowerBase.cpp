@@ -27,6 +27,24 @@ void TowerBase::Start()
 
 void TowerBase::Update(float deltaTime)
 {
+	SetEnemyTarget();
+	Shoot(deltaTime);
+}
+
+void TowerBase::Render()
+{
+	SDL_RenderCopy(managers->GetRenderer(), sprite->GetTexture(), nullptr, &dstRect);
+
+	//Draw a circle for the collisions
+	//DrawDebugCircle();
+}
+
+void TowerBase::Destroy()
+{
+}
+
+void TowerBase::SetEnemyTarget()
+{
 	if (currentEnemyTarget == nullptr)
 	{
 		if (enemyManager->GetEnemies().empty() == false)
@@ -58,14 +76,17 @@ void TowerBase::Update(float deltaTime)
 	{
 		currentEnemyTarget = nullptr;
 	}
+}
 
+void TowerBase::Shoot(float deltaTime)
+{
 	if (currentEnemyTarget != nullptr)
 	{
-		shootTimer++;
+		shootTimer += deltaTime;
 
 		if (shootTimer >= shootMaxTime)
 		{
-			BulletBase* bullet = new BulletBase(managers->GetRenderer(), enemyManager, effectsManager, bulletType, spriteManager->GetSprite(SpriteName::startPosition),
+			BulletBase* bullet = new BulletBase(managers, bulletType, spriteManager->GetSprite(SpriteName::startPosition),
 				position + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2),
 				currentEnemyTarget->GetPosition() + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2),
 				Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 4, GameManager::DEFAULT_SPRITE_SIZE / 4));
@@ -75,18 +96,6 @@ void TowerBase::Update(float deltaTime)
 			shootTimer = 0.0f;
 		}
 	}
-}
-
-void TowerBase::Render()
-{
-	SDL_RenderCopy(managers->GetRenderer(), sprite->GetTexture(), nullptr, &dstRect);
-
-	//Draw a circle for the collisions
-	//DrawDebugCircle();
-}
-
-void TowerBase::Destroy()
-{
 }
 
 void TowerBase::SetPosition(Vector2D vector2D)

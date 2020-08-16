@@ -134,6 +134,8 @@
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="EnemySmall.cpp" />
     <ClCompile Include="EffectBase.cpp" />
+    <ClCompile Include="Explosion.cpp" />
+    <ClCompile Include="FrostExplosion.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="main.cpp" />
@@ -170,6 +172,8 @@
     <ClInclude Include="EnemySmall.h" />
     <ClInclude Include="EffectBase.h" />
     <ClInclude Include="Enums.h" />
+    <ClInclude Include="Explosion.h" />
+    <ClInclude Include="FrostExplosion.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="IRenderable.h" />
     <ClInclude Include="LevelManager.h" />
