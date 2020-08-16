@@ -15,7 +15,7 @@ void TileManager::Start()
 {
 }
 
-void TileManager::Update()
+void TileManager::Update(float deltaTime)
 {
 }
 

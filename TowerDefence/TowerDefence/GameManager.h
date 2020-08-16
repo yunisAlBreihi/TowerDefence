@@ -63,7 +63,7 @@ public:
 
 	void Start() override;
 	void HandleEvent();
-	void Update() override;
+	void Update(float deltaTime) override;
 	void Render() override;
 	void Destroy() override;
 

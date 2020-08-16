@@ -20,10 +20,11 @@ public:
 	EffectsManager(Managers* managers);
 
 	void Start() override;
-	void Update() override;
+	void Update(float deltaTime) override;
 	void Render() override;
 	void Destroy() override;
 
 	void AddEffect(EffectBase* effect);
+	void ClearEffects();
 };
 

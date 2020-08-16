@@ -25,7 +25,7 @@ void TowerBase::Start()
 {
 }
 
-void TowerBase::Update()
+void TowerBase::Update(float deltaTime)
 {
 	if (currentEnemyTarget == nullptr)
 	{

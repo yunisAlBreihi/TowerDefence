@@ -13,11 +13,11 @@ void BulletManager::Start()
     }
 }
 
-void BulletManager::Update()
+void BulletManager::Update(float deltaTime)
 {
 	for (BulletBase* bullet : bullets)
 	{
-		bullet->Update();
+		bullet->Update(deltaTime);
 	}
 }
 
@@ -40,4 +40,17 @@ void BulletManager::Destroy()
 void BulletManager::AddBullet(BulletBase* bullet)
 {
 	bullets.push_back(bullet);
+}
+
+void BulletManager::ClearBullets()
+{
+	if (bullets.empty() == false)
+	{
+		for (auto bullet : bullets)
+		{
+			bullet->Destroy();
+		}
+	}
+
+	bullets.clear();
 }

@@ -16,11 +16,11 @@ void EffectBase::Start()
 {
 }
 
-void EffectBase::Update()
+void EffectBase::Update(float deltaTime)
 {
 	if (reachedMaxSize == false)
 	{
-		LerpExplosionScale();
+		LerpExplosionScale(deltaTime);
 
 		for (std::vector<EnemyBase*> enemies : enemyManager->GetEnemies())
 		{
@@ -42,7 +42,7 @@ void EffectBase::Update()
 								if (enemy->IsFrozen() == false)
 								{
 									enemy->TakeDamage(1.0f);
-									enemy->Freeze(3.0f, 0.15f);
+									enemy->Freeze(3.0f, 0.5f);
 								}
 							}
 							currentTarget = enemy;
@@ -80,7 +80,7 @@ void EffectBase::SetScale(Vector2D scale)
 	dstRect.h = this->scale.y;
 }
 
-void EffectBase::LerpExplosionScale()
+void EffectBase::LerpExplosionScale(float deltaTime)
 {
 	SetScale(Vector2D::Lerp(startScale, endScale, delta));
 	SetPosition(Vector2D::Lerp(startPosition, endPosition, delta));
@@ -91,7 +91,7 @@ void EffectBase::LerpExplosionScale()
 
 	if (delta <= 1.0f)
 	{
-		delta += 0.007f;
+		delta += deltaTime * expandSpeed;
 	}
 	else
 	{

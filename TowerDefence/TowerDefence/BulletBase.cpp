@@ -20,14 +20,14 @@ void BulletBase::Start()
 {
 }
 
-void BulletBase::Update()
+void BulletBase::Update(float deltaTime)
 {
 	if (isMoving == true)
 	{
-		SetPosition(Vector2D::Lerp(startPosition, endPosition, delta));
-		if (delta <= 1.0f)
+		SetPosition(Vector2D::Lerp(startPosition, endPosition, movementDelta));
+		if (movementDelta <= 1.0f)
 		{
-			delta += 0.0065f;
+			movementDelta += speed * deltaTime;
 		}
 		else
 		{

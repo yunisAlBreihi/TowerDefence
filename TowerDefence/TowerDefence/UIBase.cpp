@@ -14,7 +14,7 @@ void UIBase::Start()
 
 }
 
-void UIBase::Update()
+void UIBase::Update(float deltaTime)
 {
 }
 

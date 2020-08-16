@@ -17,12 +17,13 @@ protected:
 	EffectsManager* effectsManager = nullptr;
 	BulletType bulletType;
 	Sprite* sprite = nullptr;
+	float speed = 3.0f;
 	Vector2D position = { 0,0 };
 	Vector2D startPosition = { 0,0 };
 	Vector2D endPosition = { 0,0 };
 	Vector2D scale = { 0,0 };
 	SDL_Rect dstRect = { 0,0,0,0 };
-	float delta = 0.0f;
+	float movementDelta = 0.0f;
 	bool isMoving = false;
 
 public:
@@ -35,7 +36,7 @@ public:
 	~BulletBase();
 
 	void Start() override;
-	void Update() override;
+	void Update(float deltaTime) override;
 	void Render() override;
 	void Destroy() override;
 

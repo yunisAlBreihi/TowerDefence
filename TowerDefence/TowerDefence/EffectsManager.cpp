@@ -16,13 +16,13 @@ void EffectsManager::Start()
 	}
 }
 
-void EffectsManager::Update()
+void EffectsManager::Update(float deltaTime)
 {
 	if (effects.empty() == false)
 	{
 		for (EffectBase* effect : effects)
 		{
-			effect->Update();
+			effect->Update(deltaTime);
 		}
 	}
 }
@@ -52,4 +52,9 @@ void EffectsManager::Destroy()
 void EffectsManager::AddEffect(EffectBase* effect)
 {
 	effects.push_back(effect);
+}
+
+void EffectsManager::ClearEffects()
+{
+	effects.clear();
 }

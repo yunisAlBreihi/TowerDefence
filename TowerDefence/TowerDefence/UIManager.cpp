@@ -13,7 +13,7 @@ void UIManager::Start()
 {
 }
 
-void UIManager::Update()
+void UIManager::Update(float deltaTime)
 {
 }
 

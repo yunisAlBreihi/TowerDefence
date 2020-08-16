@@ -1,11 +1,10 @@
 #include "Timer.h"
 #include <SDL.h>
-
-using namespace std::literals::chrono_literals;
+#include <iostream>
 
 Timer::Timer()
 {
-	frameStart = SDL_GetTicks();
+
 }
 
 Timer::~Timer()
@@ -13,20 +12,32 @@ Timer::~Timer()
 
 }
 
-void Timer::SetDeltaTime()
+void Timer::Tick()
 {
-	deltaTime = SDL_GetTicks() - frameStart;
-}
+	newTime = SDL_GetPerformanceCounter();
 
-void Timer::LimitTo60FPS()
-{
-	if (frameDelay > deltaTime)
+	//Ends with scaling down by 1000.0f to reformat to seconds
+	deltaTime = (float)((newTime - oldTime) * 1000 / (float)SDL_GetPerformanceFrequency()) / 1000.0f;
+
+	//Scale down the deltaTime in case it is too high
+	if (deltaTime > target_deltaTime)
 	{
-		SDL_Delay(frameDelay - deltaTime);
+		deltaTime = target_deltaTime;
 	}
+	oldTime = newTime;
 }
 
-int Timer::DeltaTime()
+float Timer::DeltaTime()
 {
 	return deltaTime;
+}
+
+int Timer::FPS()
+{
+	return fps;
+}
+
+void Timer::LogDeltaTime()
+{
+	SDL_Log("%f", deltaTime);
 }

@@ -127,17 +127,17 @@ void GameManager::HandleEvent()
 	}
 }
 
-void GameManager::Update()
+void GameManager::Update(float deltaTime)
 {
 	if (gameHasEnded == false)
 	{
-		enemyManager->Update();
-		towerManager->Update();
-		bulletManager->Update();
-		effectsManager->Update();
+		enemyManager->Update(deltaTime);
+		towerManager->Update(deltaTime);
+		bulletManager->Update(deltaTime);
+		effectsManager->Update(deltaTime);
 	}
-	uiManager->Update();
-	levelManager->Update();
+	uiManager->Update(deltaTime);
+	levelManager->Update(deltaTime);
 }
 
 void GameManager::Render()

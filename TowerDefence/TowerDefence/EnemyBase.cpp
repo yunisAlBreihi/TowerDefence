@@ -18,17 +18,18 @@ EnemyBase::~EnemyBase()
 void EnemyBase::Start()
 {
 	currentStartPosition = GetPosition();
+	originalSpeed = speed;
 }
 
-void EnemyBase::Update()
+void EnemyBase::Update(float deltaTime)
 {
 	if (IsDead() == false)
 	{
-		MoveToEnd();
+		MoveToEnd(deltaTime);
 
 		if (isFrozen == true)
 		{
-			FreezeTimer();
+			FreezeTimer(deltaTime);
 		}
 	}
 }
@@ -45,11 +46,11 @@ void EnemyBase::Destroy()
 {
 }
 
-void EnemyBase::MoveToEnd()
+void EnemyBase::MoveToEnd(float deltaTime)
 {
 	if (hasReachedEnd == false)
 	{
-		delta += 0.002f * speed;
+		delta += speed * deltaTime;
 
 		if (delta >= 1.0f)
 		{
@@ -106,6 +107,7 @@ void EnemyBase::TakeDamage(float damage)
 void EnemyBase::Freeze(float freezeTime, float freezeSpeed)
 {
 	isFrozen = true;
+	freezeTimer = 0;
 	maxFreezeTime = freezeTime;
 	speed = freezeSpeed;
 }
@@ -115,12 +117,12 @@ bool EnemyBase::IsFrozen()
 	return isFrozen;
 }
 
-void EnemyBase::FreezeTimer()
+void EnemyBase::FreezeTimer(float deltaTime)
 {
 	if (freezeTimer >= maxFreezeTime)
 	{
 		isFrozen = false;
 		speed = originalSpeed;
 	}
-	freezeTimer += 0.001f;
+	freezeTimer += deltaTime;
 }

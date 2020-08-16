@@ -7,7 +7,7 @@
 #include "IRenderable.h"
 #include "Managers.h"
 
-class TowerManager : public ManagerBase
+class TowerManager : public IRenderable, public ManagerBase
 {
 private:
 	std::vector<Sprite*> sprites;
@@ -28,10 +28,11 @@ public:
 	TowerManager(Managers* managers);
 	~TowerManager();
 
-	void Start();
-	void Update();
-	void Render();
-	void Destroy();
+	void Start() override;
+	void Update(float deltaTime) override;
+	void Render() override;
+	void Destroy() override;
+
 	void AddTower(Sprite* towerSprite);
 	void CreateTowers();
 	void ClearTowers();

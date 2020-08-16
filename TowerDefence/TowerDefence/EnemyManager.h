@@ -35,8 +35,8 @@ private:
 	int enemyCount = 0;
 	int enemyDeathCount = 0;
 	float spawnTimer = 0;
-	float maxSpawnTime = 1000;
-	float maxWaveTime = 10000;
+	float maxSpawnTime = 1.0f;
+	float maxWaveTime = 3.0f;
 	bool waveIsComplete = false;
 	bool mapIsComplete = false;
 
@@ -53,10 +53,10 @@ public:
 
 	void AddEnemyType(Sprite* enemySprite);
 	void IncreaseEnemyDeathCount(int increaseBy);
-	void SpawnEnemyWaves();
+	void SpawnEnemyWaves(float deltaTime);
 
 	void Start() override;
-	void Update() override;
+	void Update(float deltaTime) override;
 	void Render() override;
 	void Destroy() override;
 

@@ -20,7 +20,7 @@ void LevelManager::Start()
 	LoadCurrentLevel();
 }
 
-void LevelManager::Update()
+void LevelManager::Update(float deltaTime)
 {
 	if (loadNextLevel == true)
 	{
@@ -54,6 +54,12 @@ void LevelManager::ClearScreen()
 
 	EnemyManager* enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
 	enemyManager->ClearEnemies();
+
+	BulletManager* bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
+	bulletManager->ClearBullets();
+
+	EffectsManager* effectsManager = managers->GetManager<EffectsManager>(ManagerName::EffectsManager);
+	effectsManager->ClearEffects();
 }
 
 void LevelManager::CreateScreen()

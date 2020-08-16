@@ -27,13 +27,13 @@ void TowerManager::Start()
 	}
 }
 
-void TowerManager::Update()
+void TowerManager::Update(float deltaTime)
 {
 	for (const auto& towerRow : towers)
 	{
 		for (TowerBase* t : towerRow)
 		{
-			t->Update();
+			t->Update(deltaTime);
 		}
 	}
 }

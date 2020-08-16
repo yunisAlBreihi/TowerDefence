@@ -26,8 +26,8 @@ protected:
 	float health = 3.0f;
 
 	//For when the enemy is frozen
-	float speed = 1.0f;
-	float originalSpeed = 1.0f;
+	float speed = 2.0f;
+	float originalSpeed = 0.0f;
 	float frozenSpeed = 0.5f;
 	float freezeTimer = 0.0f;
 	float maxFreezeTime = 2.0f;
@@ -38,8 +38,8 @@ public:
 
 private:
 
-	void MoveToEnd();
-	void FreezeTimer();
+	void MoveToEnd(float deltaTime);
+	void FreezeTimer(float deltaTime);
 
 public:
 
@@ -48,7 +48,7 @@ public:
 	virtual ~EnemyBase() = 0;
 
 	void Start() override;
-	void Update() override;
+	void Update(float deltaTime) override;
 	void Render() override;
 	void Destroy() override;
 

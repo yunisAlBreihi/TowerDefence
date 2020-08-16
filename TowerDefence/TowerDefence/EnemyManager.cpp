@@ -30,9 +30,9 @@ void EnemyManager::Start()
 	}
 }
 
-void EnemyManager::Update()
+void EnemyManager::Update(float deltaTime)
 {
-	SpawnEnemyWaves();
+	SpawnEnemyWaves(deltaTime);
 
 	if (enemies.empty() == false)
 	{
@@ -42,7 +42,7 @@ void EnemyManager::Update()
 			{
 				for (EnemyBase* e : enemyRow)
 				{
-					e->Update();
+					e->Update(deltaTime);
 				}
 			}
 		}
@@ -178,11 +178,11 @@ void EnemyManager::ResetEnemyCount()
 	spawnTimer = 0;
 }
 
-void EnemyManager::SpawnEnemyWaves()
+void EnemyManager::SpawnEnemyWaves(float deltaTime)
 {
 	if (mapIsComplete == false)
 	{
-		spawnTimer++;
+		spawnTimer += deltaTime;
 		if (waveIsComplete == false)
 		{
 			if (spawnTimer >= maxSpawnTime)

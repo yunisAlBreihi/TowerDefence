@@ -12,11 +12,13 @@ int main(int argc, char* argv[])
 	while (gameManager->IsRunning() == true)
 	{
 		gameManager->HandleEvent();
-		gameManager->Update();
+		gameManager->Update(timer->DeltaTime());
 		gameManager->Render();
 
-		timer->SetDeltaTime();
-		timer->LimitTo60FPS();
+		timer->Tick();
+
+		//Log the deltaTime
+		//timer->LogDeltaTime();
 	}
 	gameManager->Destroy();
 

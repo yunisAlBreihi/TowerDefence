@@ -1,15 +1,16 @@
 #pragma once
-#include <chrono>
-#include <thread>
+#include <cstdio>
+#include <cstdint>
 
 class Timer
 {
 private:
-	const int FPS = 60;
-	const int frameDelay = 1000 / FPS;
+	const int fps = 60;
+	const float target_deltaTime = 1.6f;
 
-	int frameStart = 0;
 	float deltaTime = 0;
+	uint64_t newTime = 0;
+	uint64_t oldTime = 0;
 
 public:
 private:
@@ -17,8 +18,9 @@ public:
 	Timer();
 	~Timer();
 
-	void SetDeltaTime();
-	void LimitTo60FPS();
+	void Tick();
 
-	int DeltaTime();
+	float DeltaTime();
+	int FPS();
+	void LogDeltaTime();
 };

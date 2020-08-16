@@ -9,7 +9,7 @@ void Tile::Start()
 {
 }
 
-void Tile::Update()
+void Tile::Update(float deltaTime)
 {
 }
 

@@ -26,6 +26,7 @@ private:
 	float delta = 0.0f;
 	float startRadius = 0.0f;
 	float endRadius = 0.0f;
+	float expandSpeed = 4.0f;
 	bool reachedMaxSize = false;
 
 	EnemyBase* currentTarget = nullptr;
@@ -40,7 +41,7 @@ public:
 	EffectBase(SDL_Renderer* renderer,EnemyManager* enemyManager, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale);
 
 	void Start() override;
-	void Update() override;
+	void Update(float deltaTime) override;
 	void Render() override;
 	void Destroy() override;
 
@@ -50,5 +51,5 @@ public:
 	Vector2D GetPosition() { return position; }
 	Vector2D GetScale() { return scale; }
 
-	void LerpExplosionScale();
+	void LerpExplosionScale(float deltaTime);
 };

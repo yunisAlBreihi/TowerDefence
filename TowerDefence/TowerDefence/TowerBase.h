@@ -42,7 +42,7 @@ public:
 	virtual ~TowerBase() = 0;
 
 	void Start() override;
-	void Update() override;
+	void Update(float deltaTime) override;
 	void Render() override;
 	void Destroy() override;
 
