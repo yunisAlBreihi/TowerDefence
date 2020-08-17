@@ -7,5 +7,7 @@ private:
 public:
 private:
 public:
-	TowerSmall(Managers* managers,BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale);
+	TowerSmall(Managers* managers , Sprite* sprite, Vector2D position, Vector2D scale);
+
+	void OnShoot() override;
 };

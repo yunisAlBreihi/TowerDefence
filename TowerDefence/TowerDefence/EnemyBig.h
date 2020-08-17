@@ -7,5 +7,5 @@ private:
 public:
 private:
 public:
-	EnemyBig(Managers* managers, std::vector<Tile*> path, Sprite* sprite, Vector2D position, Vector2D scale);
+	EnemyBig(Managers* managers, std::vector<Tile*> path,std::string name, Sprite* sprite, Vector2D position, Vector2D scale);
 };

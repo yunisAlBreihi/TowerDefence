@@ -44,7 +44,7 @@ public:
 
 private:
 
-	EnemyBase* CreateEnemy(Sprite* enemySprite);
+	EnemyBase* CreateEnemy(Sprite* enemySprite,int num1, int num2);
 	void SetEnemyCountFromMap();
 	void ResetEnemyCount();
 

@@ -6,7 +6,7 @@ TowerBase::TowerBase()
 {
 }
 
-TowerBase::TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale) : managers(managers), bulletType(bulletType), sprite(sprite), position(position), scale(scale)
+TowerBase::TowerBase(Managers* managers , Sprite* sprite, Vector2D position, Vector2D scale) : managers(managers), sprite(sprite), position(position), scale(scale)
 {
 	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
 	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
@@ -14,7 +14,7 @@ TowerBase::TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, 
 	effectsManager = managers->GetManager<EffectsManager>(ManagerName::EffectsManager);
 
 	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
-	collider = new Collider(this->position, 90.0f);
+	collider = new Collider(this->position + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2), 90.0f);
 }
 
 TowerBase::~TowerBase()
@@ -55,8 +55,7 @@ void TowerBase::SetEnemyTarget()
 				{
 					for (EnemyBase* enemy : enemies)
 					{
-						if (collider->isPointInCircle(position + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2),
-							enemy->GetPosition() + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2), collisionRadius))
+						if (collider->isPointInCircle(enemy->GetPosition() + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2)))
 						{
 							if (enemy->IsDead())
 							{
@@ -70,9 +69,8 @@ void TowerBase::SetEnemyTarget()
 			}
 		}
 	}
-	else if (currentEnemyTarget->IsDead() == true || collider->isPointInCircle(position + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2),
-		currentEnemyTarget->GetPosition() + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2),
-		collisionRadius) == false)
+	else if (currentEnemyTarget->IsDead() == true || 
+		collider->isPointInCircle(currentEnemyTarget->GetPosition() + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2)) == false)
 	{
 		currentEnemyTarget = nullptr;
 	}
@@ -86,13 +84,7 @@ void TowerBase::Shoot(float deltaTime)
 
 		if (shootTimer >= shootMaxTime)
 		{
-			BulletBase* bullet = new BulletBase(managers, bulletType, spriteManager->GetSprite(SpriteName::startPosition),
-				position + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2),
-				currentEnemyTarget->GetPosition() + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2),
-				Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 4, GameManager::DEFAULT_SPRITE_SIZE / 4));
-
-			bulletManager->AddBullet(bullet);
-
+			OnShoot();
 			shootTimer = 0.0f;
 		}
 	}
@@ -103,4 +95,18 @@ void TowerBase::SetPosition(Vector2D vector2D)
 	position = vector2D;
 	dstRect.x = position.x;
 	dstRect.y = position.y;
+}
+
+void TowerBase::DrawDebugCircle()
+{
+	if (collisionRadius > 0)
+	{
+		for (size_t i = 0; i < 360; i += debugCircleQuality)
+		{
+			circlePosition = Vector2D(GetPosition().x + collisionRadius * std::cos(i), GetPosition().y + collisionRadius * std::sin(i));
+			SDL_SetRenderDrawColor(managers->GetRenderer(), 230, 0, 126, 255);
+			SDL_RenderDrawPoint(managers->GetRenderer(), circlePosition.x + scale.x / 2, circlePosition.y + scale.y / 2);
+			SDL_SetRenderDrawColor(managers->GetRenderer(), 0, 0, 0, 255);
+		}
+	}
 }

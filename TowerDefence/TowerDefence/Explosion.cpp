@@ -1,9 +1,8 @@
 #include "Explosion.h"
 
-Explosion::Explosion(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale)
+Explosion::Explosion(Managers* managers , Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale)
 {
 	this->managers = managers;
-	this->bulletType = bulletType;
 	this->sprite = sprite;
 	this->position = position;
 	this->startScale = startScale;

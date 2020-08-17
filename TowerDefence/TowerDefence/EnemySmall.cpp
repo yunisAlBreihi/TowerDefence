@@ -1,9 +1,10 @@
 #include "EnemySmall.h"
 
-EnemySmall::EnemySmall(Managers* managers, std::vector<Tile*> path, Sprite* sprite, Vector2D position, Vector2D scale)
+EnemySmall::EnemySmall(Managers* managers, std::vector<Tile*> path,std::string name, Sprite* sprite, Vector2D position, Vector2D scale)
 {
 	this->managers = managers;
 	this->path = path;
+	this->name = name;
 	this->sprite = sprite;
 	this->position = position;
 	this->scale = scale;

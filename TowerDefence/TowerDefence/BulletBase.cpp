@@ -7,7 +7,7 @@ BulletBase::BulletBase()
 {
 }
 
-BulletBase::BulletBase(Managers* managers,BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale) : managers(managers),bulletType(bulletType), sprite(sprite), position(startPosition), endPosition(endPosition), scale(scale)
+BulletBase::BulletBase(Managers* managers, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale) : managers(managers), sprite(sprite), position(startPosition), endPosition(endPosition), scale(scale)
 {
 	this->startPosition = startPosition;
 	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
@@ -58,17 +58,8 @@ void BulletBase::OnMove(float deltaTime)
 	}
 	else
 	{
+		OnReachedDestination();
 		isMoving = false;
-		if (bulletType == BulletType::Regular)
-		{
-			Explosion* explosion = new Explosion(managers, bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (GameManager::DEFAULT_SPRITE_SIZE * 2.0f));
-			managers->GetManager<EffectsManager>(ManagerName::EffectsManager)->AddEffect(explosion);
-		}
-		else if (bulletType == BulletType::Freezing)
-		{
-			FrostExplosion* frostExplosion = new FrostExplosion(managers, bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (GameManager::DEFAULT_SPRITE_SIZE * 2.0f));
-			managers->GetManager<EffectsManager>(ManagerName::EffectsManager)->AddEffect(frostExplosion);
-		}
 	}
 }
 
@@ -81,4 +72,3 @@ void BulletBase::StartMoving(Vector2D startPosition, Vector2D endPosition)
 		isMoving = true;
 	}
 }
-

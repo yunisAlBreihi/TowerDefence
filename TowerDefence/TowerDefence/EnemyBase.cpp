@@ -6,7 +6,7 @@ EnemyBase::EnemyBase()
 {
 }
 
-EnemyBase::EnemyBase(Managers* managers, std::vector<Tile*> path, Sprite* sprite, Vector2D position, Vector2D scale) : managers(managers), path(path), sprite(sprite), position(position), scale(scale)
+EnemyBase::EnemyBase(Managers* managers, std::vector<Tile*> path,std::string name, Sprite* sprite, Vector2D position, Vector2D scale) : managers(managers),name(name), path(path), sprite(sprite), position(position), scale(scale)
 {
 	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
 }
@@ -102,6 +102,8 @@ void EnemyBase::TakeDamage(float damage)
 		managers->GetManager<EnemyManager>(ManagerName::EnemyManager)->IncreaseEnemyDeathCount(1);
 		hasCountedDeath = true;
 	}
+
+	//std::cout << name << " is hit!" << std::endl;
 }
 
 void EnemyBase::Freeze(float freezeTime, float freezeSpeed)

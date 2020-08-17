@@ -15,9 +15,8 @@ private:
 protected:
 	Managers* managers = nullptr;
 	SDL_Renderer* renderer = nullptr;
-	BulletType bulletType;
 	Sprite* sprite = nullptr;
-	float speed = 5.0f;
+	float speed = 8.0f;
 	Vector2D position = { 0,0 };
 	Vector2D startPosition = { 0,0 };
 	Vector2D endPosition = { 0,0 };
@@ -32,7 +31,7 @@ private:
 
 public:
 	BulletBase();
-	BulletBase(Managers* managers,BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale);
+	BulletBase(Managers* managers, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale);
 	~BulletBase();
 
 	void Start() override;
@@ -45,5 +44,6 @@ public:
 	Sprite* GetSprite() { return sprite; }
 	SDL_Rect GetDstRect() { return dstRect; }
 	void OnMove(float deltaTime);
+	virtual void OnReachedDestination() = 0;
 	void StartMoving(Vector2D startPosition, Vector2D endPosition);
 };

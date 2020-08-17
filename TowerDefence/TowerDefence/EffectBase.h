@@ -15,7 +15,7 @@ private:
 protected:
 	Managers* managers = nullptr;
 	EnemyManager* enemyManager = nullptr;
-	BulletType bulletType;
+	std::vector<EnemyBase*> enemiesHit;
 	Sprite* sprite = nullptr;
 	Collider* collider = nullptr;
 	Vector2D position = { 0,0 };
@@ -24,27 +24,23 @@ protected:
 	Vector2D scale = { 0,0 };
 	Vector2D startScale = { 0,0 };
 	Vector2D endScale = { 0.0f, 0.0f };
+	Vector2D colliderPosition = { 0.0f, 0.0f };
 	SDL_Rect dstRect = { 0,0,0,0 };
-	float damage = 1.0f;
+	float damage = 0.75f;
+	float freezeTime = 3.0f;
+	float freezeSpeed = 0.75f;
 	float delta = 0.0f;
-	float startRadius = 0.0f;
-	float endRadius = 0.0f;
 	float expandSpeed = 6.0f;
 	bool reachedMaxSize = false;
-
-	EnemyBase* currentTarget = nullptr;
-
-	std::vector<EnemyBase*> enemiesHit;
-
 public:
 
 private:
-
+	void Expand(float deltaTime);
 protected:
 
 public:
 	EffectBase();
-	EffectBase(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale);
+	EffectBase(Managers* managers, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale);
 	virtual ~EffectBase() = 0;
 
 	void Start() override;
@@ -52,7 +48,7 @@ public:
 	void Render() override;
 	void Destroy() override;
 
-	virtual void OnHit(EnemyBase* enemy);
+	virtual void OnHit(EnemyBase* enemy) = 0;
 	void LerpExplosionScale(float deltaTime);
 
 	void SetPosition(Vector2D position);
@@ -60,6 +56,5 @@ public:
 	Sprite* GetSprite() { return sprite; }
 	Vector2D GetPosition() { return position; }
 	Vector2D GetScale() { return scale; }
-
 
 };

@@ -20,6 +20,7 @@ protected:
 	Vector2D scale = { 0,0 };
 	Vector2D currentStartPosition = { 0,0 };
 	SDL_Rect dstRect = { 0,0,0,0 };
+	std::string name = "";
 	float delta = 0;
 	bool hasReachedEnd = false;
 
@@ -44,7 +45,7 @@ private:
 public:
 
 	EnemyBase();
-	EnemyBase(Managers* managers, std::vector<Tile*> path, Sprite* sprite, Vector2D position, Vector2D scale);
+	EnemyBase(Managers* managers, std::vector<Tile*> path,std::string name, Sprite* sprite, Vector2D position, Vector2D scale);
 	virtual ~EnemyBase() = 0;
 
 	void Start() override;
@@ -66,4 +67,5 @@ public:
 	Sprite* GetSprite() { return sprite; }
 	SDL_Rect GetDstRect() { return dstRect; }
 	bool HasReachedEnd() { return hasReachedEnd; }
+	std::string GetName() { return name; }
 };

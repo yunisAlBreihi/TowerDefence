@@ -69,12 +69,12 @@ TowerBase* TowerManager::CreateTower(Sprite* towerSprite, Vector2D position, Vec
 {
 	if (towerSprite->GetSpriteName() == SpriteName::TowerSmall)
 	{
-		TowerSmall* tower = new TowerSmall(managers, BulletType::Regular, towerSprite, position, scale);
+		TowerSmall* tower = new TowerSmall(managers, towerSprite, position, scale);
 		return tower;
 	}
 	else if (towerSprite->GetSpriteName() == SpriteName::TowerBig)
 	{
-		TowerBig* tower = new TowerBig(managers, BulletType::Freezing, towerSprite, position, scale);
+		TowerBig* tower = new TowerBig(managers, towerSprite, position, scale);
 		return tower;
 	}
 }
