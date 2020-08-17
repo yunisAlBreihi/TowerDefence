@@ -44,6 +44,6 @@ public:
 	Vector2D GetPosition() { return Vector2D(dstRect.x, dstRect.y); }
 	Sprite* GetSprite() { return sprite; }
 	SDL_Rect GetDstRect() { return dstRect; }
+	void OnMove(float deltaTime);
 	void StartMoving(Vector2D startPosition, Vector2D endPosition);
 };
-

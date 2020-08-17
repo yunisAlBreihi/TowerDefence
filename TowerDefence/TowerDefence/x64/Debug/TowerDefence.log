@@ -40,48 +40,6 @@ C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,41): warning C
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  EffectBase.cpp
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(16,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(17,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(30,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(30,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(31,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(31,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(32,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(32,19): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(61,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(61,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(66,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(66,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EnemyManager.h(18,19): warning C4099: 'SDL_Renderer': type name first seen using 'struct' now seen using 'class'
-C:\Repos\Git\TowerDefence\TowerDefence\packages\sdl2.nuget.2.0.12\build\native\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(9,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(9,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,41): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  EffectsManager.cpp
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(16,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(17,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(30,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(30,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(31,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(31,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(32,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(32,19): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(61,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(61,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(66,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(66,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EnemyManager.h(18,19): warning C4099: 'SDL_Renderer': type name first seen using 'struct' now seen using 'class'
-C:\Repos\Git\TowerDefence\TowerDefence\packages\sdl2.nuget.2.0.12\build\native\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(9,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(9,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,41): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   EnemyBase.cpp
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(16,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(17,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
@@ -104,48 +62,6 @@ C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,35): warning C
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   EnemyManager.cpp
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(16,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(17,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(30,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(30,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(31,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(31,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(32,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(32,19): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(61,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(61,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(66,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(66,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EnemyManager.h(18,19): warning C4099: 'SDL_Renderer': type name first seen using 'struct' now seen using 'class'
-C:\Repos\Git\TowerDefence\TowerDefence\packages\sdl2.nuget.2.0.12\build\native\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(9,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(9,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,41): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Explosion.cpp
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(16,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(17,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(30,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(30,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(31,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(31,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(32,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(32,19): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(61,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(61,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(66,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(66,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EnemyManager.h(18,19): warning C4099: 'SDL_Renderer': type name first seen using 'struct' now seen using 'class'
-C:\Repos\Git\TowerDefence\TowerDefence\packages\sdl2.nuget.2.0.12\build\native\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(9,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(9,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,41): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  FrostExplosion.cpp
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(16,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(17,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(30,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
@@ -208,7 +124,49 @@ C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,41): warning C
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  main.cpp
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(16,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(17,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(30,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(30,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(31,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(31,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(32,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(32,19): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(61,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(61,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(66,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(66,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EnemyManager.h(18,19): warning C4099: 'SDL_Renderer': type name first seen using 'struct' now seen using 'class'
+C:\Repos\Git\TowerDefence\TowerDefence\packages\sdl2.nuget.2.0.12\build\native\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(9,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(9,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,41): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   MapManager.cpp
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(16,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(17,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(30,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(30,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(31,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(31,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(32,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(32,19): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(61,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(61,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(66,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(66,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EnemyManager.h(18,19): warning C4099: 'SDL_Renderer': type name first seen using 'struct' now seen using 'class'
+C:\Repos\Git\TowerDefence\TowerDefence\packages\sdl2.nuget.2.0.12\build\native\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(9,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(9,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,41): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  RegularBullet.cpp
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(16,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(17,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(30,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
@@ -314,27 +272,6 @@ C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,35): warning C
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   TowerSmall.cpp
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(16,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(17,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(30,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(30,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(31,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(31,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(32,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(32,19): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(61,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(61,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(66,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(66,21): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EnemyManager.h(18,19): warning C4099: 'SDL_Renderer': type name first seen using 'struct' now seen using 'class'
-C:\Repos\Git\TowerDefence\TowerDefence\packages\sdl2.nuget.2.0.12\build\native\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(9,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(9,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,41): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Collider.h(10,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\EffectBase.h(26,24): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  main.cpp
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(16,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(17,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Vector2D.h(30,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data

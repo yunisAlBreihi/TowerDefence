@@ -26,25 +26,7 @@ void BulletBase::Update(float deltaTime)
 {
 	if (isMoving == true)
 	{
-		SetPosition(Vector2D::Lerp(startPosition, endPosition, movementDelta));
-		if (movementDelta <= 1.0f)
-		{
-			movementDelta += speed * deltaTime;
-		}
-		else
-		{
-			isMoving = false;
-			if (bulletType == BulletType::Regular)
-			{
-				Explosion* explosion = new Explosion(managers, bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (GameManager::DEFAULT_SPRITE_SIZE * 2.0f));
-				managers->GetManager<EffectsManager>(ManagerName::EffectsManager)->AddEffect(explosion);
-			}
-			else if (bulletType == BulletType::Freezing)
-			{
-				FrostExplosion* frostExplosion = new FrostExplosion(managers, bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (GameManager::DEFAULT_SPRITE_SIZE * 2.0f));
-				managers->GetManager<EffectsManager>(ManagerName::EffectsManager)->AddEffect(frostExplosion);
-			}
-		}
+		OnMove(deltaTime);
 	}
 }
 
@@ -65,6 +47,29 @@ void BulletBase::SetPosition(Vector2D vector2D)
 	position = vector2D;
 	dstRect.x = position.x;
 	dstRect.y = position.y;
+}
+
+void BulletBase::OnMove(float deltaTime)
+{
+	SetPosition(Vector2D::Lerp(startPosition, endPosition, movementDelta));
+	if (movementDelta <= 1.0f)
+	{
+		movementDelta += speed * deltaTime;
+	}
+	else
+	{
+		isMoving = false;
+		if (bulletType == BulletType::Regular)
+		{
+			Explosion* explosion = new Explosion(managers, bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (GameManager::DEFAULT_SPRITE_SIZE * 2.0f));
+			managers->GetManager<EffectsManager>(ManagerName::EffectsManager)->AddEffect(explosion);
+		}
+		else if (bulletType == BulletType::Freezing)
+		{
+			FrostExplosion* frostExplosion = new FrostExplosion(managers, bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (GameManager::DEFAULT_SPRITE_SIZE * 2.0f));
+			managers->GetManager<EffectsManager>(ManagerName::EffectsManager)->AddEffect(frostExplosion);
+		}
+	}
 }
 
 void BulletBase::StartMoving(Vector2D startPosition, Vector2D endPosition)
