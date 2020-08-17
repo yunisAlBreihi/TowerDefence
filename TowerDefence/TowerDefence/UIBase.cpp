@@ -1,6 +1,10 @@
 #include "UIBase.h"
 
-UIBase::UIBase(SDL_Renderer* renderer, Sprite* sprite, Vector2D position, Vector2D scale) : renderer(renderer), sprite(sprite), position(position), scale(scale)
+UIBase::UIBase()
+{
+}
+
+UIBase::UIBase(Managers* managers, Sprite* sprite, Vector2D position, Vector2D scale) : managers(managers), sprite(sprite), position(position), scale(scale)
 {
 	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
 }
@@ -21,12 +25,12 @@ void UIBase::Update(float deltaTime)
 void UIBase::Render()
 {
 	//TODO: add a isActive bool for rendering UI or not
-	SDL_RenderCopy(renderer, sprite->GetTexture(), nullptr, &dstRect);
+	SDL_RenderCopy(managers->GetRenderer(), sprite->GetTexture(), nullptr, &dstRect);
 }
 
 void UIBase::Destroy()
 {
-	renderer = nullptr;
+
 }
 
 void UIBase::SetPosition(Vector2D position)

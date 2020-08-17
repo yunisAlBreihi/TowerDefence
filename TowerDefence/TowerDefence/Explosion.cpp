@@ -1,8 +1,9 @@
 #include "Explosion.h"
 
-Explosion::Explosion(Managers* managers , Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale)
+Explosion::Explosion(Managers* managers,BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale)
 {
 	this->managers = managers;
+	this->bulletType = bulletType;
 	this->sprite = sprite;
 	this->position = position;
 	this->startScale = startScale;
@@ -15,6 +16,7 @@ Explosion::Explosion(Managers* managers , Sprite* sprite, Vector2D position, Vec
 	this->dstRect = { this->startPosition.x, this->startPosition.y, this->scale.x, this->scale.y };
 	this->startScale = this->scale;
 	this->collider = new Collider(this->startPosition, this->startScale.x * 0.5f);
+	this->isActive = true;
 }
 
 void Explosion::OnHit(EnemyBase* enemy)

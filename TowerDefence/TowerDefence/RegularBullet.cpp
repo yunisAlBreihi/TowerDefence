@@ -2,9 +2,10 @@
 #include "Explosion.h"
 #include "GameManager.h"
 
-RegularBullet::RegularBullet(Managers* managers, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale)
+RegularBullet::RegularBullet(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale)
 {
 	this->managers = managers;
+	this->bulletType = bulletType;
 	this->sprite = sprite;
 	this->position = startPosition;
 	this->startPosition = startPosition;
@@ -12,7 +13,7 @@ RegularBullet::RegularBullet(Managers* managers, Sprite* sprite, Vector2D startP
 	this->scale = scale;
 
 	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
-	isMoving = true;
+	isActive = true;
 }
 
 RegularBullet::~RegularBullet()
@@ -21,6 +22,15 @@ RegularBullet::~RegularBullet()
 
 void RegularBullet::OnReachedDestination()
 {
-	Explosion* explosion = new Explosion(managers, sprite, position, Vector2D::Zero(), Vector2D::One() * (GameManager::DEFAULT_SPRITE_SIZE * 2.0f));
-	managers->GetManager<EffectsManager>(ManagerName::EffectsManager)->AddEffect(explosion);
-} 
+	EffectsManager* effectsManager = managers->GetManager<EffectsManager>(ManagerName::EffectsManager);
+	Explosion* explosion = (Explosion*)effectsManager->GetInactiveEffect();
+	if (explosion == nullptr)
+	{
+		explosion = new Explosion(managers, bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (GameManager::DEFAULT_SPRITE_SIZE * 2.0f));
+		effectsManager->AddEffect(explosion);
+	}
+	else
+	{
+		explosion->Reset(managers, bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (GameManager::DEFAULT_SPRITE_SIZE * 2.0f));
+	}
+}

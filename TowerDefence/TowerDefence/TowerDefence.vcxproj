@@ -146,6 +146,7 @@
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="MapReader.cpp" />
     <ClCompile Include="RegularBullet.cpp" />
+    <ClCompile Include="ScreenUI.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="MapReader.h" />
     <ClInclude Include="RegularBullet.h" />
+    <ClInclude Include="ScreenUI.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteManager.h" />
     <ClInclude Include="Tile.h" />

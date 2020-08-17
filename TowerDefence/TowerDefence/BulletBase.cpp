@@ -7,11 +7,11 @@ BulletBase::BulletBase()
 {
 }
 
-BulletBase::BulletBase(Managers* managers, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale) : managers(managers), sprite(sprite), position(startPosition), endPosition(endPosition), scale(scale)
+BulletBase::BulletBase(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale) : managers(managers), bulletType(bulletType), sprite(sprite), position(startPosition), endPosition(endPosition), scale(scale)
 {
 	this->startPosition = startPosition;
 	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
-	isMoving = true;
+	isActive = true;
 }
 
 BulletBase::~BulletBase()
@@ -24,7 +24,7 @@ void BulletBase::Start()
 
 void BulletBase::Update(float deltaTime)
 {
-	if (isMoving == true)
+	if (isActive == true)
 	{
 		OnMove(deltaTime);
 	}
@@ -32,7 +32,7 @@ void BulletBase::Update(float deltaTime)
 
 void BulletBase::Render()
 {
-	if (isMoving == true)
+	if (isActive == true)
 	{
 		SDL_RenderCopy(managers->GetRenderer(), sprite->GetTexture(), nullptr, &dstRect);
 	}
@@ -40,6 +40,26 @@ void BulletBase::Render()
 
 void BulletBase::Destroy()
 {
+}
+
+void BulletBase::Reset(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale)
+{
+	this->managers = managers;
+	this->bulletType = bulletType;
+	this->sprite = sprite;
+	this->position = startPosition;
+	this->startPosition = startPosition;
+	this->endPosition = endPosition;
+	this->scale = scale;
+
+	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
+	isActive = true;
+}
+
+void BulletBase::Clear()
+{
+	movementDelta = 0.0f;
+	isActive = false;
 }
 
 void BulletBase::SetPosition(Vector2D vector2D)
@@ -59,16 +79,6 @@ void BulletBase::OnMove(float deltaTime)
 	else
 	{
 		OnReachedDestination();
-		isMoving = false;
-	}
-}
-
-void BulletBase::StartMoving(Vector2D startPosition, Vector2D endPosition)
-{
-	if (isMoving == false)
-	{
-		this->startPosition = startPosition;
-		this->endPosition = endPosition;
-		isMoving = true;
+		Clear();
 	}
 }

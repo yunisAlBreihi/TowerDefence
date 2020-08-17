@@ -6,7 +6,7 @@ TowerBase::TowerBase()
 {
 }
 
-TowerBase::TowerBase(Managers* managers , Sprite* sprite, Vector2D position, Vector2D scale) : managers(managers), sprite(sprite), position(position), scale(scale)
+TowerBase::TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale) : managers(managers),bulletType(bulletType), sprite(sprite), position(position), scale(scale)
 {
 	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
 	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);

@@ -23,6 +23,8 @@ public:
 	void Render() override;
 	void Destroy() override;
 
+	BulletBase* GetInactiveBullet();
+
 	void AddBullet(BulletBase* bullet);
 	void ClearBullets();
 };

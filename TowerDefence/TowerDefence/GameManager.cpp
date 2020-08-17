@@ -4,7 +4,7 @@
 #include "Sprite.h"
 #include "EnemySmall.h"
 #include "EnemyBig.h"
-#include "UIBase.h"
+#include "ScreenUI.h"
 
 
 GameManager::GameManager(const char* title, int posX, int posY, int width, int height, Uint32 flags)
@@ -82,13 +82,12 @@ void GameManager::Start()
 	spriteManager->AddSprite(towerBigSprite);
 
 	//Creates UI objects for Congratulations and Game Over
-	UIBase* gameOverUI = new UIBase(renderer, spriteManager->GetSprite(SpriteName::GameOver), Vector2D::Zero(), Vector2D(1280, 720));
-	UIBase* congratulationsUI = new UIBase(renderer, spriteManager->GetSprite(SpriteName::Congratulations), Vector2D::Zero(), Vector2D(1280, 720));
+	ScreenUI* gameOverUI = new ScreenUI(managers, spriteManager->GetSprite(SpriteName::GameOver), Vector2D::Zero(), Vector2D(1280, 720));
+	ScreenUI* congratulationsUI = new ScreenUI(managers, spriteManager->GetSprite(SpriteName::Congratulations), Vector2D::Zero(), Vector2D(1280, 720));
 
 	//Add UI to the UI Manager
 	uiManager->AddUIObject(gameOverUI);
 	uiManager->AddUIObject(congratulationsUI);
-
 
 	//Create and add the maps to the map manager
 	mapManager->AddMap(mapReader->ReadMap("Maps/Map_1.txt"));

@@ -49,6 +49,19 @@ void EffectsManager::Destroy()
 	}
 }
 
+EffectBase* EffectsManager::GetInactiveEffect()
+{
+	for (auto effect : effects)
+	{
+		if (effect->IsActive() == false)
+		{
+			return effect;
+		}
+	}
+	std::cout << "Could not find an effect that is inactive, returning nullptr" << std::endl;
+	return nullptr;
+}
+
 void EffectsManager::AddEffect(EffectBase* effect)
 {
 	effects.push_back(effect);

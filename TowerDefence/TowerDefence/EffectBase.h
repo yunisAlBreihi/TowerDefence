@@ -13,9 +13,11 @@ class EffectBase : public IRenderable
 {
 private:
 protected:
+
 	Managers* managers = nullptr;
 	EnemyManager* enemyManager = nullptr;
 	std::vector<EnemyBase*> enemiesHit;
+	BulletType bulletType = BulletType::Regular;
 	Sprite* sprite = nullptr;
 	Collider* collider = nullptr;
 	Vector2D position = { 0,0 };
@@ -40,7 +42,7 @@ protected:
 
 public:
 	EffectBase();
-	EffectBase(Managers* managers, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale);
+	EffectBase(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale);
 	virtual ~EffectBase() = 0;
 
 	void Start() override;
@@ -56,5 +58,9 @@ public:
 	Sprite* GetSprite() { return sprite; }
 	Vector2D GetPosition() { return position; }
 	Vector2D GetScale() { return scale; }
+	BulletType GetType() { return bulletType; }
+
+	void Reset(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale);
+	void Clear();
 
 };

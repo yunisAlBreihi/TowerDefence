@@ -6,8 +6,7 @@ private:
 public:
 private:
 public:
-	FrostBullet(Managers* managers, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale);
+	FrostBullet(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale);
 	~FrostBullet();
 	void OnReachedDestination() override;
 };
-

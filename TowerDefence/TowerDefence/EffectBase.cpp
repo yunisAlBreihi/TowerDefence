@@ -6,7 +6,7 @@ EffectBase::EffectBase()
 {
 }
 
-EffectBase::EffectBase(Managers* managers, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale) : managers(managers), sprite(sprite), position(position), startScale(startScale), endScale(endScale)
+EffectBase::EffectBase(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale) : managers(managers), bulletType(bulletType), sprite(sprite), position(position), startScale(startScale), endScale(endScale)
 {
 	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
 	startPosition = position;
@@ -15,6 +15,8 @@ EffectBase::EffectBase(Managers* managers, Sprite* sprite, Vector2D position, Ve
 	dstRect = { this->startPosition.x, this->startPosition.y, this->scale.x, this->scale.y };
 	collider = new Collider(startPosition, startScale.x * 0.5f);
 	enemiesHit = std::vector<EnemyBase*>();
+
+	isActive = true;
 }
 
 EffectBase::~EffectBase()
@@ -23,11 +25,14 @@ EffectBase::~EffectBase()
 
 void EffectBase::Start()
 {
+	if (isActive == true)
+	{
+	}
 }
 
 void EffectBase::Update(float deltaTime)
 {
-	if (reachedMaxSize == false)
+	if (isActive == true)
 	{
 		Expand(deltaTime);
 	}
@@ -35,7 +40,7 @@ void EffectBase::Update(float deltaTime)
 
 void EffectBase::Render()
 {
-	if (reachedMaxSize == false)
+	if (isActive == true)
 	{
 		SDL_RenderCopy(managers->GetRenderer(), sprite->GetTexture(), nullptr, &dstRect);
 
@@ -48,10 +53,34 @@ void EffectBase::Destroy()
 {
 }
 
+void EffectBase::Reset(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale)
+{
+	this->managers = managers;
+	this->bulletType = bulletType;
+	this->sprite = sprite;
+	this->position = position;
+	this->startScale = startScale;
+	this->endScale = endScale;
+
+	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
+	startPosition = position;
+	endPosition = startPosition - (endScale * 0.5f);
+	scale = startScale;
+	dstRect = { this->startPosition.x, this->startPosition.y, this->scale.x, this->scale.y };
+	collider = new Collider(startPosition, startScale.x * 0.5f);
+
+	isActive = true;
+}
+
+void EffectBase::Clear()
+{
+	isActive = false;
+	delta = 0;
+	enemiesHit.clear();
+}
+
 void EffectBase::Expand(float deltaTime)
 {
-	LerpExplosionScale(deltaTime);
-
 	for (std::vector<EnemyBase*> enemies : enemyManager->GetEnemies())
 	{
 		for (EnemyBase* enemy : enemies)
@@ -81,6 +110,8 @@ void EffectBase::Expand(float deltaTime)
 			}
 		}
 	}
+
+	LerpExplosionScale(deltaTime);
 }
 
 void EffectBase::LerpExplosionScale(float deltaTime)
@@ -98,7 +129,7 @@ void EffectBase::LerpExplosionScale(float deltaTime)
 	}
 	else
 	{
-		reachedMaxSize = true;
+		Clear();
 	}
 }
 

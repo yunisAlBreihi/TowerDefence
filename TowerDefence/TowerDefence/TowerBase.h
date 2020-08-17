@@ -19,6 +19,7 @@ protected:
 	SpriteManager* spriteManager = nullptr;
 	BulletManager* bulletManager = nullptr;
 	EffectsManager* effectsManager = nullptr;
+	BulletType bulletType = BulletType::Regular;
 	EnemyBase* currentEnemyTarget = nullptr;
 	Collider* collider = nullptr;
 	Sprite* sprite = nullptr;
@@ -40,7 +41,7 @@ private:
 
 public:
 	TowerBase();
-	TowerBase(Managers* managers, Sprite* sprite, Vector2D position, Vector2D scale);
+	TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale);
 	virtual ~TowerBase() = 0;
 
 	void Start() override;

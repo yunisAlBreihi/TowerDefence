@@ -1,8 +1,9 @@
 #include "FrostExplosion.h"
 
-FrostExplosion::FrostExplosion(Managers* managers, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale)
+FrostExplosion::FrostExplosion(Managers* managers,BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale)
 {
 	this->managers = managers;
+	this->bulletType = bulletType;
 	this->sprite = sprite;
 	this->position = position;
 	this->scale = startScale;
@@ -15,6 +16,7 @@ FrostExplosion::FrostExplosion(Managers* managers, Sprite* sprite, Vector2D posi
 	this->dstRect = { this->startPosition.x, this->startPosition.y, this->scale.x, this->scale.y };
 	this->startScale = this->scale;
 	this->collider = new Collider(this->startPosition, this->startScale.x * 0.5f);
+	this->isActive = true;
 }
 
 void FrostExplosion::OnHit(EnemyBase* enemy)

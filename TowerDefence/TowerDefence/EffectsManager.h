@@ -24,7 +24,8 @@ public:
 	void Render() override;
 	void Destroy() override;
 
+	EffectBase* GetInactiveEffect();
+
 	void AddEffect(EffectBase* effect);
 	void ClearEffects();
 };
-

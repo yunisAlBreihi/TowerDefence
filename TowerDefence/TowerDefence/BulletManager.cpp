@@ -37,6 +37,19 @@ void BulletManager::Destroy()
 	}
 }
 
+BulletBase* BulletManager::GetInactiveBullet()
+{
+	for (auto bullet : bullets)
+	{
+		if (bullet->IsActive() == false)
+		{
+			return bullet;
+		}
+	}
+	std::cout << "Could not find a bullet that is inactive, returning nullptr" << std::endl;
+	return nullptr;
+}
+
 void BulletManager::AddBullet(BulletBase* bullet)
 {
 	bullets.push_back(bullet);
