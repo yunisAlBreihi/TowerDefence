@@ -1,6 +1,7 @@
 #include "TileManager.h"
-#include "GameManager.h"
+#include "Globals.h"
 #include "MapManager.h"
+#include "SpriteManager.h"
 
 TileManager::TileManager()
 {
@@ -99,10 +100,10 @@ std::vector<Tile*> TileManager::GetWalkableNeighboursOfTile(Tile* tile)
 {
 	std::vector<Tile*> neighbours;
 
-	Tile* NTile = GetTileAtPosition(Vector2D(tile->GetPosition().x, tile->GetPosition().y + (1 * GameManager::DEFAULT_SPRITE_SIZE)));
-	Tile* STile = GetTileAtPosition(Vector2D(tile->GetPosition().x, tile->GetPosition().y - (1 * GameManager::DEFAULT_SPRITE_SIZE)));
-	Tile* WTile = GetTileAtPosition(Vector2D(tile->GetPosition().x - (1 * GameManager::DEFAULT_SPRITE_SIZE), tile->GetPosition().y));
-	Tile* ETile = GetTileAtPosition(Vector2D(tile->GetPosition().x + (1 * GameManager::DEFAULT_SPRITE_SIZE), tile->GetPosition().y));
+	Tile* NTile = GetTileAtPosition(Vector2D(tile->GetPosition().x, tile->GetPosition().y + (1 * Globals::DEFAULT_SPRITE_SIZE)));
+	Tile* STile = GetTileAtPosition(Vector2D(tile->GetPosition().x, tile->GetPosition().y - (1 * Globals::DEFAULT_SPRITE_SIZE)));
+	Tile* WTile = GetTileAtPosition(Vector2D(tile->GetPosition().x - (1 * Globals::DEFAULT_SPRITE_SIZE), tile->GetPosition().y));
+	Tile* ETile = GetTileAtPosition(Vector2D(tile->GetPosition().x + (1 * Globals::DEFAULT_SPRITE_SIZE), tile->GetPosition().y));
 
 	if (NTile != nullptr && NTile->IsWalkable() == true)
 		neighbours.push_back(NTile);
@@ -171,7 +172,9 @@ void TileManager::CreateTilesFromMap(Managers* managers, int mapIndex)
 			{
 				tempWalkable = true;
 			}
-			Tile* tempTile = new Tile(managers->GetRenderer(), spriteManager->GetSprite(tempSpriteName), Vector2D(row * GameManager::DEFAULT_SPRITE_SIZE, col * GameManager::DEFAULT_SPRITE_SIZE), Vector2D(GameManager::DEFAULT_SPRITE_SIZE, GameManager::DEFAULT_SPRITE_SIZE), tempWalkable);
+			Tile* tempTile = new Tile(managers->GetRenderer(), spriteManager->GetSprite(tempSpriteName),
+				Vector2D(row * Globals::DEFAULT_SPRITE_SIZE, col * Globals::DEFAULT_SPRITE_SIZE),
+				Vector2D(Globals::DEFAULT_SPRITE_SIZE, Globals::DEFAULT_SPRITE_SIZE), tempWalkable);
 
 			AddTile(tempTile);
 		}

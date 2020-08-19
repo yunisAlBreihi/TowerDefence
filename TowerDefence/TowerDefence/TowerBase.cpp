@@ -1,12 +1,13 @@
 #include "TowerBase.h"
-#include "GameManager.h"
+#include "Globals.h"
 #include "BulletBase.h"
 
 TowerBase::TowerBase()
 {
 }
 
-TowerBase::TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale) : managers(managers),bulletType(bulletType), sprite(sprite), position(position), scale(scale)
+TowerBase::TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale) :
+	managers(managers),bulletType(bulletType), sprite(sprite), position(position), scale(scale)
 {
 	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
 	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
@@ -14,7 +15,7 @@ TowerBase::TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, 
 	effectsManager = managers->GetManager<EffectsManager>(ManagerName::EffectsManager);
 
 	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
-	collider = new Collider(this->position + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2), 90.0f);
+	collider = new Collider(this->position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2), 90.0f);
 }
 
 TowerBase::~TowerBase()
@@ -55,7 +56,7 @@ void TowerBase::SetEnemyTarget()
 				{
 					for (EnemyBase* enemy : enemies)
 					{
-						if (collider->isPointInCircle(enemy->GetPosition() + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2)))
+						if (collider->isPointInCircle(enemy->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2)))
 						{
 							if (enemy->IsDead())
 							{
@@ -70,7 +71,7 @@ void TowerBase::SetEnemyTarget()
 		}
 	}
 	else if (currentEnemyTarget->IsDead() == true || 
-		collider->isPointInCircle(currentEnemyTarget->GetPosition() + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2)) == false)
+		collider->isPointInCircle(currentEnemyTarget->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2)) == false)
 	{
 		currentEnemyTarget = nullptr;
 	}

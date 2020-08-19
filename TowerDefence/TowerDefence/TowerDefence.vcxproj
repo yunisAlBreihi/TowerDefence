@@ -179,6 +179,7 @@
     <ClInclude Include="FrostBullet.h" />
     <ClInclude Include="FrostExplosion.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Globals.h" />
     <ClInclude Include="IRenderable.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="ManagerBase.h" />

@@ -49,13 +49,16 @@ void EffectsManager::Destroy()
 	}
 }
 
-EffectBase* EffectsManager::GetInactiveEffect()
+EffectBase* EffectsManager::GetInactiveEffectOfType(BulletType bulletType)
 {
 	for (auto effect : effects)
 	{
 		if (effect->IsActive() == false)
 		{
-			return effect;
+			if (effect->GetType() == bulletType)
+			{
+				return effect;
+			}
 		}
 	}
 	std::cout << "Could not find an effect that is inactive, returning nullptr" << std::endl;

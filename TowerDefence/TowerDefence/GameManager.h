@@ -49,10 +49,6 @@ private:
 
 public:
 
-	static const int DEFAULT_SPRITE_SIZE = 48;
-	static const int DEFAULT_SCREENSIZE_W = 1280;
-	static const int DEFAULT_SCREENSIZE_H = 720;
-
 private:
 	void CreateWindow(const char* title, int posX, int posY, int width, int height, Uint32 flags);
 

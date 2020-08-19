@@ -1,7 +1,7 @@
 #include "EnemyManager.h"
-#include "GameManager.h"
 #include "EnemySmall.h"
 #include "EnemyBig.h"
+#include "Globals.h"
 
 EnemyManager::EnemyManager(Managers* managers, Dijkstra* dijkstra) : managers(managers), dijkstra(dijkstra)
 {
@@ -13,7 +13,6 @@ EnemyManager::EnemyManager(Managers* managers, Dijkstra* dijkstra) : managers(ma
 
 void EnemyManager::Start()
 {
-
 	CreateEnemies();
 	if (enemies.empty() == false)
 	{
@@ -142,13 +141,13 @@ EnemyBase* EnemyManager::CreateEnemy(Sprite* enemySprite, int num1, int num2)
 {
 	if (enemySprite->GetSpriteName() == SpriteName::EnemySmall)
 	{
-		EnemySmall* enemy = new EnemySmall(managers, path, "EnemySmall" + std::to_string(num1) + "-" +  std::to_string(num2), sprites[0], tileManager->GetTile(SpriteName::startPosition)->GetPosition(), Vector2D(GameManager::DEFAULT_SPRITE_SIZE, GameManager::DEFAULT_SPRITE_SIZE));
+		EnemySmall* enemy = new EnemySmall(managers, path, "EnemySmall" + std::to_string(num1) + "-" +  std::to_string(num2), sprites[0], tileManager->GetTile(SpriteName::startPosition)->GetPosition(), Vector2D(Globals::DEFAULT_SPRITE_SIZE, Globals::DEFAULT_SPRITE_SIZE));
 		enemy->Start();
 		return enemy;
 	}
 	else if (enemySprite->GetSpriteName() == SpriteName::EnemyBig)
 	{
-		EnemyBig* enemy = new EnemyBig(managers, path, "EnemySmall" + std::to_string(num1) +"-" +std::to_string(num2), sprites[1], tileManager->GetTile(SpriteName::startPosition)->GetPosition(), Vector2D(GameManager::DEFAULT_SPRITE_SIZE, GameManager::DEFAULT_SPRITE_SIZE));
+		EnemyBig* enemy = new EnemyBig(managers, path, "EnemySmall" + std::to_string(num1) +"-" +std::to_string(num2), sprites[1], tileManager->GetTile(SpriteName::startPosition)->GetPosition(), Vector2D(Globals::DEFAULT_SPRITE_SIZE, Globals::DEFAULT_SPRITE_SIZE));
 		enemy->Start();
 		return enemy;
 	}

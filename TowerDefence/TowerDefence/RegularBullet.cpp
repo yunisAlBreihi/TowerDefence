@@ -1,6 +1,6 @@
 #include "RegularBullet.h"
 #include "Explosion.h"
-#include "GameManager.h"
+#include "Globals.h"
 
 RegularBullet::RegularBullet(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale)
 {
@@ -23,14 +23,14 @@ RegularBullet::~RegularBullet()
 void RegularBullet::OnReachedDestination()
 {
 	EffectsManager* effectsManager = managers->GetManager<EffectsManager>(ManagerName::EffectsManager);
-	Explosion* explosion = (Explosion*)effectsManager->GetInactiveEffect();
+	Explosion* explosion = (Explosion*)effectsManager->GetInactiveEffectOfType(bulletType);
 	if (explosion == nullptr)
 	{
-		explosion = new Explosion(managers, bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (GameManager::DEFAULT_SPRITE_SIZE * 2.0f));
+		explosion = new Explosion(managers, bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (Globals::DEFAULT_SPRITE_SIZE * 2.0f));
 		effectsManager->AddEffect(explosion);
 	}
 	else
 	{
-		explosion->Reset(managers, bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (GameManager::DEFAULT_SPRITE_SIZE * 2.0f));
+		explosion->Reset(managers, bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (Globals::DEFAULT_SPRITE_SIZE * 2.0f));
 	}
 }

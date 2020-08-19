@@ -1,6 +1,6 @@
 #include "TowerSmall.h"
 #include "RegularBullet.h"
-#include "GameManager.h"
+#include "Globals.h"
 
 TowerSmall::TowerSmall(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale)
 {
@@ -14,27 +14,27 @@ TowerSmall::TowerSmall(Managers* managers, BulletType bulletType, Sprite* sprite
 	this->position = position;
 	this->scale = scale;
 	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
-	collider = new Collider(this->position + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2), 90.0f);
+	collider = new Collider(this->position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2), 90.0f);
 }
 
 void TowerSmall::OnShoot()
 {
 	BulletManager* bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
-	RegularBullet* regularBullet = (RegularBullet*)bulletManager->GetInactiveBullet();
+	RegularBullet* regularBullet = (RegularBullet*)bulletManager->GetInactiveBulletOfType(bulletType);
 	if (regularBullet == nullptr)
 	{
 		regularBullet = new RegularBullet(managers, bulletType, spriteManager->GetSprite(SpriteName::startPosition),
-			position + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2),
-			currentEnemyTarget->GetPosition() + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2),
-			Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 4, GameManager::DEFAULT_SPRITE_SIZE / 4));
+			position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
+			currentEnemyTarget->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
+			Vector2D(Globals::DEFAULT_SPRITE_SIZE / 4, Globals::DEFAULT_SPRITE_SIZE / 4));
 		bulletManager->AddBullet(regularBullet);
 	}
 	else
 	{
 		regularBullet->Reset(managers, bulletType, spriteManager->GetSprite(SpriteName::startPosition),
-			position + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2),
-			currentEnemyTarget->GetPosition() + Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 2, GameManager::DEFAULT_SPRITE_SIZE / 2),
-			Vector2D(GameManager::DEFAULT_SPRITE_SIZE / 4, GameManager::DEFAULT_SPRITE_SIZE / 4));
+			position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
+			currentEnemyTarget->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
+			Vector2D(Globals::DEFAULT_SPRITE_SIZE / 4, Globals::DEFAULT_SPRITE_SIZE / 4));
 		bulletManager->AddBullet(regularBullet);
 	}
 }

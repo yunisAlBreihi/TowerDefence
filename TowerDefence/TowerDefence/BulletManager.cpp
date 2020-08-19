@@ -37,13 +37,16 @@ void BulletManager::Destroy()
 	}
 }
 
-BulletBase* BulletManager::GetInactiveBullet()
+BulletBase* BulletManager::GetInactiveBulletOfType(BulletType bulletType)
 {
 	for (auto bullet : bullets)
 	{
 		if (bullet->IsActive() == false)
 		{
-			return bullet;
+			if (bullet->GetType() == bulletType)
+			{
+				return bullet;
+			}
 		}
 	}
 	std::cout << "Could not find a bullet that is inactive, returning nullptr" << std::endl;

@@ -24,7 +24,7 @@ public:
 	void Render() override;
 	void Destroy() override;
 
-	EffectBase* GetInactiveEffect();
+	EffectBase* GetInactiveEffectOfType(BulletType bulletType);
 
 	void AddEffect(EffectBase* effect);
 	void ClearEffects();

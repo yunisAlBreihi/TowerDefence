@@ -45,6 +45,7 @@ public:
 	Vector2D GetPosition() { return Vector2D(dstRect.x, dstRect.y); }
 	Sprite* GetSprite() { return sprite; }
 	SDL_Rect GetDstRect() { return dstRect; }
+	BulletType GetType() { return bulletType; }
 	void OnMove(float deltaTime);
 	virtual void OnReachedDestination() = 0;
 };

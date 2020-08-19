@@ -44,8 +44,8 @@ void EffectBase::Render()
 	{
 		SDL_RenderCopy(managers->GetRenderer(), sprite->GetTexture(), nullptr, &dstRect);
 
-		//Draw the colliders radius
-		collider->DrawDebugCircle(managers->GetRenderer());
+		////Draw the colliders radius
+		//collider->DrawDebugCircle(managers->GetRenderer());
 	}
 }
 
