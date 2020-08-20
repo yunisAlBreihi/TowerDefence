@@ -36,6 +36,14 @@ void TileManager::Destroy()
 	}
 }
 
+void TileManager::ClearTiles()
+{
+	for (auto tile : tiles)
+	{
+		tile->Disable();
+	}
+}
+
 void TileManager::AddTile(Tile* tile)
 {
 	tiles.push_back(tile);
@@ -168,20 +176,37 @@ void TileManager::CreateTilesFromMap(Managers* managers, int mapIndex)
 
 			//Set which tiles are walkable or not
 			bool tempWalkable = false;
-			if (tempSpriteName == SpriteName::startPosition || tempSpriteName == SpriteName::endPosition || tempSpriteName == SpriteName::grass)
+			if (tempSpriteName == SpriteName::StartPosition || tempSpriteName == SpriteName::EndPosition || tempSpriteName == SpriteName::Grass)
 			{
 				tempWalkable = true;
 			}
-			Tile* tempTile = new Tile(managers->GetRenderer(), spriteManager->GetSprite(tempSpriteName),
-				Vector2D(row * Globals::DEFAULT_SPRITE_SIZE, col * Globals::DEFAULT_SPRITE_SIZE),
-				Vector2D(Globals::DEFAULT_SPRITE_SIZE, Globals::DEFAULT_SPRITE_SIZE), tempWalkable);
-
-			AddTile(tempTile);
+			Tile* tempTile = GetInactiveTile();
+			if (tempTile == nullptr)
+			{
+				tempTile = new Tile(managers, spriteManager->GetSprite(tempSpriteName),
+					Vector2D(row * Globals::DEFAULT_SPRITE_SIZE, col * Globals::DEFAULT_SPRITE_SIZE),
+					Vector2D(Globals::DEFAULT_SPRITE_SIZE, Globals::DEFAULT_SPRITE_SIZE), tempWalkable);
+				AddTile(tempTile);
+			}
+			else
+			{
+				tempTile->Reset(managers, spriteManager->GetSprite(tempSpriteName),
+					Vector2D(row * Globals::DEFAULT_SPRITE_SIZE, col * Globals::DEFAULT_SPRITE_SIZE),
+					Vector2D(Globals::DEFAULT_SPRITE_SIZE, Globals::DEFAULT_SPRITE_SIZE), tempWalkable);
+			}
 		}
 	}
 }
 
-void TileManager::ClearTiles()
+Tile* TileManager::GetInactiveTile()
 {
-	tiles.clear();
+	for (auto tile : tiles)
+	{
+		if (tile->IsActive() == false)
+		{
+			return tile;
+		}
+	}
+	std::cout << "Could not find an tile that is inactive, returning nullptr" << std::endl;
+	return nullptr;
 }

@@ -49,6 +49,9 @@ public:
 	void Render() override;
 	void Destroy() override;
 
+	void Reset(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale);
+	void Disable();
+
 	void SetEnemyTarget();
 	void Shoot(float deltaTime);
 	virtual void OnShoot() = 0;
@@ -57,6 +60,7 @@ public:
 	void DrawDebugCircle();
 
 	Vector2D GetPosition() { return Vector2D(dstRect.x, dstRect.y); }
+	BulletType GetType() { return bulletType; }
 	Sprite* GetSprite() { return sprite; }
 	SDL_Rect GetDstRect() { return dstRect; }
 };

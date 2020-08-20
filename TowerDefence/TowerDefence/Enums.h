@@ -2,12 +2,12 @@
 
 enum class SpriteName
 {
-	grass = 0,
-	water = 1,
-	tower01 = 2,
-	tower02 = 3,
-	startPosition = 8,
-	endPosition = 9,
+	Grass = 0,
+	Water = 1,
+	Tower01 = 2,
+	Tower02 = 3,
+	StartPosition = 8,
+	EndPosition = 9,
 	EnemySmall = 20,
 	EnemyBig = 21,
 	TowerSmall = 30,

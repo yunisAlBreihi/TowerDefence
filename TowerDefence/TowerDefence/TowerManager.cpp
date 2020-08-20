@@ -2,7 +2,7 @@
 #include "TowerSmall.h"
 #include "TowerBig.h"
 
-TowerManager::TowerManager(Managers* managers) :  managers(managers)
+TowerManager::TowerManager(Managers* managers) : managers(managers)
 {
 	name = ManagerName::TowerManager;
 	tileManager = managers->GetManager<TileManager>(ManagerName::TileManager);
@@ -10,97 +10,110 @@ TowerManager::TowerManager(Managers* managers) :  managers(managers)
 	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
 	bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
 	effectsManager = managers->GetManager<EffectsManager>(ManagerName::EffectsManager);
-
-	towers.push_back(std::vector<TowerBase*>());
-	towers.push_back(std::vector<TowerBase*>());
 }
 
 TowerManager::~TowerManager()
-{ 
+{
 }
 
 void TowerManager::Start()
 {
-	for (const auto& towerRow : towers)
+	for (const auto& t : towers)
 	{
-		for (TowerBase* t : towerRow)
-		{
-			t->Start();
-		}
+		t->Start();
 	}
 }
 
 void TowerManager::Update(float deltaTime)
 {
-	for (const auto& towerRow : towers)
+	for (const auto& t : towers)
 	{
-		for (TowerBase* t : towerRow)
-		{
-			t->Update(deltaTime);
-		}
+		t->Update(deltaTime);
 	}
 }
 
 void TowerManager::Render()
 {
-	for (const auto& towerRow : towers)
+	for (const auto& t : towers)
 	{
-		for (TowerBase* t : towerRow)
-		{
-			t->Render();
-		}
+		t->Render();
 	}
 }
 
 void TowerManager::Destroy()
 {
-	for (const auto& towerRow : towers)
+	for (const auto& t : towers)
 	{
-		for (TowerBase* t : towerRow)
+		t->Destroy();
+	}
+}
+
+void TowerManager::CreateTower(Sprite* sprite, Vector2D position, Vector2D scale)
+{
+	if (sprite->GetSpriteName() == SpriteName::TowerSmall)
+	{
+		TowerSmall* towerSmall = (TowerSmall*)GetInactiveTowerOfType(BulletType::Regular);
+		if (towerSmall == nullptr)
 		{
-			t->Destroy();
+			towerSmall = new TowerSmall(managers, BulletType::Regular, sprite, position, scale);
+			towers.push_back(towerSmall);
+		}
+		else
+		{
+			towerSmall->Reset(managers, BulletType::Regular, sprite, position, scale);
 		}
 	}
-}
-
-void TowerManager::AddTower(Sprite* towerSprite)
-{
-	sprites.push_back(towerSprite);
-}
-
-TowerBase* TowerManager::CreateTower(Sprite* towerSprite, Vector2D position, Vector2D scale)
-{
-	if (towerSprite->GetSpriteName() == SpriteName::TowerSmall)
+	else if (sprite->GetSpriteName() == SpriteName::TowerBig)
 	{
-		TowerSmall* tower = new TowerSmall(managers,BulletType::Regular, towerSprite, position, scale);
-		return tower;
-	}
-	else if (towerSprite->GetSpriteName() == SpriteName::TowerBig)
-	{
-		TowerBig* tower = new TowerBig(managers, BulletType::Freezing, towerSprite, position, scale);
-		return tower;
+		TowerBig* towerBig = (TowerBig*)GetInactiveTowerOfType(BulletType::Freezing);
+		if (towerBig == nullptr)
+		{
+			towerBig = new TowerBig(managers, BulletType::Freezing, sprite, position, scale);
+			towers.push_back(towerBig);
+		}
+		else
+		{
+			towerBig->Reset(managers, BulletType::Freezing, sprite, position, scale);
+		}
 	}
 }
 
 void TowerManager::CreateTowers()
 {
-	for (Tile* tile : tileManager->GetTiles(SpriteName::tower01))
+	Sprite* sprite = nullptr;
+	for (Tile* tile : tileManager->GetTiles(SpriteName::Tower01))
 	{
-		towers[0].push_back(CreateTower(sprites[0], tile->GetPosition(), tile->GetScale()));
+		sprite = spriteManager->GetSprite(SpriteName::TowerSmall);
+		CreateTower(sprite, tile->GetPosition(), tile->GetScale());
 	}
 
-	for (Tile* tile : tileManager->GetTiles(SpriteName::tower02))
+	for (Tile* tile : tileManager->GetTiles(SpriteName::Tower02))
 	{
-		towers[1].push_back(CreateTower(sprites[1], tile->GetPosition(), tile->GetScale()));
+		sprite = spriteManager->GetSprite(SpriteName::TowerBig);
+		CreateTower(sprite, tile->GetPosition(), tile->GetScale());
 	}
 }
 
 void TowerManager::ClearTowers()
 {
-	towers.clear();
+	for (TowerBase* t : towers)
+	{
+		t->Disable();
+	}
 }
 
-EnemyBase* TowerManager::GetInactiveTowerOfType(SpriteName spriteName)
+TowerBase* TowerManager::GetInactiveTowerOfType(BulletType bulletType)
 {
+	for (auto tower : towers)
+	{
+		if (tower->GetType() == bulletType)
+		{
+			if (tower->IsActive() == false)
+			{
+				return tower;
+			}
+		}
+	}
+	std::cout << "Could not find an tower that is inactive, returning nullptr" << std::endl;
 	return nullptr;
 }

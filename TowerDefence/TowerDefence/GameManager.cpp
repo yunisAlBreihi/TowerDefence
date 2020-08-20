@@ -17,10 +17,10 @@ GameManager::GameManager(const char* title, int posX, int posY, int width, int h
 
 	managers = new Managers(renderer);
 	managers->AddManager(this);
-	tileManager = new TileManager();
-	managers->AddManager(tileManager);
 	spriteManager = new SpriteManager();
 	managers->AddManager(spriteManager);
+	tileManager = new TileManager();
+	managers->AddManager(tileManager);
 	mapManager = new MapManager(managers);
 	managers->AddManager(mapManager);
 	mapReader = new MapReader();
@@ -45,12 +45,12 @@ GameManager::~GameManager()
 void GameManager::Start()
 {
 	//Creates sprites for background tiles
-	Sprite* grass = new Sprite(renderer, SpriteName::grass);
-	Sprite* water = new Sprite(renderer, SpriteName::water);
-	Sprite* tower01 = new Sprite(renderer, SpriteName::tower01);
-	Sprite* tower02 = new Sprite(renderer, SpriteName::tower02);
-	Sprite* startPosition = new Sprite(renderer, SpriteName::startPosition);
-	Sprite* endPosition = new Sprite(renderer, SpriteName::endPosition);
+	Sprite* grass = new Sprite(renderer, SpriteName::Grass);
+	Sprite* water = new Sprite(renderer, SpriteName::Water);
+	Sprite* tower01 = new Sprite(renderer, SpriteName::Tower01);
+	Sprite* tower02 = new Sprite(renderer, SpriteName::Tower02);
+	Sprite* startPosition = new Sprite(renderer, SpriteName::StartPosition);
+	Sprite* endPosition = new Sprite(renderer, SpriteName::EndPosition);
 
 	//Create Sprites for Congratulations and GameOver
 	Sprite* congratulations = new Sprite(renderer, SpriteName::Congratulations);
@@ -97,10 +97,6 @@ void GameManager::Start()
 	//Add enemy sprites to the enemy manager
 	enemyManager->AddEnemyType(enemySmallSprite);
 	enemyManager->AddEnemyType(enemyBigSprite);
-
-	//Add tower sprites to the tower manager
-	towerManager->AddTower(towerSmallSprite);
-	towerManager->AddTower(towerBigSprite);
 
 	//Starts the managers
 	levelManager->Start();
@@ -197,7 +193,6 @@ void GameManager::CreateWindow(const char* title, int posX, int posY, int width,
 		else
 		{
 			renderer = SDL_CreateRenderer(window, -1, 0);
-
 			if (renderer == nullptr)
 			{
 				std::cout << "Renderer could not be created!" << std::endl;
@@ -205,7 +200,6 @@ void GameManager::CreateWindow(const char* title, int posX, int posY, int width,
 			else
 			{
 				SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-
 				isRunning = true;
 			}
 		}

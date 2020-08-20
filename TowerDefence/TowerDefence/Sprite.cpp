@@ -6,22 +6,22 @@ Sprite::Sprite(SDL_Renderer* renderer, SpriteName spriteName) : renderer(rendere
 	name = spriteName;
 	switch (spriteName)
 	{
-	case SpriteName::grass:
+	case SpriteName::Grass:
 		filePath = "Sprites/grass.jpg";
 		break;
-	case SpriteName::water:
+	case SpriteName::Water:
 		filePath = "Sprites/water.jpg";
 		break;
-	case SpriteName::tower01:
+	case SpriteName::Tower01:
 		filePath = "Sprites/tower01.jpg";
 		break;
-	case SpriteName::tower02:
+	case SpriteName::Tower02:
 		filePath = "Sprites/tower02.jpg";
 		break;
-	case SpriteName::startPosition:
+	case SpriteName::StartPosition:
 		filePath = "Sprites/startPosition.jpg";
 		break;
-	case SpriteName::endPosition:
+	case SpriteName::EndPosition:
 		filePath = "Sprites/endPosition.jpg";
 		break;
 	case SpriteName::EnemySmall:

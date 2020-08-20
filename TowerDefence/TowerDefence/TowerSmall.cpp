@@ -15,6 +15,7 @@ TowerSmall::TowerSmall(Managers* managers, BulletType bulletType, Sprite* sprite
 	this->scale = scale;
 	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
 	collider = new Collider(this->position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2), 90.0f);
+	this->isActive = true;
 }
 
 void TowerSmall::OnShoot()
@@ -23,7 +24,7 @@ void TowerSmall::OnShoot()
 	RegularBullet* regularBullet = (RegularBullet*)bulletManager->GetInactiveBulletOfType(bulletType);
 	if (regularBullet == nullptr)
 	{
-		regularBullet = new RegularBullet(managers, bulletType, spriteManager->GetSprite(SpriteName::startPosition),
+		regularBullet = new RegularBullet(managers, bulletType, spriteManager->GetSprite(SpriteName::StartPosition),
 			position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			currentEnemyTarget->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			Vector2D(Globals::DEFAULT_SPRITE_SIZE / 4, Globals::DEFAULT_SPRITE_SIZE / 4));
@@ -31,7 +32,7 @@ void TowerSmall::OnShoot()
 	}
 	else
 	{
-		regularBullet->Reset(managers, bulletType, spriteManager->GetSprite(SpriteName::startPosition),
+		regularBullet->Reset(managers, bulletType, spriteManager->GetSprite(SpriteName::StartPosition),
 			position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			currentEnemyTarget->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			Vector2D(Globals::DEFAULT_SPRITE_SIZE / 4, Globals::DEFAULT_SPRITE_SIZE / 4));

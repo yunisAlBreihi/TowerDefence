@@ -15,6 +15,7 @@ TowerBig::TowerBig(Managers* managers, BulletType bulletType, Sprite* sprite, Ve
 	this->scale = scale;
 	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
 	collider = new Collider(this->position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2), 90.0f);
+	this->isActive = true;
 }
 
 void TowerBig::OnShoot()
@@ -23,7 +24,7 @@ void TowerBig::OnShoot()
 	FrostBullet* frostBullet = (FrostBullet*)bulletManager->GetInactiveBulletOfType(bulletType);
 	if (frostBullet == nullptr)
 	{
-		frostBullet = new FrostBullet(managers, bulletType, spriteManager->GetSprite(SpriteName::startPosition),
+		frostBullet = new FrostBullet(managers, bulletType, spriteManager->GetSprite(SpriteName::StartPosition),
 			position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			currentEnemyTarget->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			Vector2D(Globals::DEFAULT_SPRITE_SIZE / 4, Globals::DEFAULT_SPRITE_SIZE / 4));
@@ -31,7 +32,7 @@ void TowerBig::OnShoot()
 	}
 	else
 	{
-		frostBullet->Reset(managers, bulletType, spriteManager->GetSprite(SpriteName::startPosition),
+		frostBullet->Reset(managers, bulletType, spriteManager->GetSprite(SpriteName::StartPosition),
 			position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			currentEnemyTarget->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			Vector2D(Globals::DEFAULT_SPRITE_SIZE / 4, Globals::DEFAULT_SPRITE_SIZE / 4));

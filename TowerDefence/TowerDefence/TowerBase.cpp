@@ -16,6 +16,8 @@ TowerBase::TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, 
 
 	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
 	collider = new Collider(this->position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2), 90.0f);
+
+	isActive = true;
 }
 
 TowerBase::~TowerBase()
@@ -24,24 +26,55 @@ TowerBase::~TowerBase()
 
 void TowerBase::Start()
 {
+	if (isActive == true)
+	{
+	}
 }
 
 void TowerBase::Update(float deltaTime)
 {
-	SetEnemyTarget();
-	Shoot(deltaTime);
+	if (isActive == true)
+	{
+		SetEnemyTarget();
+		Shoot(deltaTime);
+	}
 }
 
 void TowerBase::Render()
 {
-	SDL_RenderCopy(managers->GetRenderer(), sprite->GetTexture(), nullptr, &dstRect);
+	if (isActive == true)
+	{
+		SDL_RenderCopy(managers->GetRenderer(), sprite->GetTexture(), nullptr, &dstRect);
 
-	//Draw a circle for the collisions
-	//DrawDebugCircle();
+		//Draw a circle for the collisions
+		//DrawDebugCircle();
+	}
+
 }
 
 void TowerBase::Destroy()
 {
+}
+
+void TowerBase::Reset(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale)
+{
+	this->managers = managers;
+	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
+	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
+	bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
+	effectsManager = managers->GetManager<EffectsManager>(ManagerName::EffectsManager);
+	this->bulletType = bulletType;
+	this->sprite = sprite;
+	this->position = position;
+	this->scale = scale;
+	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
+	collider = new Collider(this->position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2), 90.0f);
+	this->isActive = true;
+}
+
+void TowerBase::Disable() 
+{
+	isActive = false;
 }
 
 void TowerBase::SetEnemyTarget()

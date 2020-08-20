@@ -3,12 +3,13 @@
 #include <SDL.h>
 #include "Sprite.h"
 #include "IRenderable.h"
+#include "Managers.h"
 
 class Tile : public IRenderable
 {
 private:
 
-	SDL_Renderer* renderer = nullptr;
+	Managers* managers = nullptr;
 	Sprite* sprite = nullptr;
 	Vector2D position = { 0,0 };
 	Vector2D scale = { 0,0 };
@@ -21,11 +22,14 @@ private:
 
 public:
 	Tile() {}
-	Tile(SDL_Renderer* renderer, Sprite* sprite, Vector2D position, Vector2D scale, bool isWalkable);
+	Tile(Managers* managers, Sprite* sprite, Vector2D position, Vector2D scale, bool isWalkable);
 	void Start() override;
 	void Update(float deltaTime) override;
 	void Render() override;
 	void Destroy() override;
+
+	void Disable();
+	void Reset(Managers* managers, Sprite* sprite, Vector2D position, Vector2D scale, bool isWalkable);
 
 	void SetPosition(Vector2D position);
 	void SetScale(Vector2D scale);
