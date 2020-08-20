@@ -8,6 +8,9 @@ EnemySmall::EnemySmall(Managers* managers, std::vector<Tile*> path,std::string n
 	this->sprite = sprite;
 	this->position = position;
 	this->scale = scale;
+	this->health = this->maxHealth;
+
 
 	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
+	this->isActive = true;
 }

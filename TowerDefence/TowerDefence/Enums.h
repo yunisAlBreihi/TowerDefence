@@ -22,6 +22,12 @@ enum class BulletType
 	Freezing,
 };
 
+enum class EnemyType
+{
+	SmallEnemy,
+	BigEnemy,
+};
+
 enum class ManagerName
 {
 	NONE,

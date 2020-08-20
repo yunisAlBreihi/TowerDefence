@@ -24,7 +24,8 @@ protected:
 	float delta = 0;
 	bool hasReachedEnd = false;
 
-	float health = 3.0f;
+	float maxHealth = 3.0f;
+	float health = 0.0f;
 
 	//For when the enemy is frozen
 	float speed = 2.0f;
@@ -52,6 +53,9 @@ public:
 	void Update(float deltaTime) override;
 	void Render() override;
 	void Destroy() override;
+
+	void Reset(Managers* managers, std::vector<Tile*> path, std::string name, Sprite* sprite, Vector2D position, Vector2D scale);
+	void Disable();
 
 	void TakeDamage(float damage);
 	bool IsDead();

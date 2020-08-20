@@ -10,6 +10,9 @@ TowerManager::TowerManager(Managers* managers) :  managers(managers)
 	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
 	bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
 	effectsManager = managers->GetManager<EffectsManager>(ManagerName::EffectsManager);
+
+	towers.push_back(std::vector<TowerBase*>());
+	towers.push_back(std::vector<TowerBase*>());
 }
 
 TowerManager::~TowerManager()
@@ -81,8 +84,6 @@ TowerBase* TowerManager::CreateTower(Sprite* towerSprite, Vector2D position, Vec
 
 void TowerManager::CreateTowers()
 {
-	towers.push_back(std::vector<TowerBase*>());
-	towers.push_back(std::vector<TowerBase*>());
 	for (Tile* tile : tileManager->GetTiles(SpriteName::tower01))
 	{
 		towers[0].push_back(CreateTower(sprites[0], tile->GetPosition(), tile->GetScale()));
@@ -97,4 +98,9 @@ void TowerManager::CreateTowers()
 void TowerManager::ClearTowers()
 {
 	towers.clear();
+}
+
+EnemyBase* TowerManager::GetInactiveTowerOfType(SpriteName spriteName)
+{
+	return nullptr;
 }

@@ -33,6 +33,8 @@ public:
 	void Render() override;
 	void Destroy() override;
 
+	EnemyBase* GetInactiveTowerOfType(SpriteName spriteName);
+
 	void AddTower(Sprite* towerSprite);
 	void CreateTowers();
 	void ClearTowers();

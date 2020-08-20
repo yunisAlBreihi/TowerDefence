@@ -9,6 +9,8 @@ EnemyBase::EnemyBase()
 EnemyBase::EnemyBase(Managers* managers, std::vector<Tile*> path,std::string name, Sprite* sprite, Vector2D position, Vector2D scale) : managers(managers),name(name), path(path), sprite(sprite), position(position), scale(scale)
 {
 	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
+	isActive = true;
+	health = maxHealth;
 }
 
 EnemyBase::~EnemyBase()
@@ -17,13 +19,16 @@ EnemyBase::~EnemyBase()
 
 void EnemyBase::Start()
 {
-	currentStartPosition = GetPosition();
-	originalSpeed = speed;
+	if (isActive == true)
+	{
+		currentStartPosition = GetPosition();
+		originalSpeed = speed;
+	}
 }
 
 void EnemyBase::Update(float deltaTime)
 {
-	if (IsDead() == false)
+	if (isActive == true)
 	{
 		MoveToEnd(deltaTime);
 
@@ -36,7 +41,7 @@ void EnemyBase::Update(float deltaTime)
 
 void EnemyBase::Render()
 {
-	if (IsDead() == false)
+	if (isActive == true)
 	{
 		SDL_RenderCopy(managers->GetRenderer(), sprite->GetTexture(), nullptr, &dstRect);
 	}
@@ -44,6 +49,32 @@ void EnemyBase::Render()
 
 void EnemyBase::Destroy()
 {
+}
+
+void EnemyBase::Reset(Managers* managers, std::vector<Tile*> path, std::string name, Sprite* sprite, Vector2D position, Vector2D scale) 
+{
+	this->managers = managers;
+	this->path = path;
+	this->name = name;
+	this->sprite = sprite;
+	this->position = position;
+	this->scale = scale;
+	this->currentStartPosition = this->position;
+	this->health = this->maxHealth;
+
+	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
+	this->isActive = true;
+}
+
+void EnemyBase::Disable()
+{
+	pathIndex = 0;
+	delta = 0.0f;
+	currentStartPosition = Vector2D::Zero();
+	hasReachedEnd = false;
+	isFrozen = false;
+	speed = originalSpeed;
+	isActive = false;
 }
 
 void EnemyBase::MoveToEnd(float deltaTime)
@@ -77,6 +108,7 @@ bool EnemyBase::IsDead()
 {
 	if (health <= 0 || hasReachedEnd == true)
 	{
+		Disable();
 		return true;
 	}
 	return false;

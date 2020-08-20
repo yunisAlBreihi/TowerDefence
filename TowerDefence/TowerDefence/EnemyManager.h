@@ -9,12 +9,6 @@
 #include "LevelManager.h"
 #include "TileManager.h"
 
-enum class EnemyType
-{
-	smallEnemy,
-	bigEnemy,
-};
-
 class SDL_Renderer;
 
 class EnemyManager : public IRenderable, public ManagerBase
@@ -39,12 +33,10 @@ private:
 	float maxWaveTime = 5.0f;
 	bool waveIsComplete = false;
 	bool mapIsComplete = false;
-
 public:
-
 private:
 
-	EnemyBase* CreateEnemy(Sprite* enemySprite,int num1, int num2);
+	EnemyBase* CreateEnemy(Sprite* enemySprite, int waveIndex, int enemyIndex);
 	void SetEnemyCountFromMap();
 	void ResetEnemyCount();
 
@@ -63,6 +55,8 @@ public:
 	void CreateEnemies();
 	void ClearEnemies();
 	void DebugPositions();
+
+	EnemyBase* GetInactiveEnemyOfType(EnemyType enemyType);
 
 	EnemyBase* GetEnemyTypeAtIndex(EnemyType enemyType, int index);
 	std::vector<std::vector<EnemyBase*>> GetEnemies() { return enemies; }
