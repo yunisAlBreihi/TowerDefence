@@ -25,7 +25,7 @@ private:
 	void CreateTower(Sprite* sprite, Vector2D position, Vector2D scale);
 
 public:
-	TowerManager(Managers* managers);
+	TowerManager();
 	~TowerManager();
 
 	void Start() override;

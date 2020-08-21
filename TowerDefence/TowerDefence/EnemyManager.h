@@ -41,7 +41,7 @@ private:
 	void ResetEnemyCount();
 
 public:
-	EnemyManager(Managers* managers, Dijkstra* dijkstra);
+	EnemyManager(Dijkstra* dijkstra);
 
 	void AddEnemyType(Sprite* enemySprite);
 	void IncreaseEnemyDeathCount(int increaseBy);

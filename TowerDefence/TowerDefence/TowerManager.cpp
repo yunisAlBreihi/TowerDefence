@@ -2,8 +2,9 @@
 #include "TowerSmall.h"
 #include "TowerBig.h"
 
-TowerManager::TowerManager(Managers* managers) : managers(managers)
+TowerManager::TowerManager()
 {
+	managers = Managers::GetInstance();
 	name = ManagerName::TowerManager;
 	tileManager = managers->GetManager<TileManager>(ManagerName::TileManager);
 	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);

@@ -16,7 +16,7 @@ public:
 private:
 
 public:
-	BulletManager(Managers* managers);
+	BulletManager();
 
 	void Start() override;
 	void Update(float deltaTime) override;

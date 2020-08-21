@@ -3,8 +3,9 @@
 #include "EnemyBig.h"
 #include "Globals.h"
 
-EnemyManager::EnemyManager(Managers* managers, Dijkstra* dijkstra) : managers(managers), dijkstra(dijkstra)
+EnemyManager::EnemyManager(Dijkstra* dijkstra) : dijkstra(dijkstra)
 {
+	managers = Managers::GetInstance();
 	name = ManagerName::EnemyManager;
 	mapManager = managers->GetManager<MapManager>(ManagerName::MapManager);
 	levelManager = managers->GetManager<LevelManager>(ManagerName::LevelManager);

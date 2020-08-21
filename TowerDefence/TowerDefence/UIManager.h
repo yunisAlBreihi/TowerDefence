@@ -15,7 +15,7 @@ private:
 public:
 private:
 public:
-	UIManager(Managers* managers);
+	UIManager();
 	~UIManager();
 
 	void Start() override;

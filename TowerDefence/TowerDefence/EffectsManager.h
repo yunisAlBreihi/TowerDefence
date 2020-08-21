@@ -17,7 +17,7 @@ public:
 private:
 
 public:
-	EffectsManager(Managers* managers);
+	EffectsManager();
 
 	void Start() override;
 	void Update(float deltaTime) override;

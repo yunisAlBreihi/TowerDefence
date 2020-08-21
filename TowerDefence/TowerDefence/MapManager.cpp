@@ -1,7 +1,7 @@
 #include "MapManager.h"
 #include "GameManager.h"
 
-MapManager::MapManager(Managers* managers) : managers(managers)
+MapManager::MapManager()
 {
 	name = ManagerName::MapManager;
 }

@@ -1,6 +1,6 @@
 #pragma once
-#include <vector>
 #include <SDL.h>
+#include <vector>
 #include <iostream>
 #include "ManagerBase.h"
 #include "Enums.h"
@@ -8,14 +8,20 @@
 class Managers
 {
 private:
+	static Managers* instance;
 	std::vector<ManagerBase*> managers;
-	SDL_Renderer* renderer;
+	SDL_Renderer* renderer = nullptr;
+
+private:
+	Managers(SDL_Renderer* renderer = nullptr);
 
 public:
-	Managers(SDL_Renderer* renderer);
-	~Managers();
+	static Managers* GetInstance();
 
+	void SetRenderer(SDL_Renderer* renderer);
 	void AddManager(ManagerBase* managerBase);
+
+	SDL_Renderer* GetRenderer() { return renderer; }
 
 	template<typename Manager>
 	Manager* GetManager(ManagerName managerName)
@@ -73,5 +79,6 @@ public:
 		return nullptr;
 	};
 
-	SDL_Renderer* GetRenderer() { return renderer; }
+	Managers(Managers& other) = delete;
+	void operator=(const Managers& other) = delete;
 };

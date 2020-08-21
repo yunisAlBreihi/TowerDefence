@@ -1,6 +1,6 @@
 #include "EffectsManager.h"
 
-EffectsManager::EffectsManager(Managers* managers) : managers(managers)
+EffectsManager::EffectsManager()
 {
 	name = ManagerName::EffectsManager;
 }

@@ -1,11 +1,24 @@
 #include "Managers.h"
 
-Managers::Managers(SDL_Renderer* renderer) : renderer(renderer)
+Managers* Managers::instance = nullptr;
+
+Managers::Managers(SDL_Renderer* renderer) 
 {
+	this->renderer = renderer;
 }
 
-Managers::~Managers()
+Managers* Managers::GetInstance()
 {
+	if (instance == nullptr)
+	{
+		instance = new Managers;
+	}
+	return instance;
+}
+
+void Managers::SetRenderer(SDL_Renderer* renderer)
+{
+	this->renderer = renderer;
 }
 
 void Managers::AddManager(ManagerBase* managerBase)
@@ -13,21 +26,3 @@ void Managers::AddManager(ManagerBase* managerBase)
 	managers.push_back(managerBase);
 }
 
-//template<typename Manager>
-//Manager* Managers::GetManager(ManagerName managerName)
-//{
-//	for (ManagerBase* managerBase : managers)
-//	{
-//		if (managerName == managerBase->GetName())
-//		{
-//			if (managerBase == nullptr)
-//			{
-//				std::cout << "Found the manager, but it is not assigned yet!" << std::endl;
-//				return nullptr;
-//			}
-//			return (Manager*)managerBase;
-//		}
-//	}
-//	std::cout << "Could not find the specified manager in the list!" << std::endl;
-//	return nullptr;
-//}

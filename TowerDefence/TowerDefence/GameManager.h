@@ -43,10 +43,6 @@ private:
 
 	UIBase* uiBase = nullptr;
 
-	//Temporary
-	BulletBase* bullet = nullptr;
-
-
 public:
 
 private:

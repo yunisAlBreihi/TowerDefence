@@ -1,6 +1,6 @@
 #include "UIManager.h"
 
-UIManager::UIManager(Managers* managers)
+UIManager::UIManager()
 {
 	name = ManagerName::UIManager;
 }

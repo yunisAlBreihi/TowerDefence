@@ -22,7 +22,7 @@ private:
 	void OnLoadGameOverScreen();
 
 public:
-	LevelManager(Managers* managers);
+	LevelManager();
 	~LevelManager();
 
 	void Start() override;

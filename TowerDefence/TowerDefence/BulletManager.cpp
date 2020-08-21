@@ -1,7 +1,8 @@
 #include "BulletManager.h"
 
-BulletManager::BulletManager(Managers* managers) : managers(managers)
+BulletManager::BulletManager()
 {
+	managers = Managers::GetInstance();
 	name = ManagerName::BulletManager;
 }
 

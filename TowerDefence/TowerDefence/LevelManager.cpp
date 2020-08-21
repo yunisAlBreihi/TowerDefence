@@ -4,8 +4,9 @@
 #include "UIManager.h"
 #include "GameManager.h"
 
-LevelManager::LevelManager(Managers* managers) : managers(managers)
+LevelManager::LevelManager()
 {
+	managers = Managers::GetInstance();
 	name = ManagerName::LevelManager;
 	mapManager = managers->GetManager<MapManager>(ManagerName::MapManager);
 }
