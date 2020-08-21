@@ -73,6 +73,7 @@ void EnemyBase::Disable()
 	currentStartPosition = Vector2D::Zero();
 	hasReachedEnd = false;
 	isFrozen = false;
+	hasCountedDeath = false;
 	speed = originalSpeed;
 	isActive = false;
 }

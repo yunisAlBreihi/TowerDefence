@@ -140,7 +140,7 @@ void EnemyManager::IncreaseEnemyDeathCount(int increaseBy)
 {
 	enemyDeathCount += increaseBy;
 	//TODO: Change to enemyCount instead of a hard number
-	if (enemyDeathCount == 5)
+	if (enemyDeathCount == 21)
 	{
 		managers->GetManager<LevelManager>(ManagerName::LevelManager)->LoadNextLevel();
 	}
@@ -203,7 +203,7 @@ void EnemyManager::SpawnEnemyWaves(float deltaTime)
 					EnemyBase* enemy = nullptr;
 					EnemySmall* enemySmall = nullptr;
 					EnemyBig* enemyBig = nullptr;
-					if (waveIndex == 0)
+					if (enemyIndex == 0)
 					{
 						enemySmall = (EnemySmall*)GetInactiveEnemyOfType(EnemyType::SmallEnemy);
 						if (enemySmall != nullptr)
@@ -218,7 +218,7 @@ void EnemyManager::SpawnEnemyWaves(float deltaTime)
 							enemies[enemyIndex].push_back(enemy);
 						}
 					}
-					else if (waveIndex == 1)
+					else if (enemyIndex == 1)
 					{
 						enemyBig = (EnemyBig*)GetInactiveEnemyOfType(EnemyType::BigEnemy);
 						if (enemy != nullptr)

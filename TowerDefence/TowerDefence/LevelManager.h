@@ -14,7 +14,8 @@ private:
 	bool loadGameOver = false;
 	bool loadCongratulations = false;
 public:
-
+	//TODO: only for debug, remove
+	int levelChange = 0;
 private:
 	void OnLoadNextLevel();
 	void OnLoadCongratulationsSceen();

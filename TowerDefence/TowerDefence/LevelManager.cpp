@@ -98,6 +98,7 @@ void LevelManager::OnLoadNextLevel()
 		LoadCurrentLevel();
 		loadNextLevel = false;
 	}
+	levelChange += 1;
 }
 
 void LevelManager::LoadCongratulationsSceen()

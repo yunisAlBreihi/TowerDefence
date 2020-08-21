@@ -83,14 +83,20 @@ void TowerManager::CreateTowers()
 	Sprite* sprite = nullptr;
 	for (Tile* tile : tileManager->GetTiles(SpriteName::Tower01))
 	{
-		sprite = spriteManager->GetSprite(SpriteName::TowerSmall);
-		CreateTower(sprite, tile->GetPosition(), tile->GetScale());
+		if (tile->IsActive() == true)
+		{
+			sprite = spriteManager->GetSprite(SpriteName::TowerSmall);
+			CreateTower(sprite, tile->GetPosition(), tile->GetScale());
+		}
 	}
 
 	for (Tile* tile : tileManager->GetTiles(SpriteName::Tower02))
 	{
-		sprite = spriteManager->GetSprite(SpriteName::TowerBig);
-		CreateTower(sprite, tile->GetPosition(), tile->GetScale());
+		if (tile->IsActive() == true)
+		{
+			sprite = spriteManager->GetSprite(SpriteName::TowerBig);
+			CreateTower(sprite, tile->GetPosition(), tile->GetScale());
+		}
 	}
 }
 
