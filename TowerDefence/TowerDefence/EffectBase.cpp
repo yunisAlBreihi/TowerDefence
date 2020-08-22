@@ -81,32 +81,29 @@ void EffectBase::Clear()
 
 void EffectBase::Expand(float deltaTime)
 {
-	for (std::vector<Enemy*> enemies : enemyManager->GetEnemies())
+	for (Enemy* enemy : enemyManager->GetEnemies())
 	{
-		for (Enemy* enemy : enemies)
+		if (enemy->IsDead() == false)
 		{
-			if (enemy->IsDead() == false)
+			if (collider->isPointInCircle(enemy->GetPosition()))
 			{
-				if (collider->isPointInCircle(enemy->GetPosition()))
+				//Makes sure the enemy can only be hit once
+				if (enemiesHit.empty() == true)
 				{
-					//Makes sure the enemy can only be hit once
-					if (enemiesHit.empty() == true)
+					OnHit(enemy);
+					enemiesHit.push_back(enemy);
+				}
+				else
+				{
+					auto it = std::find(enemiesHit.begin(), enemiesHit.end(), enemy);
+
+					if (it == enemiesHit.end())
 					{
 						OnHit(enemy);
 						enemiesHit.push_back(enemy);
 					}
-					else
-					{
-						auto it = std::find(enemiesHit.begin(), enemiesHit.end(), enemy);
-
-						if (it == enemiesHit.end())
-						{
-							OnHit(enemy);
-							enemiesHit.push_back(enemy);
-						}
-					}
-
 				}
+
 			}
 		}
 	}

@@ -7,7 +7,7 @@ TowerBase::TowerBase()
 }
 
 TowerBase::TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale) :
-	managers(managers),bulletType(bulletType), sprite(sprite), position(position), scale(scale)
+	managers(managers), bulletType(bulletType), sprite(sprite), position(position), scale(scale)
 {
 	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
 	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
@@ -72,7 +72,7 @@ void TowerBase::Reset(Managers* managers, BulletType bulletType, Sprite* sprite,
 	this->isActive = true;
 }
 
-void TowerBase::Disable() 
+void TowerBase::Disable()
 {
 	isActive = false;
 }
@@ -81,29 +81,20 @@ void TowerBase::SetEnemyTarget()
 {
 	if (currentEnemyTarget == nullptr)
 	{
-		if (enemyManager->GetEnemies().empty() == false)
+		for (Enemy* enemy : enemyManager->GetEnemies())
 		{
-			for (std::vector<Enemy*> enemies : enemyManager->GetEnemies())
+			if (collider->isPointInCircle(enemy->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2)))
 			{
-				if (enemies.empty() == false)
+				if (enemy->IsDead())
 				{
-					for (Enemy* enemy : enemies)
-					{
-						if (collider->isPointInCircle(enemy->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2)))
-						{
-							if (enemy->IsDead())
-							{
-								continue;
-							}
-							currentEnemyTarget = enemy;
-							break;
-						}
-					}
+					continue;
 				}
+				currentEnemyTarget = enemy;
+				break;
 			}
 		}
 	}
-	else if (currentEnemyTarget->IsDead() == true || 
+	else if (currentEnemyTarget->IsDead() == true ||
 		collider->isPointInCircle(currentEnemyTarget->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2)) == false)
 	{
 		currentEnemyTarget = nullptr;

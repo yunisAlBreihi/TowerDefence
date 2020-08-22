@@ -15,7 +15,7 @@ class EnemyManager : public IRenderable, public ManagerBase
 {
 private:
 	std::vector<Sprite*> sprites;
-	std::vector<std::vector<Enemy*>> enemies;
+	std::vector<Enemy*> enemies;
 	Dijkstra* dijkstra = nullptr;
 	Managers* managers = nullptr;
 	MapManager* mapManager = nullptr;
@@ -36,7 +36,7 @@ private:
 public:
 private:
 
-	Enemy* CreateEnemy(Sprite* enemySprite, int waveIndex, int enemyIndex);
+	void CreateEnemy(int waveIndex, int enemyIndex);
 	void SetEnemyCountFromMap();
 	void ResetEnemyCount();
 
@@ -56,8 +56,7 @@ public:
 	void ClearEnemies();
 	void DebugPositions();
 
-	Enemy* GetInactiveEnemyOfType(EnemyType enemyType);
+	Enemy* GetInactiveEnemy();
 
-	Enemy* GetEnemyTypeAtIndex(EnemyType enemyType, int index);
-	std::vector<std::vector<Enemy*>> GetEnemies() { return enemies; }
+	std::vector<Enemy*> GetEnemies() { return enemies; }
 };
