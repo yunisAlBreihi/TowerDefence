@@ -13,13 +13,13 @@ Explosion::Explosion(Managers* managers,BulletType bulletType, Sprite* sprite, V
 	this->startPosition = this->position;
 	this->endPosition = this->startPosition - (this->endScale * 0.5f);
 	this->scale = this->startScale;
-	this->dstRect = { this->startPosition.x, this->startPosition.y, this->scale.x, this->scale.y };
+	this->dstRect = { (int)this->startPosition.x, (int)this->startPosition.y, (int)this->scale.x, (int)this->scale.y };
 	this->startScale = this->scale;
 	this->collider = new Collider(this->startPosition, this->startScale.x * 0.5f);
 	this->isActive = true;
 }
 
-void Explosion::OnHit(EnemyBase* enemy)
+void Explosion::OnHit(Enemy* enemy)
 {
 		enemy->TakeDamage(damage);
 }

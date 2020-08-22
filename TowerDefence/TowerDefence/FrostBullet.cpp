@@ -12,7 +12,7 @@ FrostBullet::FrostBullet(Managers* managers,BulletType bulletType, Sprite* sprit
 	this-> endPosition = endPosition;
 	this->scale = scale;
 
-	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
+	dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
 	isActive = true;
 }
 

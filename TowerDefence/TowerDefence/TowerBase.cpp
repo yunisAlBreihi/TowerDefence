@@ -14,7 +14,7 @@ TowerBase::TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, 
 	bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
 	effectsManager = managers->GetManager<EffectsManager>(ManagerName::EffectsManager);
 
-	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
+	dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
 	collider = new Collider(this->position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2), 90.0f);
 
 	isActive = true;
@@ -67,7 +67,7 @@ void TowerBase::Reset(Managers* managers, BulletType bulletType, Sprite* sprite,
 	this->sprite = sprite;
 	this->position = position;
 	this->scale = scale;
-	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
+	dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
 	collider = new Collider(this->position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2), 90.0f);
 	this->isActive = true;
 }
@@ -83,11 +83,11 @@ void TowerBase::SetEnemyTarget()
 	{
 		if (enemyManager->GetEnemies().empty() == false)
 		{
-			for (std::vector<EnemyBase*> enemies : enemyManager->GetEnemies())
+			for (std::vector<Enemy*> enemies : enemyManager->GetEnemies())
 			{
 				if (enemies.empty() == false)
 				{
-					for (EnemyBase* enemy : enemies)
+					for (Enemy* enemy : enemies)
 					{
 						if (collider->isPointInCircle(enemy->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2)))
 						{

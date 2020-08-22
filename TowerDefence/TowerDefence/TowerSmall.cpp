@@ -13,7 +13,7 @@ TowerSmall::TowerSmall(Managers* managers, BulletType bulletType, Sprite* sprite
 	this->sprite = sprite;
 	this->position = position;
 	this->scale = scale;
-	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
+	dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
 	collider = new Collider(this->position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2), 90.0f);
 	this->isActive = true;
 }

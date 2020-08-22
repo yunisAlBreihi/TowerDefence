@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "EnemyBase.h"
+#include "Enemy.h"
 #include "Dijkstra.h"
 #include "IRenderable.h"
 #include "ManagerBase.h"
@@ -15,7 +15,7 @@ class EnemyManager : public IRenderable, public ManagerBase
 {
 private:
 	std::vector<Sprite*> sprites;
-	std::vector<std::vector<EnemyBase*>> enemies;
+	std::vector<std::vector<Enemy*>> enemies;
 	Dijkstra* dijkstra = nullptr;
 	Managers* managers = nullptr;
 	MapManager* mapManager = nullptr;
@@ -36,7 +36,7 @@ private:
 public:
 private:
 
-	EnemyBase* CreateEnemy(Sprite* enemySprite, int waveIndex, int enemyIndex);
+	Enemy* CreateEnemy(Sprite* enemySprite, int waveIndex, int enemyIndex);
 	void SetEnemyCountFromMap();
 	void ResetEnemyCount();
 
@@ -56,8 +56,8 @@ public:
 	void ClearEnemies();
 	void DebugPositions();
 
-	EnemyBase* GetInactiveEnemyOfType(EnemyType enemyType);
+	Enemy* GetInactiveEnemyOfType(EnemyType enemyType);
 
-	EnemyBase* GetEnemyTypeAtIndex(EnemyType enemyType, int index);
-	std::vector<std::vector<EnemyBase*>> GetEnemies() { return enemies; }
+	Enemy* GetEnemyTypeAtIndex(EnemyType enemyType, int index);
+	std::vector<std::vector<Enemy*>> GetEnemies() { return enemies; }
 };

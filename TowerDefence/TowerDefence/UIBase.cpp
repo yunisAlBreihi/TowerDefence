@@ -6,7 +6,7 @@ UIBase::UIBase()
 
 UIBase::UIBase(Managers* managers, Sprite* sprite, Vector2D position, Vector2D scale) : managers(managers), sprite(sprite), position(position), scale(scale)
 {
-	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
+	dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
 }
 
 UIBase::~UIBase()

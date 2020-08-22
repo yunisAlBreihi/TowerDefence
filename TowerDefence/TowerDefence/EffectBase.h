@@ -6,7 +6,7 @@
 #include "Sprite.h"
 #include "Vector2D.h"
 #include "Collider.h"
-#include "EnemyBase.h"
+#include "Enemy.h"
 #include "Enums.h"
 
 class EffectBase : public IRenderable
@@ -16,7 +16,7 @@ protected:
 
 	Managers* managers = nullptr;
 	EnemyManager* enemyManager = nullptr;
-	std::vector<EnemyBase*> enemiesHit;
+	std::vector<Enemy*> enemiesHit;
 	BulletType bulletType = BulletType::Regular;
 	Sprite* sprite = nullptr;
 	Collider* collider = nullptr;
@@ -50,7 +50,7 @@ public:
 	void Render() override;
 	void Destroy() override;
 
-	virtual void OnHit(EnemyBase* enemy) = 0;
+	virtual void OnHit(Enemy* enemy) = 0;
 	void LerpExplosionScale(float deltaTime);
 
 	void SetPosition(Vector2D position);

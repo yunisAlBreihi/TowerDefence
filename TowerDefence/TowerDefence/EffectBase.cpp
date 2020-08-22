@@ -12,9 +12,9 @@ EffectBase::EffectBase(Managers* managers, BulletType bulletType, Sprite* sprite
 	startPosition = position;
 	endPosition = startPosition - (endScale * 0.5f);
 	scale = startScale;
-	dstRect = { this->startPosition.x, this->startPosition.y, this->scale.x, this->scale.y };
+	dstRect = { (int)this->startPosition.x, (int)this->startPosition.y, (int)this->scale.x, (int)this->scale.y };
 	collider = new Collider(startPosition, startScale.x * 0.5f);
-	enemiesHit = std::vector<EnemyBase*>();
+	enemiesHit = std::vector<Enemy*>();
 
 	isActive = true;
 }
@@ -66,7 +66,7 @@ void EffectBase::Reset(Managers* managers, BulletType bulletType, Sprite* sprite
 	startPosition = position;
 	endPosition = startPosition - (endScale * 0.5f);
 	scale = startScale;
-	dstRect = { this->startPosition.x, this->startPosition.y, this->scale.x, this->scale.y };
+	dstRect = { (int)this->startPosition.x, (int)this->startPosition.y, (int)this->scale.x, (int)this->scale.y };
 	collider = new Collider(startPosition, startScale.x * 0.5f);
 
 	isActive = true;
@@ -81,9 +81,9 @@ void EffectBase::Clear()
 
 void EffectBase::Expand(float deltaTime)
 {
-	for (std::vector<EnemyBase*> enemies : enemyManager->GetEnemies())
+	for (std::vector<Enemy*> enemies : enemyManager->GetEnemies())
 	{
-		for (EnemyBase* enemy : enemies)
+		for (Enemy* enemy : enemies)
 		{
 			if (enemy->IsDead() == false)
 			{

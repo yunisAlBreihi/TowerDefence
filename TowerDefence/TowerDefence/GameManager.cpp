@@ -2,8 +2,7 @@
 #include <SDL_image.h>
 #include "GameManager.h"
 #include "Sprite.h"
-#include "EnemySmall.h"
-#include "EnemyBig.h"
+#include "Enemy.h"
 #include "ScreenUI.h"
 
 

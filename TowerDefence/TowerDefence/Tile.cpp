@@ -2,7 +2,7 @@
 
 Tile::Tile(Managers* managers, Sprite* sprite, Vector2D position, Vector2D scale, bool isWalkable) : managers(managers), sprite(sprite), position(position), scale(scale), isWalkable(isWalkable)
 {
-	dstRect = { this->position.x,this->position.y,this->scale.x, this->scale.y };
+	dstRect = { (int)this->position.x,(int)this->position.y,(int)this->scale.x, (int)this->scale.y };
 	isActive = true;
 }
 
@@ -40,7 +40,7 @@ void Tile::Reset(Managers* managers, Sprite* sprite, Vector2D position, Vector2D
 	this->scale = scale;
 	this->isWalkable = isWalkable;
 
-	this->dstRect = { this->position.x,this->position.y,this->scale.x, this->scale.y };
+	this->dstRect = { (int)this->position.x,(int)this->position.y,(int)this->scale.x, (int)this->scale.y };
 	this->isActive = true;
 }
 

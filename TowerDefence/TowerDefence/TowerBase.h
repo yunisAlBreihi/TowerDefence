@@ -20,7 +20,7 @@ protected:
 	BulletManager* bulletManager = nullptr;
 	EffectsManager* effectsManager = nullptr;
 	BulletType bulletType = BulletType::Regular;
-	EnemyBase* currentEnemyTarget = nullptr;
+	Enemy* currentEnemyTarget = nullptr;
 	Collider* collider = nullptr;
 	Sprite* sprite = nullptr;
 	Vector2D position = { 0,0 };

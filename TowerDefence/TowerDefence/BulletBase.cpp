@@ -10,7 +10,7 @@ BulletBase::BulletBase()
 BulletBase::BulletBase(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale) : managers(managers), bulletType(bulletType), sprite(sprite), position(startPosition), endPosition(endPosition), scale(scale)
 {
 	this->startPosition = startPosition;
-	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
+	dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
 	isActive = true;
 }
 
@@ -52,7 +52,7 @@ void BulletBase::Reset(Managers* managers, BulletType bulletType, Sprite* sprite
 	this->endPosition = endPosition;
 	this->scale = scale;
 
-	dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
+	dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
 	isActive = true;
 }
 

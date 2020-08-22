@@ -129,10 +129,8 @@
     <ClCompile Include="CongratulationsScreen.cpp" />
     <ClCompile Include="Dijkstra.cpp" />
     <ClCompile Include="EffectsManager.cpp" />
-    <ClCompile Include="EnemyBase.cpp" />
-    <ClCompile Include="EnemyBig.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
-    <ClCompile Include="EnemySmall.cpp" />
     <ClCompile Include="EffectBase.cpp" />
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="FrostBullet.cpp" />
@@ -169,10 +167,8 @@
     <ClInclude Include="CongratulationsScreen.h" />
     <ClInclude Include="Dijkstra.h" />
     <ClInclude Include="EffectsManager.h" />
-    <ClInclude Include="EnemyBase.h" />
-    <ClInclude Include="EnemyBig.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />
-    <ClInclude Include="EnemySmall.h" />
     <ClInclude Include="EffectBase.h" />
     <ClInclude Include="Enums.h" />
     <ClInclude Include="Explosion.h" />

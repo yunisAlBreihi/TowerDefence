@@ -7,5 +7,5 @@ ScreenUI::ScreenUI(Managers* managers, Sprite* sprite, Vector2D position, Vector
 	this->position = position;
 	this->scale = scale;
 
-	this->dstRect = { this->position.x, this->position.y, this->scale.x, this->scale.y };
+	this->dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
 }
