@@ -33,7 +33,7 @@ protected:
 	int debugCircleQuality = 4;
 
 	float shootTimer = 0.0f;
-	float shootMaxTime = 0.75f;
+	float shootMaxTime = 0.0f;
 
 public:
 

@@ -36,6 +36,5 @@ void TowerSmall::OnShoot()
 			position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			currentEnemyTarget->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			Vector2D(Globals::DEFAULT_SPRITE_SIZE / 4, Globals::DEFAULT_SPRITE_SIZE / 4));
-		bulletManager->AddBullet(regularBullet);
 	}
 }

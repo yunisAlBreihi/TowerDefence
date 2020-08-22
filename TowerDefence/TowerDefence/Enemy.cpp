@@ -1,12 +1,15 @@
 #include "Enemy.h"
+#include <math.h>
 #include "EnemyManager.h"
 #include "GameManager.h"
+#include "Globals.h"
 
 Enemy::Enemy(Managers* managers, std::vector<Tile*> path,std::string name, Sprite* sprite, Vector2D position, Vector2D scale,float maxHealth) : managers(managers),name(name), path(path), sprite(sprite), position(position), scale(scale), maxHealth(maxHealth)
 {
 	dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
 	isActive = true;
 	health = this->maxHealth;
+	originalSpeed = speed;
 }
 
 Enemy::~Enemy()
@@ -18,7 +21,7 @@ void Enemy::Start()
 	if (isActive == true)
 	{
 		currentStartPosition = GetPosition();
-		originalSpeed = speed;
+		//originalSpeed = speed;
 	}
 }
 
@@ -80,7 +83,7 @@ void Enemy::MoveToEnd(float deltaTime)
 	{
 		delta += speed * deltaTime;
 
-		if (delta >= 1.0f + deltaTime)
+		if (delta >= 1.0f)
 		{
 			delta = 0;
 			currentStartPosition = GetPosition();
@@ -91,7 +94,8 @@ void Enemy::MoveToEnd(float deltaTime)
 			else
 			{
 				hasReachedEnd = true;
-				managers->GetManager<GameManager>(ManagerName::GameManager)->ReducePlayerHealth(1);
+				managers->GetManager<GameManager>(ManagerName::GameManager)->ReducePlayerHealth(Globals::dRand(0.3,1.2));
+				Disable();
 			}
 		}
 		else
@@ -101,19 +105,9 @@ void Enemy::MoveToEnd(float deltaTime)
 	}
 }
 
-bool Enemy::IsDead()
-{
-	if (health <= 0 || hasReachedEnd == true)
-	{
-		Disable();
-		return true;
-	}
-	return false;
-}
-
 void Enemy::SetPosition(Vector2D vector2D)
 {
-	position = vector2D;
+	position = Vector2D(round(vector2D.x), round(vector2D.y));
 	dstRect.x = position.x;
 	dstRect.y = position.y;
 }
@@ -130,6 +124,7 @@ void Enemy::TakeDamage(float damage)
 	{
 		managers->GetManager<EnemyManager>(ManagerName::EnemyManager)->IncreaseEnemyDeathCount(1);
 		hasCountedDeath = true;
+		Disable();
 	}
 
 	//std::cout << name << " is hit!" << std::endl;

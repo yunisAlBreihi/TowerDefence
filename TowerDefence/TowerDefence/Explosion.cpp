@@ -1,6 +1,7 @@
 #include "Explosion.h"
+#include "Globals.h"
 
-Explosion::Explosion(Managers* managers,BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale)
+Explosion::Explosion(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale)
 {
 	this->managers = managers;
 	this->bulletType = bulletType;
@@ -21,5 +22,5 @@ Explosion::Explosion(Managers* managers,BulletType bulletType, Sprite* sprite, V
 
 void Explosion::OnHit(Enemy* enemy)
 {
-		enemy->TakeDamage(damage);
+	enemy->TakeDamage(Globals::dRand(0.1, 0.5));
 }

@@ -17,6 +17,7 @@ TowerBase::TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, 
 	dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
 	collider = new Collider(this->position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2), 90.0f);
 
+	shootMaxTime = Globals::dRand(0.7, 1.5);
 	isActive = true;
 }
 
@@ -85,7 +86,7 @@ void TowerBase::SetEnemyTarget()
 		{
 			if (collider->isPointInCircle(enemy->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2)))
 			{
-				if (enemy->IsDead())
+				if (enemy->IsActive() == false)
 				{
 					continue;
 				}
@@ -94,7 +95,7 @@ void TowerBase::SetEnemyTarget()
 			}
 		}
 	}
-	else if (currentEnemyTarget->IsDead() == true ||
+	else if (currentEnemyTarget->IsActive() == false ||
 		collider->isPointInCircle(currentEnemyTarget->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2)) == false)
 	{
 		currentEnemyTarget = nullptr;
@@ -110,6 +111,7 @@ void TowerBase::Shoot(float deltaTime)
 		if (shootTimer >= shootMaxTime)
 		{
 			OnShoot();
+			shootMaxTime = Globals::dRand(0.7, 1.5);
 			shootTimer = 0.0f;
 		}
 	}

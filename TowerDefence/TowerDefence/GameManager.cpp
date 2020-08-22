@@ -1,9 +1,12 @@
 #include <iostream>
 #include <SDL_image.h>
+#include <cstdlib>
+#include <ctime>
 #include "GameManager.h"
 #include "Sprite.h"
 #include "Enemy.h"
 #include "ScreenUI.h"
+
 
 
 GameManager::GameManager(const char* title, int posX, int posY, int width, int height, Uint32 flags)
@@ -165,7 +168,7 @@ void GameManager::SetGameHasEnded(bool value)
 	gameHasEnded = value;
 }
 
-void GameManager::ReducePlayerHealth(unsigned int reduceBy)
+void GameManager::ReducePlayerHealth(float reduceBy)
 {
 	playerHealth -= reduceBy;
 
@@ -175,7 +178,7 @@ void GameManager::ReducePlayerHealth(unsigned int reduceBy)
 	}
 }
 
-void GameManager::IncreasePlayerHealth(unsigned int increasyBy)
+void GameManager::IncreasePlayerHealth(float increasyBy)
 {
 	playerHealth += increasyBy;
 }

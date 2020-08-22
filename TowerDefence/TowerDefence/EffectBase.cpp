@@ -83,7 +83,7 @@ void EffectBase::Expand(float deltaTime)
 {
 	for (Enemy* enemy : enemyManager->GetEnemies())
 	{
-		if (enemy->IsDead() == false)
+		if (enemy->IsActive() == true)
 		{
 			if (collider->isPointInCircle(enemy->GetPosition()))
 			{

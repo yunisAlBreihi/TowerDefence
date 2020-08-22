@@ -23,6 +23,7 @@ private:
 	TileManager* tileManager = nullptr;
 	std::vector<Tile*> path;
 	std::vector<std::vector<int>> mapEnemyNumbers;
+	int killsToChangeLevel = 10;
 	int enemyIndex = 0;
 	int spawnIndex = 0;
 	int waveIndex = 0;

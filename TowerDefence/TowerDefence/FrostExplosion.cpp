@@ -1,4 +1,5 @@
 #include "FrostExplosion.h"
+#include "Globals.h"
 
 FrostExplosion::FrostExplosion(Managers* managers,BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale)
 {
@@ -21,6 +22,6 @@ FrostExplosion::FrostExplosion(Managers* managers,BulletType bulletType, Sprite*
 
 void FrostExplosion::OnHit(Enemy* enemy)
 {
-	enemy->TakeDamage(damage);
-	enemy->Freeze(freezeTime, freezeSpeed);
+	enemy->TakeDamage(Globals::dRand(0.1, 0.3));
+	enemy->Freeze(Globals::dRand(1.5f, 3.0f), Globals::dRand(0.5, 0.95));
 }

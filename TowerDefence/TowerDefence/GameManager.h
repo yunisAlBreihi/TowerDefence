@@ -22,7 +22,7 @@ private:
 	bool isRunning = false;
 	bool gameHasEnded = false;
 
-	int playerHealth = 10;
+	float playerHealth = 10.0f;
 
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
@@ -63,7 +63,7 @@ public:
 	bool GameHasEnded() { return gameHasEnded; }
 	void SetGameHasEnded(bool value);
 
-	void ReducePlayerHealth(unsigned int reduceBy);
-	void IncreasePlayerHealth(unsigned int increasyBy);
+	void ReducePlayerHealth(float reduceBy);
+	void IncreasePlayerHealth(float increasyBy);
 };
 

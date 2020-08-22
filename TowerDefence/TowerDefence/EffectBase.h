@@ -29,8 +29,6 @@ protected:
 	Vector2D colliderPosition = { 0.0f, 0.0f };
 	SDL_Rect dstRect = { 0,0,0,0 };
 	float damage = 0.75f;
-	float freezeTime = 3.0f;
-	float freezeSpeed = 0.75f;
 	float delta = 0.0f;
 	float expandSpeed = 6.0f;
 	bool reachedMaxSize = false;

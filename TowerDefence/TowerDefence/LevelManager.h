@@ -10,6 +10,7 @@ private:
 	Managers* managers = nullptr;
 	MapManager* mapManager = nullptr;
 	int currentLevelIndex = 0;
+	int KillsToChangeLevel = 20;
 	bool loadNextLevel = false;
 	bool loadGameOver = false;
 	bool loadCongratulations = false;
@@ -37,5 +38,6 @@ public:
 	void LoadCongratulationsSceen();
 	void LoadGameOverScreen();
 	int GetCurrentLevelIndex() { return currentLevelIndex; }
+	int GetKillsToNextLevel() { return KillsToChangeLevel; }
 	bool GetLoadNextLevel() { return loadNextLevel; }
 };

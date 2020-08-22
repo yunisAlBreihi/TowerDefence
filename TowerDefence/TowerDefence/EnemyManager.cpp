@@ -62,7 +62,10 @@ void EnemyManager::ClearEnemies()
 {
 	for (Enemy* enemy : enemies)
 	{
-		enemy->Disable();
+		if (enemy->IsActive() == true)
+		{
+			enemy->Disable();
+		}
 	}
 }
 
@@ -97,9 +100,9 @@ void EnemyManager::IncreaseEnemyDeathCount(int increaseBy)
 {
 	enemyDeathCount += increaseBy;
 	//TODO: Change to enemyCount instead of a hard number
-	if (enemyDeathCount == 21)
+	if (enemyDeathCount == levelManager->GetKillsToNextLevel())
 	{
-		managers->GetManager<LevelManager>(ManagerName::LevelManager)->LoadNextLevel();
+		levelManager->LoadNextLevel();
 	}
 }
 

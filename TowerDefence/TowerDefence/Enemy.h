@@ -55,7 +55,6 @@ public:
 	void Disable();
 
 	void TakeDamage(float damage);
-	bool IsDead();
 
 	//For when the enemy is frozen
 	void Freeze(float freezeTime, float freezeSpeed);
