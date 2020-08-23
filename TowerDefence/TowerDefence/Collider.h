@@ -5,19 +5,18 @@
 class Collider
 {
 private:
+	//Attributes
 	Vector2D position = {0.0f,0.0f};
-	Vector2D debugCirclePosition = { 0.0f, 0.0f };
 	float radius = 1.0f;
 
+	//For debugging purposes
+	Vector2D debugCirclePosition = { 0.0f, 0.0f };
 	//Sets the interval that the circle is drawn in steps. the higher number, the less it draws.
-	int debugCircleQuality = 4;
-
-public:
-
-private:
+	unsigned int debugCircleQuality = 4;
 
 public:
 	Collider(Vector2D position, float radius);
+	~Collider();
 
 	bool isPointInCircle(Vector2D targetPosition);
 	void DrawDebugCircle(SDL_Renderer* renderer);

@@ -1,11 +1,22 @@
 #include "Tile.h"
 
+#pragma region Construction
+Tile::Tile()
+{
+}
+
 Tile::Tile(Managers* managers, Sprite* sprite, Vector2D position, Vector2D scale, bool isWalkable) : managers(managers), sprite(sprite), position(position), scale(scale), isWalkable(isWalkable)
 {
 	dstRect = { (int)this->position.x,(int)this->position.y,(int)this->scale.x, (int)this->scale.y };
 	isActive = true;
 }
 
+Tile::~Tile()
+{
+}
+#pragma endregion Construction
+
+#pragma region GameLoop
 void Tile::Start()
 {
 }
@@ -26,7 +37,9 @@ void Tile::Destroy()
 {
 	managers = nullptr;
 }
+#pragma endregion GameLoop;
 
+#pragma region Activation
 void Tile::Disable()
 {
 	isActive = false;
@@ -43,7 +56,9 @@ void Tile::Reset(Managers* managers, Sprite* sprite, Vector2D position, Vector2D
 	this->dstRect = { (int)this->position.x,(int)this->position.y,(int)this->scale.x, (int)this->scale.y };
 	this->isActive = true;
 }
+#pragma endregion Activation
 
+#pragma region Set
 void Tile::SetPosition(Vector2D position)
 {
 	this->position = position;
@@ -57,3 +72,4 @@ void Tile::SetScale(Vector2D scale)
 	dstRect.w = this->scale.x;
 	dstRect.h = this->scale.y;
 }
+#pragma endregion Set

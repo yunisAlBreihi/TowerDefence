@@ -5,10 +5,9 @@
 #include "GameManager.h"
 #include "Sprite.h"
 #include "Enemy.h"
-#include "ScreenUI.h"
+#include "ScreenImageUI.h"
 
-
-
+#pragma region Construction
 GameManager::GameManager(const char* title, int posX, int posY, int width, int height, Uint32 flags)
 {
 	dijkstra = new Dijkstra();
@@ -27,7 +26,7 @@ GameManager::GameManager(const char* title, int posX, int posY, int width, int h
 	mapManager = new MapManager();
 	managers->AddManager(mapManager);
 	mapReader = new MapReader();
-	effectsManager = new EffectsManager();
+	effectsManager = new EffectManager();
 	managers->AddManager(effectsManager);
 	bulletManager = new BulletManager();
 	managers->AddManager(bulletManager);
@@ -44,21 +43,24 @@ GameManager::GameManager(const char* title, int posX, int posY, int width, int h
 GameManager::~GameManager()
 {
 }
+#pragma endregion Construction
 
+#pragma region GameLoop
 void GameManager::Start()
 {
 	//Creates sprites for background tiles
-	Sprite* grass = new Sprite(renderer, SpriteName::Grass);
-	Sprite* water = new Sprite(renderer, SpriteName::Water);
-	Sprite* tower01 = new Sprite(renderer, SpriteName::Tower01);
-	Sprite* tower02 = new Sprite(renderer, SpriteName::Tower02);
-	Sprite* startPosition = new Sprite(renderer, SpriteName::StartPosition);
-	Sprite* endPosition = new Sprite(renderer, SpriteName::EndPosition);
+	Sprite* grass = new Sprite(renderer, SpriteName::Grass, "Sprites/grass.jpg");
+	Sprite* water = new Sprite(renderer, SpriteName::Water, "Sprites/water.jpg");
+	Sprite* tower01 = new Sprite(renderer, SpriteName::RegularTowerGround, "Sprites/RegularTowerGround.jpg");
+	Sprite* tower02 = new Sprite(renderer, SpriteName::FrostTowerGround, "Sprites/FrostTowerGround.jpg");
+	Sprite* startPosition = new Sprite(renderer, SpriteName::EnemyBase, "Sprites/EnemyBase.jpg");
+	Sprite* endPosition = new Sprite(renderer, SpriteName::PlayerBase, "Sprites/PlayerBase.jpg");
 
 	//Create Sprites for Congratulations and GameOver
-	Sprite* congratulations = new Sprite(renderer, SpriteName::Congratulations);
-	Sprite* gameOver = new Sprite(renderer, SpriteName::GameOver);
+	Sprite* congratulations = new Sprite(renderer, SpriteName::Congratulations, "Sprites/Congratulations.jpg");
+	Sprite* gameOver = new Sprite(renderer, SpriteName::GameOver, "Sprites/GameOver.jpg");
 
+	//Add sprites to ManagerSprites
 	spriteManager->AddSprite(grass);
 	spriteManager->AddSprite(water);
 	spriteManager->AddSprite(tower01);
@@ -69,12 +71,12 @@ void GameManager::Start()
 	spriteManager->AddSprite(gameOver);
 
 	//Creates sprites for enemies
-	Sprite* enemySmallSprite = new Sprite(renderer, SpriteName::EnemySmall);
-	Sprite* enemyBigSprite = new Sprite(renderer, SpriteName::EnemyBig);
+	Sprite* enemySmallSprite = new Sprite(renderer, SpriteName::SmallEnemy, "Sprites/SmallEnemy.jpg");
+	Sprite* enemyBigSprite = new Sprite(renderer, SpriteName::BigEnemy, "Sprites/BigEnemy.jpg");
 
 	//Creates sprites for towers
-	Sprite* towerSmallSprite = new Sprite(renderer, SpriteName::TowerSmall);
-	Sprite* towerBigSprite = new Sprite(renderer, SpriteName::TowerBig);
+	Sprite* towerSmallSprite = new Sprite(renderer, SpriteName::RegularTower, "Sprites/RegularTower.jpg");
+	Sprite* towerBigSprite = new Sprite(renderer, SpriteName::FrostTower, "Sprites/FrostTower.jpg");
 
 	//Add enemy sprites to the sprite manager
 	spriteManager->AddSprite(enemySmallSprite);
@@ -85,8 +87,8 @@ void GameManager::Start()
 	spriteManager->AddSprite(towerBigSprite);
 
 	//Creates UI objects for Congratulations and Game Over
-	ScreenUI* gameOverUI = new ScreenUI(managers, spriteManager->GetSprite(SpriteName::GameOver), Vector2D::Zero(), Vector2D(1280, 720));
-	ScreenUI* congratulationsUI = new ScreenUI(managers, spriteManager->GetSprite(SpriteName::Congratulations), Vector2D::Zero(), Vector2D(1280, 720));
+	ScreenImageUI* gameOverUI = new ScreenImageUI(managers, spriteManager->GetSprite(SpriteName::GameOver), Vector2D::Zero(), Vector2D(1280, 720));
+	ScreenImageUI* congratulationsUI = new ScreenImageUI(managers, spriteManager->GetSprite(SpriteName::Congratulations), Vector2D::Zero(), Vector2D(1280, 720));
 
 	//Add UI to the UI Manager
 	uiManager->AddUIObject(gameOverUI);
@@ -96,10 +98,6 @@ void GameManager::Start()
 	mapManager->AddMap(mapReader->ReadMap("Maps/Map_1.txt"));
 	mapManager->AddMap(mapReader->ReadMap("Maps/Map_2.txt"));
 	mapManager->AddMap(mapReader->ReadMap("Maps/Map_3.txt"));
-
-	//Add enemy sprites to the enemy manager
-	enemyManager->AddEnemyType(enemySmallSprite);
-	enemyManager->AddEnemyType(enemyBigSprite);
 
 	//Starts the managers
 	levelManager->Start();
@@ -162,7 +160,9 @@ void GameManager::Destroy()
 
 	SDL_Quit();
 }
+#pragma endregion GameLoop
 
+#pragma region ManageHealth
 void GameManager::SetGameHasEnded(bool value)
 {
 	gameHasEnded = value;
@@ -182,7 +182,9 @@ void GameManager::IncreasePlayerHealth(float increasyBy)
 {
 	playerHealth += increasyBy;
 }
+#pragma endregion ManageHealth
 
+#pragma region CreateGame
 void GameManager::CreateWindow(const char* title, int posX, int posY, int width, int height, Uint32 flags)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
@@ -212,3 +214,4 @@ void GameManager::CreateWindow(const char* title, int posX, int posY, int width,
 		isRunning = false;
 	}
 }
+#pragma endregion CreateGame

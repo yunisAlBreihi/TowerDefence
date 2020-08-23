@@ -6,24 +6,18 @@
 
 class Sprite
 {
-private:
-
 protected:
-
-	SpriteName name;
-	std::string filePath;
-
+	//SDL
 	SDL_Surface* surface = nullptr;
 	SDL_Texture* texture = nullptr;
 	SDL_Renderer* renderer = nullptr;
 
+	//Attributes
+	SpriteName name;
+	std::string filePath;
+
 public:
-
-private:
-
-public:
-
-	Sprite(SDL_Renderer* renderer, SpriteName spriteName);
+	Sprite(SDL_Renderer* renderer, SpriteName spriteName, std::string filePath);
 	~Sprite();
 
 	SDL_Texture* GetTexture() { return texture; };

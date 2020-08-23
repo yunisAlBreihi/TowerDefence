@@ -4,14 +4,14 @@ enum class SpriteName
 {
 	Grass = 0,
 	Water = 1,
-	Tower01 = 2,
-	Tower02 = 3,
-	StartPosition = 8,
-	EndPosition = 9,
-	EnemySmall = 20,
-	EnemyBig = 21,
-	TowerSmall = 30,
-	TowerBig = 31,
+	RegularTowerGround = 2,
+	FrostTowerGround = 3,
+	EnemyBase = 8,
+	PlayerBase = 9,
+	SmallEnemy = 20,
+	BigEnemy = 21,
+	RegularTower = 30,
+	FrostTower = 31,
 	Congratulations = 80,
 	GameOver = 90,
 };
@@ -24,8 +24,8 @@ enum class BulletType
 
 enum class EnemyType
 {
-	SmallEnemy,
-	BigEnemy,
+	EnemySmall,
+	EnemyBig,
 };
 
 enum class ManagerName

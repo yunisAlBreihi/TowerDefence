@@ -1,10 +1,11 @@
 #include "RegularBullet.h"
-#include "Explosion.h"
+#include "RegularExplosion.h"
 #include "Globals.h"
 
-RegularBullet::RegularBullet(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale)
+#pragma region Construction
+RegularBullet::RegularBullet( BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale)
 {
-	this->managers = managers;
+	managers = Managers::GetInstance();
 	this->bulletType = bulletType;
 	this->sprite = sprite;
 	this->position = startPosition;
@@ -19,18 +20,21 @@ RegularBullet::RegularBullet(Managers* managers, BulletType bulletType, Sprite* 
 RegularBullet::~RegularBullet()
 {
 }
+#pragma endregion Construction
 
+#pragma region Action
 void RegularBullet::OnReachedDestination()
 {
-	EffectsManager* effectsManager = managers->GetManager<EffectsManager>(ManagerName::EffectsManager);
-	Explosion* explosion = (Explosion*)effectsManager->GetInactiveEffectOfType(bulletType);
+	EffectManager* effectsManager = managers->GetManager<EffectManager>(ManagerName::EffectsManager);
+	RegularExplosion* explosion = (RegularExplosion*)effectsManager->GetInactiveEffectOfType(bulletType);
 	if (explosion == nullptr)
 	{
-		explosion = new Explosion(managers, bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (Globals::DEFAULT_SPRITE_SIZE * 2.0f));
+		explosion = new RegularExplosion(bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (Globals::DEFAULT_SPRITE_SIZE * 2.0f));
 		effectsManager->AddEffect(explosion);
 	}
 	else
 	{
-		explosion->Reset(managers, bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (Globals::DEFAULT_SPRITE_SIZE * 2.0f));
+		explosion->Reset(bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (Globals::DEFAULT_SPRITE_SIZE * 2.0f));
 	}
 }
+#pragma endregion Action

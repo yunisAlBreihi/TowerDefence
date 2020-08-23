@@ -1,7 +1,8 @@
 #include "TowerManager.h"
-#include "TowerSmall.h"
-#include "TowerBig.h"
+#include "RegularTower.h"
+#include "FrostTower.h"
 
+#pragma region Construction
 TowerManager::TowerManager()
 {
 	managers = Managers::GetInstance();
@@ -10,13 +11,15 @@ TowerManager::TowerManager()
 	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
 	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
 	bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
-	effectsManager = managers->GetManager<EffectsManager>(ManagerName::EffectsManager);
+	effectsManager = managers->GetManager<EffectManager>(ManagerName::EffectsManager);
 }
 
 TowerManager::~TowerManager()
 {
 }
+#pragma endregion Construction
 
+#pragma region GameLoop
 void TowerManager::Start()
 {
 	for (const auto& t : towers)
@@ -48,15 +51,17 @@ void TowerManager::Destroy()
 		t->Destroy();
 	}
 }
+#pragma endregion GameLoop
 
+#pragma region ManageTowers
 void TowerManager::CreateTower(Sprite* sprite, Vector2D position, Vector2D scale)
 {
-	if (sprite->GetSpriteName() == SpriteName::TowerSmall)
+	if (sprite->GetSpriteName() == SpriteName::RegularTower)
 	{
-		TowerSmall* towerSmall = (TowerSmall*)GetInactiveTowerOfType(BulletType::Regular);
+		RegularTower* towerSmall = (RegularTower*)GetInactiveTowerOfType(BulletType::Regular);
 		if (towerSmall == nullptr)
 		{
-			towerSmall = new TowerSmall(managers, BulletType::Regular, sprite, position, scale);
+			towerSmall = new RegularTower(managers, BulletType::Regular, sprite, position, scale);
 			towers.push_back(towerSmall);
 		}
 		else
@@ -64,12 +69,12 @@ void TowerManager::CreateTower(Sprite* sprite, Vector2D position, Vector2D scale
 			towerSmall->Reset(managers, BulletType::Regular, sprite, position, scale);
 		}
 	}
-	else if (sprite->GetSpriteName() == SpriteName::TowerBig)
+	else if (sprite->GetSpriteName() == SpriteName::FrostTower)
 	{
-		TowerBig* towerBig = (TowerBig*)GetInactiveTowerOfType(BulletType::Freezing);
+		FrostTower* towerBig = (FrostTower*)GetInactiveTowerOfType(BulletType::Freezing);
 		if (towerBig == nullptr)
 		{
-			towerBig = new TowerBig(managers, BulletType::Freezing, sprite, position, scale);
+			towerBig = new FrostTower(managers, BulletType::Freezing, sprite, position, scale);
 			towers.push_back(towerBig);
 		}
 		else
@@ -82,20 +87,20 @@ void TowerManager::CreateTower(Sprite* sprite, Vector2D position, Vector2D scale
 void TowerManager::CreateTowers()
 {
 	Sprite* sprite = nullptr;
-	for (Tile* tile : tileManager->GetTiles(SpriteName::Tower01))
+	for (Tile* tile : tileManager->GetTilesWithSprite(SpriteName::RegularTowerGround))
 	{
 		if (tile->IsActive() == true)
 		{
-			sprite = spriteManager->GetSprite(SpriteName::TowerSmall);
+			sprite = spriteManager->GetSprite(SpriteName::RegularTower);
 			CreateTower(sprite, tile->GetPosition(), tile->GetScale());
 		}
 	}
 
-	for (Tile* tile : tileManager->GetTiles(SpriteName::Tower02))
+	for (Tile* tile : tileManager->GetTilesWithSprite(SpriteName::FrostTowerGround))
 	{
 		if (tile->IsActive() == true)
 		{
-			sprite = spriteManager->GetSprite(SpriteName::TowerBig);
+			sprite = spriteManager->GetSprite(SpriteName::FrostTower);
 			CreateTower(sprite, tile->GetPosition(), tile->GetScale());
 		}
 	}
@@ -108,7 +113,9 @@ void TowerManager::ClearTowers()
 		t->Disable();
 	}
 }
+#pragma endregion ManageTowers
 
+#pragma region Get
 TowerBase* TowerManager::GetInactiveTowerOfType(BulletType bulletType)
 {
 	for (auto tower : towers)
@@ -124,3 +131,4 @@ TowerBase* TowerManager::GetInactiveTowerOfType(BulletType bulletType)
 	std::cout << "Could not find an tower that is inactive, returning nullptr" << std::endl;
 	return nullptr;
 }
+#pragma endregion Get

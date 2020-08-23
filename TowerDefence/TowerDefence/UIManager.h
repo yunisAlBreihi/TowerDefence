@@ -9,11 +9,13 @@ class UIManager : public IRenderable, public ManagerBase
 {
 private:
 	std::vector<UIBase*> uiObjects;
+
 	bool gameOver = false;
 	bool congratulations = false;
 
-public:
 private:
+	void RenderEndScreen(UIBase* uiBase);
+
 public:
 	UIManager();
 	~UIManager();
@@ -25,6 +27,6 @@ public:
 
 	void AddUIObject(UIBase* uiBase);
 
-	void SetGameOverScreenVisibility(bool visibility);
-	void SetCongratulationsScreenVisibility(bool visibility);
+	void GameOver(bool visibility);
+	void Congratulations(bool visibility);
 };

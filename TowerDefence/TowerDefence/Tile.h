@@ -8,21 +8,20 @@
 class Tile : public IRenderable
 {
 private:
-
 	Managers* managers = nullptr;
+	SDL_Rect dstRect = { 0,0,0,0 };
+
+	//Attributes
 	Sprite* sprite = nullptr;
 	Vector2D position = { 0,0 };
 	Vector2D scale = { 0,0 };
-	SDL_Rect dstRect = { 0,0,0,0 };
 	bool isWalkable = false;
 
 public:
-
-private:
-
-public:
-	Tile() {}
+	Tile();
 	Tile(Managers* managers, Sprite* sprite, Vector2D position, Vector2D scale, bool isWalkable);
+	~Tile();
+
 	void Start() override;
 	void Update(float deltaTime) override;
 	void Render() override;

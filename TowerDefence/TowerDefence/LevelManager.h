@@ -9,18 +9,25 @@ class LevelManager : public IRenderable, public ManagerBase
 private:
 	Managers* managers = nullptr;
 	MapManager* mapManager = nullptr;
-	int currentLevelIndex = 0;
-	int KillsToChangeLevel = 20;
+
+	//Level Attributes
+	int KillsToChangeLevel = 10;
+	int currentLevelIndex = 2;
+
+	//For loading levels
 	bool loadNextLevel = false;
 	bool loadGameOver = false;
 	bool loadCongratulations = false;
-public:
-	//TODO: only for debug, remove
-	int levelChange = 0;
+
 private:
 	void OnLoadNextLevel();
 	void OnLoadCongratulationsSceen();
 	void OnLoadGameOverScreen();
+
+	void ClearScreen();
+	void CreateScreen();
+	void LoadCurrentLevel();
+	void LoadCongratulationsSceen();
 
 public:
 	LevelManager();
@@ -31,12 +38,9 @@ public:
 	void Render() override;
 	void Destroy() override;
 
-	void ClearScreen();
-	void CreateScreen();
-	void LoadCurrentLevel();
 	void LoadNextLevel();
-	void LoadCongratulationsSceen();
 	void LoadGameOverScreen();
+
 	int GetCurrentLevelIndex() { return currentLevelIndex; }
 	int GetKillsToNextLevel() { return KillsToChangeLevel; }
 	bool GetLoadNextLevel() { return loadNextLevel; }

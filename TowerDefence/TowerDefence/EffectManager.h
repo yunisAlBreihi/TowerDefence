@@ -4,28 +4,27 @@
 #include "IRenderable.h"
 #include "ManagerBase.h"
 #include "Managers.h"
-#include "EffectBase.h"
+#include "ExplosionBase.h"
 
-class EffectsManager : public IRenderable , public ManagerBase
+class EffectManager : public IRenderable , public ManagerBase
 {
 private:
 	Managers* managers = nullptr;
-	std::vector<EffectBase*> effects;
-
-public:
+	std::vector<ExplosionBase*> effects;
 
 private:
 
 public:
-	EffectsManager();
+	EffectManager();
+	~EffectManager();
 
 	void Start() override;
 	void Update(float deltaTime) override;
 	void Render() override;
 	void Destroy() override;
 
-	EffectBase* GetInactiveEffectOfType(BulletType bulletType);
-
-	void AddEffect(EffectBase* effect);
+	void AddEffect(ExplosionBase* effect);
 	void ClearEffects();
+
+	ExplosionBase* GetInactiveEffectOfType(BulletType bulletType);
 };

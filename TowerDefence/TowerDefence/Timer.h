@@ -13,14 +13,12 @@ private:
 	uint64_t oldTime = 0;
 
 public:
-private:
-public:
 	Timer();
 	~Timer();
 
 	void Tick();
 
-	float DeltaTime();
-	int FPS();
+	float GetDeltaTime() { return deltaTime; }
+	int GetFPS() { return fps; }
 	void LogDeltaTime();
 };

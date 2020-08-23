@@ -2,6 +2,7 @@
 #include "Enemy.h"
 #include "Globals.h"
 
+#pragma region Construction
 EnemyManager::EnemyManager(Dijkstra* dijkstra) : dijkstra(dijkstra)
 {
 	managers = Managers::GetInstance();
@@ -9,8 +10,15 @@ EnemyManager::EnemyManager(Dijkstra* dijkstra) : dijkstra(dijkstra)
 	mapManager = managers->GetManager<MapManager>(ManagerName::MapManager);
 	levelManager = managers->GetManager<LevelManager>(ManagerName::LevelManager);
 	tileManager = managers->GetManager<TileManager>(ManagerName::TileManager);
+	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
 }
 
+EnemyManager::~EnemyManager()
+{
+}
+#pragma endregion Construction
+
+#pragma region GameLoop
 void EnemyManager::Start()
 {
 	CreateEnemies();
@@ -46,18 +54,11 @@ void EnemyManager::Destroy()
 		enemy->Destroy();
 	}
 }
+#pragma endregion GameLoop
 
-void EnemyManager::CreateEnemies()
-{
-	path = dijkstra->FindShortestPath(tileManager, tileManager->GetTile(SpriteName::StartPosition), tileManager->GetTile(SpriteName::EndPosition));
 
-	LevelManager* levelManager = managers->GetManager<LevelManager>(ManagerName::LevelManager);
 
-	mapEnemyNumbers = mapManager->GetMap(levelManager->GetCurrentLevelIndex())->GetEnemyNumbers();
-
-	SetEnemyCountFromMap();
-}
-
+#pragma region Disable
 void EnemyManager::ClearEnemies()
 {
 	for (Enemy* enemy : enemies)
@@ -65,92 +66,6 @@ void EnemyManager::ClearEnemies()
 		if (enemy->IsActive() == true)
 		{
 			enemy->Disable();
-		}
-	}
-}
-
-void EnemyManager::DebugPositions()
-{
-	for (Enemy* enemy : enemies)
-	{
-		std::cout << "X position: " << enemy->GetPosition().x << " Y position: " << enemy->GetPosition().y << std::endl;
-	}
-}
-
-Enemy* EnemyManager::GetInactiveEnemy()
-{
-	for (Enemy* enemy : enemies)
-	{
-		if (enemy->IsActive() == false)
-		{
-			return enemy;
-		}
-	}
-	std::cout << "Could not find an enemy that is inactive, returning nullptr" << std::endl;
-	return nullptr;
-
-}
-
-void EnemyManager::AddEnemyType(Sprite* enemySprite)
-{
-	sprites.push_back(enemySprite);
-}
-
-void EnemyManager::IncreaseEnemyDeathCount(int increaseBy)
-{
-	enemyDeathCount += increaseBy;
-	//TODO: Change to enemyCount instead of a hard number
-	if (enemyDeathCount == levelManager->GetKillsToNextLevel())
-	{
-		levelManager->LoadNextLevel();
-	}
-}
-
-void EnemyManager::CreateEnemy(int waveIndex, int enemyIndex)
-{
-	Enemy* enemy = GetInactiveEnemy();
-
-	//If didn't find an inactive enemy, create a new one
-	if (enemy == nullptr)
-	{
-		if (enemyIndex == (int)EnemyType::SmallEnemy)
-		{
-			enemy = new Enemy(managers, path, "SmallEnemy" + std::to_string(waveIndex) + "-" + std::to_string(enemyIndex), sprites[enemyIndex],
-				tileManager->GetTile(SpriteName::StartPosition)->GetPosition(), Vector2D(Globals::DEFAULT_SPRITE_SIZE, Globals::DEFAULT_SPRITE_SIZE), 3.0f);
-
-		}
-		else if (enemyIndex == (int)EnemyType::BigEnemy)
-		{
-			enemy = new Enemy(managers, path, "BigEnemy" + std::to_string(waveIndex) + "-" + std::to_string(enemyIndex), sprites[enemyIndex],
-				tileManager->GetTile(SpriteName::StartPosition)->GetPosition(), Vector2D(Globals::DEFAULT_SPRITE_SIZE, Globals::DEFAULT_SPRITE_SIZE), 10.0f);
-		}
-		enemies.push_back(enemy);
-	}
-	else
-	{
-		if (enemyIndex == (int)EnemyType::SmallEnemy)
-		{
-			enemy->Reset(managers, path, "SmallEnemy" + std::to_string(waveIndex) + "-" + std::to_string(enemyIndex), sprites[enemyIndex],
-				tileManager->GetTile(SpriteName::StartPosition)->GetPosition(), Vector2D(Globals::DEFAULT_SPRITE_SIZE, Globals::DEFAULT_SPRITE_SIZE), 3.0f);
-		}
-		else if (enemyIndex == (int)EnemyType::BigEnemy)
-		{
-			enemy->Reset(managers, path, "BigEnemy" + std::to_string(waveIndex) + "-" + std::to_string(enemyIndex), sprites[enemyIndex],
-				tileManager->GetTile(SpriteName::StartPosition)->GetPosition(), Vector2D(Globals::DEFAULT_SPRITE_SIZE, Globals::DEFAULT_SPRITE_SIZE), 10.0f);
-		}
-
-	}
-	enemy->Start();
-}
-
-void EnemyManager::SetEnemyCountFromMap()
-{
-	ResetEnemyCount();
-	for (std::vector<int> enemyType : mapEnemyNumbers)
-	{
-		for (int enemyNumbers : enemyType)
-		{
-			enemyCount += enemyNumbers;
 		}
 	}
 }
@@ -165,6 +80,69 @@ void EnemyManager::ResetEnemyCount()
 	enemyIndex = 0;
 	spawnIndex = 0;
 	spawnTimer = 0;
+}
+#pragma endregion Disable
+
+
+
+void EnemyManager::IncreaseEnemyDeathCount(int increaseBy)
+{
+	enemyDeathCount += increaseBy;
+	//TODO: Change to enemyCount instead of a hard number
+	if (enemyDeathCount == levelManager->GetKillsToNextLevel())
+	{
+		levelManager->LoadNextLevel();
+	}
+}
+
+#pragma region Create
+void EnemyManager::CreateEnemies()
+{
+	path = dijkstra->FindShortestPath(tileManager->GetTileWithSprite(SpriteName::EnemyBase), tileManager->GetTileWithSprite(SpriteName::PlayerBase));
+
+	LevelManager* levelManager = managers->GetManager<LevelManager>(ManagerName::LevelManager);
+
+	mapEnemyNumbers = mapManager->GetMapAtIndex(levelManager->GetCurrentLevelIndex())->GetEnemyNumbers();
+
+	SetEnemyCountFromMap();
+}
+
+void EnemyManager::CreateEnemy(int waveIndex, int enemyIndex)
+{
+	Enemy* enemy = GetInactiveEnemy();
+
+	std::string nameEnding = std::to_string(waveIndex) + "-" + std::to_string(enemyIndex);
+	Vector2D tempPosition = tileManager->GetTileWithSprite(SpriteName::EnemyBase)->GetPosition();
+	Vector2D tempScale = Vector2D(Globals::DEFAULT_SPRITE_SIZE, Globals::DEFAULT_SPRITE_SIZE);
+
+	if (enemyIndex == (int)EnemyType::EnemySmall)
+	{
+		//If there are no inactive enemies, create a new one
+		if (enemy == nullptr)
+		{
+			enemy = new Enemy(managers, path, ES_name + nameEnding, spriteManager->GetSprite(ES_spriteName), tempPosition, tempScale, ES_health);
+			enemies.push_back(enemy);
+		}
+		else
+		{
+			enemy->Reset(managers, path, ES_name + nameEnding, spriteManager->GetSprite(ES_spriteName), tempPosition, tempScale, ES_health);
+		}
+
+	}
+	else if (enemyIndex == (int)EnemyType::EnemyBig)
+	{
+		//If there are no inactive enemies, create a new one
+		if (enemy == nullptr)
+		{
+			enemy = new Enemy(managers, path, EB_name + nameEnding, spriteManager->GetSprite(SpriteName::BigEnemy), tempPosition, tempScale, EB_health);
+			enemies.push_back(enemy);
+		}
+		else
+		{
+			enemy->Reset(managers, path, EB_name + nameEnding, spriteManager->GetSprite(SpriteName::BigEnemy), tempPosition, tempScale, EB_health);
+		}
+	}
+	enemy->Start();
 }
 
 void EnemyManager::SpawnEnemyWaves(float deltaTime)
@@ -210,3 +188,41 @@ void EnemyManager::SpawnEnemyWaves(float deltaTime)
 		}
 	}
 }
+#pragma endregion Create
+
+#pragma region GetSet
+void EnemyManager::SetEnemyCountFromMap()
+{
+	ResetEnemyCount();
+	for (std::vector<int> enemyType : mapEnemyNumbers)
+	{
+		for (int enemyNumbers : enemyType)
+		{
+			enemyCount += enemyNumbers;
+		}
+	}
+}
+
+Enemy* EnemyManager::GetInactiveEnemy()
+{
+	for (Enemy* enemy : enemies)
+	{
+		if (enemy->IsActive() == false)
+		{
+			return enemy;
+		}
+	}
+	std::cout << "Could not find an enemy that is inactive, returning nullptr" << std::endl;
+	return nullptr;
+}
+#pragma endregion GetSet
+
+#pragma region Debug
+void EnemyManager::DebugPositions()
+{
+	for (Enemy* enemy : enemies)
+	{
+		std::cout << "X position: " << enemy->GetPosition().x << " Y position: " << enemy->GetPosition().y << std::endl;
+	}
+}
+#pragma endregion Debug

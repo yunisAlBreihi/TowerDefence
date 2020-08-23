@@ -2,6 +2,7 @@
 #include "Globals.h"
 #include "BulletBase.h"
 
+#pragma region Construction
 TowerBase::TowerBase()
 {
 }
@@ -12,7 +13,7 @@ TowerBase::TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, 
 	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
 	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
 	bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
-	effectsManager = managers->GetManager<EffectsManager>(ManagerName::EffectsManager);
+	effectsManager = managers->GetManager<EffectManager>(ManagerName::EffectsManager);
 
 	dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
 	collider = new Collider(this->position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2), 90.0f);
@@ -24,12 +25,11 @@ TowerBase::TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, 
 TowerBase::~TowerBase()
 {
 }
+#pragma endregion Construction
 
+#pragma region GameLoop
 void TowerBase::Start()
 {
-	if (isActive == true)
-	{
-	}
 }
 
 void TowerBase::Update(float deltaTime)
@@ -56,14 +56,16 @@ void TowerBase::Render()
 void TowerBase::Destroy()
 {
 }
+#pragma endregion GameLoop
 
+#pragma region Disable
 void TowerBase::Reset(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale)
 {
 	this->managers = managers;
 	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
 	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
 	bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
-	effectsManager = managers->GetManager<EffectsManager>(ManagerName::EffectsManager);
+	effectsManager = managers->GetManager<EffectManager>(ManagerName::EffectsManager);
 	this->bulletType = bulletType;
 	this->sprite = sprite;
 	this->position = position;
@@ -77,9 +79,12 @@ void TowerBase::Disable()
 {
 	isActive = false;
 }
+#pragma endregion Disable
 
+#pragma region Shoot
 void TowerBase::SetEnemyTarget()
 {
+	//Find new target
 	if (currentEnemyTarget == nullptr)
 	{
 		for (Enemy* enemy : enemyManager->GetEnemies())
@@ -95,6 +100,7 @@ void TowerBase::SetEnemyTarget()
 			}
 		}
 	}
+	//If target already exist, remove the reference
 	else if (currentEnemyTarget->IsActive() == false ||
 		collider->isPointInCircle(currentEnemyTarget->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2)) == false)
 	{
@@ -116,15 +122,19 @@ void TowerBase::Shoot(float deltaTime)
 		}
 	}
 }
+#pragma endregion Shoot
 
+#pragma region Set
 void TowerBase::SetPosition(Vector2D vector2D)
 {
 	position = vector2D;
 	dstRect.x = position.x;
 	dstRect.y = position.y;
 }
+#pragma endregion Set
 
-void TowerBase::DrawDebugCircle()
+#pragma region Debug
+void TowerBase::DrawDebugRange()
 {
 	if (collisionRadius > 0)
 	{
@@ -137,3 +147,4 @@ void TowerBase::DrawDebugCircle()
 		}
 	}
 }
+#pragma endregion Debug

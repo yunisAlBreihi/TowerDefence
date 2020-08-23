@@ -1,7 +1,19 @@
 #include "MapReader.h"
+#include <vector>
 #include <iostream>
 #include <fstream>
 
+#pragma region Construction
+MapReader::MapReader()
+{
+}
+
+MapReader::~MapReader()
+{
+}
+#pragma endregion Construction
+
+#pragma region ReadMaps
 Map* MapReader::ReadMap(std::string filePath)
 {
 	std::ifstream fileStream;
@@ -35,3 +47,4 @@ Map* MapReader::ReadMap(std::string filePath)
 	}
 	return nullptr;
 }
+#pragma endregion ReadMaps

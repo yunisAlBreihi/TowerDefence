@@ -9,17 +9,17 @@
 #include "Enemy.h"
 #include "Enums.h"
 
-class EffectBase : public IRenderable
+class ExplosionBase : public IRenderable
 {
-private:
 protected:
-
 	Managers* managers = nullptr;
 	EnemyManager* enemyManager = nullptr;
 	std::vector<Enemy*> enemiesHit;
-	BulletType bulletType = BulletType::Regular;
-	Sprite* sprite = nullptr;
 	Collider* collider = nullptr;
+
+	//Attributes
+	Sprite* sprite = nullptr;
+	BulletType bulletType = BulletType::Regular;
 	Vector2D position = { 0,0 };
 	Vector2D startPosition = { 0,0 };
 	Vector2D endPosition = { 0,0 };
@@ -29,27 +29,29 @@ protected:
 	Vector2D colliderPosition = { 0.0f, 0.0f };
 	SDL_Rect dstRect = { 0,0,0,0 };
 	float damage = 0.75f;
-	float delta = 0.0f;
+
+	//Variables for expansion
+	float expansionDelta = 0.0f;
 	float expandSpeed = 6.0f;
 	bool reachedMaxSize = false;
-public:
 
 private:
+	void Disable();
+
 	void Expand(float deltaTime);
-protected:
+	void LerpExplosionScale(float deltaTime);
 
 public:
-	EffectBase();
-	EffectBase(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale);
-	virtual ~EffectBase() = 0;
+	ExplosionBase();
+	ExplosionBase(BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale);
+	virtual ~ExplosionBase() = 0;
 
 	void Start() override;
 	void Update(float deltaTime) override;
 	void Render() override;
 	void Destroy() override;
 
-	virtual void OnHit(Enemy* enemy) = 0;
-	void LerpExplosionScale(float deltaTime);
+	void Reset(BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale);
 
 	void SetPosition(Vector2D position);
 	void SetScale(Vector2D scale);
@@ -58,7 +60,5 @@ public:
 	Vector2D GetScale() { return scale; }
 	BulletType GetType() { return bulletType; }
 
-	void Reset(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale);
-	void Clear();
-
+	virtual void OnHit(Enemy* enemy) = 0;
 };

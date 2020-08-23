@@ -3,12 +3,14 @@
 
 class ManagerBase
 {
-private:
 protected:
-	ManagerName name;
-public:
-private:
+	ManagerName name = ManagerName::NONE;
+
 protected:
+
 public:
+	ManagerBase();
+	virtual ~ManagerBase() = 0;
+
 	ManagerName GetName() { return name; }
 };

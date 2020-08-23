@@ -1,13 +1,10 @@
 #pragma once
-#include "EffectBase.h"
-class FrostExplosion : public EffectBase
+#include "ExplosionBase.h"
+class FrostExplosion : public ExplosionBase
 {
-private:
 public:
-private:
-public:
-	FrostExplosion(Managers* managers,BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale);
+	FrostExplosion(BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale);
+	~FrostExplosion();
 
 	void OnHit(Enemy* enemy) override;
 };
-

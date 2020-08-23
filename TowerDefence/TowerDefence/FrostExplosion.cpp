@@ -1,9 +1,10 @@
 #include "FrostExplosion.h"
 #include "Globals.h"
 
-FrostExplosion::FrostExplosion(Managers* managers,BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale)
+#pragma region Construction
+FrostExplosion::FrostExplosion(BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale)
 {
-	this->managers = managers;
+	managers = Managers::GetInstance();
 	this->bulletType = bulletType;
 	this->sprite = sprite;
 	this->position = position;
@@ -20,8 +21,15 @@ FrostExplosion::FrostExplosion(Managers* managers,BulletType bulletType, Sprite*
 	this->isActive = true;
 }
 
+FrostExplosion::~FrostExplosion()
+{
+}
+#pragma endregion Construction;
+
+#pragma region Action
 void FrostExplosion::OnHit(Enemy* enemy)
 {
 	enemy->TakeDamage(Globals::dRand(0.1, 0.3));
 	enemy->Freeze(Globals::dRand(1.5f, 3.0f), Globals::dRand(0.5, 0.95));
 }
+#pragma endregion Action

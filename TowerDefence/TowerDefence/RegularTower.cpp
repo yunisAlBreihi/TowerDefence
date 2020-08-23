@@ -1,14 +1,15 @@
-#include "TowerBig.h"
+#include "RegularTower.h"
+#include "RegularBullet.h"
 #include "Globals.h"
-#include "FrostBullet.h"
 
-TowerBig::TowerBig(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale)
+#pragma region Construction
+RegularTower::RegularTower(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale)
 {
 	this->managers = managers;
 	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
 	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
 	bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
-	effectsManager = managers->GetManager<EffectsManager>(ManagerName::EffectsManager);
+	effectsManager = managers->GetManager<EffectManager>(ManagerName::EffectsManager);
 	this->bulletType = bulletType;
 	this->sprite = sprite;
 	this->position = position;
@@ -18,23 +19,30 @@ TowerBig::TowerBig(Managers* managers, BulletType bulletType, Sprite* sprite, Ve
 	this->isActive = true;
 }
 
-void TowerBig::OnShoot()
+RegularTower::~RegularTower()
+{
+}
+#pragma endregion Construction
+
+#pragma region Shoot
+void RegularTower::OnShoot()
 {
 	BulletManager* bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
-	FrostBullet* frostBullet = (FrostBullet*)bulletManager->GetInactiveBulletOfType(bulletType);
-	if (frostBullet == nullptr)
+	RegularBullet* regularBullet = (RegularBullet*)bulletManager->GetInactiveBulletOfType(bulletType);
+	if (regularBullet == nullptr)
 	{
-		frostBullet = new FrostBullet(managers, bulletType, spriteManager->GetSprite(SpriteName::StartPosition),
+		regularBullet = new RegularBullet(bulletType, spriteManager->GetSprite(SpriteName::EnemyBase),
 			position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			currentEnemyTarget->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			Vector2D(Globals::DEFAULT_SPRITE_SIZE / 4, Globals::DEFAULT_SPRITE_SIZE / 4));
-		bulletManager->AddBullet(frostBullet);
+		bulletManager->AddBullet(regularBullet);
 	}
 	else
 	{
-		frostBullet->Reset(managers, bulletType, spriteManager->GetSprite(SpriteName::StartPosition),
+		regularBullet->Reset(bulletType, spriteManager->GetSprite(SpriteName::EnemyBase),
 			position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			currentEnemyTarget->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			Vector2D(Globals::DEFAULT_SPRITE_SIZE / 4, Globals::DEFAULT_SPRITE_SIZE / 4));
 	}
 }
+#pragma endregion Shoot

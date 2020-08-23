@@ -2,16 +2,17 @@
 #include <SDL.h>
 #include <iostream>
 
+#pragma region Construction
 Timer::Timer()
 {
-
 }
 
 Timer::~Timer()
 {
-
 }
+#pragma endregion Construction
 
+#pragma region ManageTime
 void Timer::Tick()
 {
 	newTime = SDL_GetPerformanceCounter();
@@ -26,18 +27,11 @@ void Timer::Tick()
 	}
 	oldTime = newTime;
 }
+#pragma endregion ManageTime
 
-float Timer::DeltaTime()
-{
-	return deltaTime;
-}
-
-int Timer::FPS()
-{
-	return fps;
-}
-
+#pragma region Debug
 void Timer::LogDeltaTime()
 {
 	SDL_Log("%f", deltaTime);
 }
+#pragma endregion Debug

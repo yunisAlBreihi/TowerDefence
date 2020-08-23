@@ -4,6 +4,7 @@
 #include "UIManager.h"
 #include "GameManager.h"
 
+#pragma region Construction
 LevelManager::LevelManager()
 {
 	managers = Managers::GetInstance();
@@ -13,9 +14,10 @@ LevelManager::LevelManager()
 
 LevelManager::~LevelManager()
 {
-
 }
+#pragma endregion Construction
 
+#pragma region GameLoop
 void LevelManager::Start()
 {
 	LoadCurrentLevel();
@@ -44,7 +46,9 @@ void LevelManager::Render()
 void LevelManager::Destroy()
 {
 }
+#pragma endregion GameLoop
 
+#pragma region ChangeScreenObjects
 void LevelManager::ClearScreen()
 {
 	TileManager* tileManager = managers->GetManager<TileManager>(ManagerName::TileManager);
@@ -59,7 +63,7 @@ void LevelManager::ClearScreen()
 	BulletManager* bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
 	bulletManager->ClearBullets();
 
-	EffectsManager* effectsManager = managers->GetManager<EffectsManager>(ManagerName::EffectsManager);
+	EffectManager* effectsManager = managers->GetManager<EffectManager>(ManagerName::EffectsManager);
 	effectsManager->ClearEffects();
 }
 
@@ -74,7 +78,9 @@ void LevelManager::CreateScreen()
 	EnemyManager* enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
 	enemyManager->CreateEnemies();
 }
+#pragma endregion ChangeScreenObjects
 
+#pragma region LevelLoading
 void LevelManager::LoadCurrentLevel()
 {
 	ClearScreen();
@@ -99,7 +105,6 @@ void LevelManager::OnLoadNextLevel()
 		LoadCurrentLevel();
 		loadNextLevel = false;
 	}
-	levelChange += 1;
 }
 
 void LevelManager::LoadCongratulationsSceen()
@@ -110,7 +115,7 @@ void LevelManager::LoadCongratulationsSceen()
 void LevelManager::OnLoadCongratulationsSceen()
 {
 	ClearScreen();
-	managers->GetManager<UIManager>(ManagerName::UIManager)->SetCongratulationsScreenVisibility(true);
+	managers->GetManager<UIManager>(ManagerName::UIManager)->Congratulations(true);
 	managers->GetManager<GameManager>(ManagerName::GameManager)->SetGameHasEnded(true);
 	loadCongratulations = false;
 }
@@ -123,7 +128,8 @@ void LevelManager::LoadGameOverScreen()
 void LevelManager::OnLoadGameOverScreen()
 {
 	ClearScreen();
-	managers->GetManager<UIManager>(ManagerName::UIManager)->SetGameOverScreenVisibility(true);
+	managers->GetManager<UIManager>(ManagerName::UIManager)->GameOver(true);
 	managers->GetManager<GameManager>(ManagerName::GameManager)->SetGameHasEnded(true);
 	loadGameOver = false;
 }
+#pragma endregion LevelLoading

@@ -1,13 +1,15 @@
-#include "EffectBase.h"
+#include "ExplosionBase.h"
 #include <iostream>
-//#include "GameManager.h"
 
-EffectBase::EffectBase()
+#pragma region Construction
+ExplosionBase::ExplosionBase()
 {
 }
 
-EffectBase::EffectBase(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale) : managers(managers), bulletType(bulletType), sprite(sprite), position(position), startScale(startScale), endScale(endScale)
+ExplosionBase::ExplosionBase(BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale) :
+	bulletType(bulletType), sprite(sprite), position(position), startScale(startScale), endScale(endScale)
 {
+	managers = Managers::GetInstance();
 	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
 	startPosition = position;
 	endPosition = startPosition - (endScale * 0.5f);
@@ -19,18 +21,17 @@ EffectBase::EffectBase(Managers* managers, BulletType bulletType, Sprite* sprite
 	isActive = true;
 }
 
-EffectBase::~EffectBase()
+ExplosionBase::~ExplosionBase()
+{
+}
+#pragma endregion Construction
+
+#pragma region GameLoop
+void ExplosionBase::Start()
 {
 }
 
-void EffectBase::Start()
-{
-	if (isActive == true)
-	{
-	}
-}
-
-void EffectBase::Update(float deltaTime)
+void ExplosionBase::Update(float deltaTime)
 {
 	if (isActive == true)
 	{
@@ -38,7 +39,7 @@ void EffectBase::Update(float deltaTime)
 	}
 }
 
-void EffectBase::Render()
+void ExplosionBase::Render()
 {
 	if (isActive == true)
 	{
@@ -49,13 +50,16 @@ void EffectBase::Render()
 	}
 }
 
-void EffectBase::Destroy()
+void ExplosionBase::Destroy()
 {
 }
+#pragma endregion GameLoop
 
-void EffectBase::Reset(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale)
+#pragma region Disable
+void ExplosionBase::Reset(BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale)
 {
-	this->managers = managers;
+	Disable();
+	managers = Managers::GetInstance();
 	this->bulletType = bulletType;
 	this->sprite = sprite;
 	this->position = position;
@@ -72,14 +76,16 @@ void EffectBase::Reset(Managers* managers, BulletType bulletType, Sprite* sprite
 	isActive = true;
 }
 
-void EffectBase::Clear()
+void ExplosionBase::Disable()
 {
 	isActive = false;
-	delta = 0;
+	expansionDelta = 0;
 	enemiesHit.clear();
 }
+#pragma endregion Disable
 
-void EffectBase::Expand(float deltaTime)
+#pragma region ExpandExplosion
+void ExplosionBase::Expand(float deltaTime)
 {
 	for (Enemy* enemy : enemyManager->GetEnemies())
 	{
@@ -111,35 +117,40 @@ void EffectBase::Expand(float deltaTime)
 	LerpExplosionScale(deltaTime);
 }
 
-void EffectBase::LerpExplosionScale(float deltaTime)
+void ExplosionBase::LerpExplosionScale(float deltaTime)
 {
-	SetScale(Vector2D::Lerp(startScale, endScale, delta));
-	SetPosition(Vector2D::Lerp(startPosition, endPosition, delta));
+	SetScale(Vector2D::Lerp(startScale, endScale, expansionDelta));
+	SetPosition(Vector2D::Lerp(startPosition, endPosition, expansionDelta));
 
 	//Scales the collider with the expansion of the effect object
 	collider->SetPosition(position);
 	collider->SetRadius(scale.x * 0.5f);
 
-	if (delta <= 1.0f)
+	if (expansionDelta <= 1.0f)
 	{
-		delta += deltaTime * expandSpeed;
+		expansionDelta += deltaTime * expandSpeed;
 	}
 	else
 	{
-		Clear();
+		Disable();
 	}
 }
+#pragma endregion ExpandExplosion
 
-void EffectBase::SetPosition(Vector2D position)
+#pragma region Set
+void ExplosionBase::SetPosition(Vector2D position)
 {
-	this->position = position;
+	//Round the values, since SDL_Rect is in int, otherwise get Stutter
+	this->position = Vector2D(round(position.x),round(position.y));
 	dstRect.x = this->position.x;
 	dstRect.y = this->position.y;
 }
 
-void EffectBase::SetScale(Vector2D scale)
+void ExplosionBase::SetScale(Vector2D scale)
 {
-	this->scale = scale;
+	//Round the values, since SDL_Rect is in int, otherwise get Stutter
+	this->scale = Vector2D(round(scale.x), round(scale.y));
 	dstRect.w = this->scale.x;
 	dstRect.h = this->scale.y;
 }
+#pragma endregion Set

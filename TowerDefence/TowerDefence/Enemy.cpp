@@ -4,7 +4,9 @@
 #include "GameManager.h"
 #include "Globals.h"
 
-Enemy::Enemy(Managers* managers, std::vector<Tile*> path,std::string name, Sprite* sprite, Vector2D position, Vector2D scale,float maxHealth) : managers(managers),name(name), path(path), sprite(sprite), position(position), scale(scale), maxHealth(maxHealth)
+#pragma region Construction
+Enemy::Enemy(Managers* managers, std::vector<Tile*> path,std::string name, Sprite* sprite, Vector2D position, Vector2D scale,float maxHealth) :
+	managers(managers),name(name), path(path), sprite(sprite), position(position), scale(scale), maxHealth(maxHealth)
 {
 	dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
 	isActive = true;
@@ -15,13 +17,14 @@ Enemy::Enemy(Managers* managers, std::vector<Tile*> path,std::string name, Sprit
 Enemy::~Enemy()
 {
 }
+#pragma endregion Construction
 
+#pragma region GameLoop
 void Enemy::Start()
 {
 	if (isActive == true)
 	{
 		currentStartPosition = GetPosition();
-		//originalSpeed = speed;
 	}
 }
 
@@ -49,9 +52,12 @@ void Enemy::Render()
 void Enemy::Destroy()
 {
 }
+#pragma endregion GameLoop
 
+#pragma region Disable
 void Enemy::Reset(Managers* managers, std::vector<Tile*> path, std::string name, Sprite* sprite, Vector2D position, Vector2D scale, float maxHealth) 
 {
+	Disable();
 	this->managers = managers;
 	this->path = path;
 	this->name = name;
@@ -68,7 +74,7 @@ void Enemy::Reset(Managers* managers, std::vector<Tile*> path, std::string name,
 void Enemy::Disable()
 {
 	pathIndex = 0;
-	delta = 0.0f;
+	movementDelta = 0.0f;
 	currentStartPosition = Vector2D::Zero();
 	hasReachedEnd = false;
 	isFrozen = false;
@@ -76,16 +82,18 @@ void Enemy::Disable()
 	speed = originalSpeed;
 	isActive = false;
 }
+#pragma endregion Disable
 
+#pragma region Move
 void Enemy::MoveToEnd(float deltaTime)
 {
 	if (hasReachedEnd == false)
 	{
-		delta += speed * deltaTime;
+		movementDelta += speed * deltaTime;
 
-		if (delta >= 1.0f)
+		if (movementDelta >= 1.0f)
 		{
-			delta = 0;
+			movementDelta = 0;
 			currentStartPosition = GetPosition();
 			if (pathIndex < path.size() - 1)
 			{
@@ -100,36 +108,13 @@ void Enemy::MoveToEnd(float deltaTime)
 		}
 		else
 		{
-			SetPosition(Vector2D::Lerp(currentStartPosition, path[pathIndex]->GetPosition(), delta));
+			SetPosition(Vector2D::Lerp(currentStartPosition, path[pathIndex]->GetPosition(), movementDelta));
 		}
 	}
 }
+#pragma endregion Move
 
-void Enemy::SetPosition(Vector2D vector2D)
-{
-	position = Vector2D(round(vector2D.x), round(vector2D.y));
-	dstRect.x = position.x;
-	dstRect.y = position.y;
-}
-
-void Enemy::SetSpeed(float speed)
-{
-	this->speed = speed;
-}
-
-void Enemy::TakeDamage(float damage)
-{
-	health -= damage;
-	if (health <= 0 && hasCountedDeath == false)
-	{
-		managers->GetManager<EnemyManager>(ManagerName::EnemyManager)->IncreaseEnemyDeathCount(1);
-		hasCountedDeath = true;
-		Disable();
-	}
-
-	//std::cout << name << " is hit!" << std::endl;
-}
-
+#pragma region Freeze
 void Enemy::Freeze(float freezeTime, float freezeSpeed)
 {
 	isFrozen = true;
@@ -137,6 +122,7 @@ void Enemy::Freeze(float freezeTime, float freezeSpeed)
 	maxFreezeTime = freezeTime;
 	speed = freezeSpeed;
 }
+
 
 bool Enemy::IsFrozen()
 {
@@ -152,3 +138,32 @@ void Enemy::FreezeTimer(float deltaTime)
 	}
 	freezeTimer += deltaTime;
 }
+#pragma endregion Freeze
+
+#pragma region Set
+void Enemy::SetPosition(Vector2D vector2D)
+{
+	//Round the values, since SDL_Rect values is in int, otherwise get Stutter
+	position = Vector2D(round(vector2D.x), round(vector2D.y));
+	dstRect.x = position.x;
+	dstRect.y = position.y;
+}
+
+void Enemy::SetSpeed(float speed)
+{
+	this->speed = speed;
+}
+#pragma endregion Set
+
+#pragma region Damage
+void Enemy::TakeDamage(float damage)
+{
+	health -= damage;
+	if (health <= 0 && hasCountedDeath == false)
+	{
+		managers->GetManager<EnemyManager>(ManagerName::EnemyManager)->IncreaseEnemyDeathCount(1);
+		hasCountedDeath = true;
+		Disable();
+	}
+}
+#pragma endregion Damage

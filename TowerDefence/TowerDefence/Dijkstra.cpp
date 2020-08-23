@@ -1,12 +1,26 @@
-#include <vector>
 #include <list>
 #include <queue>
 #include <unordered_map>
 #include "Dijkstra.h"
+#include "Managers.h"
 #include "TileManager.h"
 
-std::vector<Tile*> Dijkstra::FindShortestPath(TileManager* tileManager, Tile* start, Tile* goal)
+#pragma region Construction
+Dijkstra::Dijkstra()
 {
+}
+
+Dijkstra::~Dijkstra()
+{
+}
+#pragma endregion Construction
+
+#pragma region FindPath
+std::vector<Tile*> Dijkstra::FindShortestPath(Tile* start, Tile* goal)
+{
+	Managers* managers = Managers::GetInstance();
+	TileManager* tileManager = managers->GetManager<TileManager>(ManagerName::TileManager);
+
 	std::queue<Tile*> frontier;
 	frontier.push(start);
 
@@ -28,7 +42,7 @@ std::vector<Tile*> Dijkstra::FindShortestPath(TileManager* tileManager, Tile* st
 		std::vector<Tile*> neighbours = tileManager->GetWalkableNeighboursOfTile(current);
 		if (neighbours.empty() == false)
 		{
-			for (Tile* next : neighbours)
+			for (auto next : neighbours)
 			{
 				if (came_from.find(next) == came_from.end())
 				{
@@ -51,3 +65,4 @@ std::vector<Tile*> Dijkstra::FindShortestPath(TileManager* tileManager, Tile* st
 	std::reverse(path.begin(), path.end());
 	return path;
 }
+#pragma endregion FindPath

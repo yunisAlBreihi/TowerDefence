@@ -14,6 +14,7 @@ private:
 
 private:
 	Managers(SDL_Renderer* renderer = nullptr);
+	~Managers();
 
 public:
 	static Managers* GetInstance();

@@ -7,10 +7,12 @@ struct Vector2D
 	float y;
 
 	Vector2D(float x, float y) : x(x), y(y) {}
+	~Vector2D() {}
 
 	static Vector2D Zero() { return Vector2D(0, 0); }
 	static Vector2D One() { return Vector2D(1, 1); }
 
+#pragma region Distance
 	static float Distance(Vector2D startPosition, Vector2D endPosition)
 	{
 		float pwrV = std::pow(endPosition.x - startPosition.x, 2);
@@ -19,7 +21,9 @@ struct Vector2D
 		float distance = std::sqrt(pwrV + pwrW);
 		return distance;
 	}
+#pragma endregion Distance
 
+#pragma region Lerp
 	static float Lerp(float start, float end, float delta)
 	{
 		return (start * (1 - delta)) + (end * delta);
@@ -31,7 +35,9 @@ struct Vector2D
 		float currentY = Lerp(startPosition.y, endPosition.y, delta);
 		return Vector2D(currentX, currentY);
 	}
+#pragma endregion Lerp
 
+#pragma region OverloadFunctions
 	bool operator==(const Vector2D other)
 	{
 		if (other.x == x && other.y == y)
@@ -40,8 +46,8 @@ struct Vector2D
 		}
 		return false;
 	}
-	
-	const Vector2D operator+(const Vector2D other) 
+
+	const Vector2D operator+(const Vector2D other)
 	{
 		return Vector2D(x + other.x, y + other.y);
 	}
@@ -56,7 +62,7 @@ struct Vector2D
 		return Vector2D(x + other, y + other);
 	}
 
-	const Vector2D operator*(const float other) 
+	const Vector2D operator*(const float other)
 	{
 		return Vector2D(x * other, y * other);
 	}
@@ -65,4 +71,5 @@ struct Vector2D
 	{
 		return Vector2D(x / other, y / other);
 	}
+#pragma endregion OverloadFunctions
 };

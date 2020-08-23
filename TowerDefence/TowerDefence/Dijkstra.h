@@ -1,18 +1,12 @@
 #pragma once
-#include <unordered_map>
-
-class TileManager;
-class Tile;
-class vector;
+#include <vector>
+#include "Tile.h"
 
 class Dijkstra
 {
-private:
-
 public:
+	Dijkstra();
+	~Dijkstra();
 
-private:
-
-public:
-	std::vector<Tile*> FindShortestPath(TileManager* tileManager, Tile* start, Tile* goal);
+	std::vector<Tile*> FindShortestPath(Tile* start, Tile* goal);
 };

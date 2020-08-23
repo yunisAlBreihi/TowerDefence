@@ -5,18 +5,13 @@
 class MapManager : public ManagerBase
 {
 private:
-
 	std::vector<Map*> maps;
 
 public:
-
-private:
-
-public:
-
 	MapManager();
+	~MapManager();
+
 	void AddMap(Map* map);
-	Map* GetMap(int index) { return maps[index]; }
+	Map* GetMapAtIndex(int index) { return maps[index]; }
 	std::vector<Map*> GetMaps() { return maps; }
 };
-

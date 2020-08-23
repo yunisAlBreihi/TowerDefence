@@ -2,9 +2,10 @@
 #include "FrostExplosion.h"
 #include "Globals.h"
 
-FrostBullet::FrostBullet(Managers* managers,BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale)
+#pragma region Construction
+FrostBullet::FrostBullet(BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale)
 {
-	this->managers = managers;
+	managers = Managers::GetInstance();
 	this->bulletType = bulletType;
 	this->sprite = sprite;
 	this->position = startPosition;
@@ -19,18 +20,21 @@ FrostBullet::FrostBullet(Managers* managers,BulletType bulletType, Sprite* sprit
 FrostBullet::~FrostBullet()
 {
 }
+#pragma endregion Construction
 
+#pragma region Action
 void FrostBullet::OnReachedDestination()
 {
-	EffectsManager* effectsManager = managers->GetManager<EffectsManager>(ManagerName::EffectsManager);
+	EffectManager* effectsManager = managers->GetManager<EffectManager>(ManagerName::EffectsManager);
 	FrostExplosion* frostExplosion = (FrostExplosion*)effectsManager->GetInactiveEffectOfType(bulletType);
 	if (frostExplosion == nullptr)
 	{
-		frostExplosion = new FrostExplosion(managers, bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (Globals::DEFAULT_SPRITE_SIZE * 2.0f));
+		frostExplosion = new FrostExplosion(bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (Globals::DEFAULT_SPRITE_SIZE * 2.0f));
 		effectsManager->AddEffect(frostExplosion);
 	}
 	else
 	{
-		frostExplosion->Reset(managers, bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (Globals::DEFAULT_SPRITE_SIZE * 2.0f));
+		frostExplosion->Reset(bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (Globals::DEFAULT_SPRITE_SIZE * 2.0f));
 	}
 }
+#pragma endregion Action

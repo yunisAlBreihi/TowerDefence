@@ -1,11 +1,18 @@
 #include "BulletManager.h"
 
+#pragma region Construction
 BulletManager::BulletManager()
 {
 	managers = Managers::GetInstance();
 	name = ManagerName::BulletManager;
 }
 
+BulletManager::~BulletManager()
+{
+}
+#pragma endregion Construction
+
+#pragma region GameLoop
 void BulletManager::Start()
 {
     for (BulletBase* bullet : bullets)
@@ -37,7 +44,9 @@ void BulletManager::Destroy()
 		bullet->Destroy();
 	}
 }
+#pragma endregion GameLoop
 
+#pragma region ManageBullets
 BulletBase* BulletManager::GetInactiveBulletOfType(BulletType bulletType)
 {
 	for (auto bullet : bullets)
@@ -68,6 +77,6 @@ void BulletManager::ClearBullets()
 			bullet->Destroy();
 		}
 	}
-
 	bullets.clear();
 }
+#pragma endregion ManageBullets

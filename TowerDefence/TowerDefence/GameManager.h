@@ -6,7 +6,7 @@
 #include "EnemyManager.h"
 #include "TowerManager.h"
 #include "BulletManager.h"
-#include "EffectsManager.h"
+#include "EffectManager.h"
 #include "MapReader.h"
 #include "MapManager.h"
 #include "LevelManager.h"
@@ -18,38 +18,35 @@
 class GameManager : public IRenderable, public ManagerBase
 {
 private:
-
-	bool isRunning = false;
-	bool gameHasEnded = false;
-
-	float playerHealth = 10.0f;
-
-	SDL_Window* window = nullptr;
-	SDL_Renderer* renderer = nullptr;
-	SDL_Surface* surface = nullptr;
-
 	Managers* managers = nullptr;
 	TileManager* tileManager = nullptr;
 	SpriteManager* spriteManager = nullptr;
 	EnemyManager* enemyManager = nullptr;
 	TowerManager* towerManager = nullptr;
 	BulletManager* bulletManager = nullptr;
-	EffectsManager* effectsManager = nullptr;
+	EffectManager* effectsManager = nullptr;
 	MapManager* mapManager = nullptr;
 	LevelManager* levelManager = nullptr;
 	UIManager* uiManager = nullptr;
 	MapReader* mapReader = nullptr;
 	Dijkstra* dijkstra = nullptr;
 
-	UIBase* uiBase = nullptr;
+	//SDL
+	SDL_Window* window = nullptr;
+	SDL_Renderer* renderer = nullptr;
+	SDL_Surface* surface = nullptr;
 
-public:
+	//For Game loop
+	bool isRunning = false;
+	bool gameHasEnded = false;
+
+	//Player Attributes
+	float playerHealth = 10.0f;
 
 private:
 	void CreateWindow(const char* title, int posX, int posY, int width, int height, Uint32 flags);
 
 public:
-
 	GameManager(const char* title, int posX, int posY, int width, int height, Uint32 flags);
 	~GameManager();
 

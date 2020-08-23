@@ -3,6 +3,7 @@
 #include "MapManager.h"
 #include "SpriteManager.h"
 
+#pragma region Construction
 TileManager::TileManager()
 {
 	name = ManagerName::TileManager;
@@ -11,7 +12,9 @@ TileManager::TileManager()
 TileManager::~TileManager()
 {
 }
+#pragma endregion Construction
 
+#pragma region GameLoop
 void TileManager::Start()
 {
 }
@@ -35,21 +38,10 @@ void TileManager::Destroy()
 		t->Destroy();
 	}
 }
+#pragma endregion GameLoop
 
-void TileManager::ClearTiles()
-{
-	for (auto tile : tiles)
-	{
-		tile->Disable();
-	}
-}
-
-void TileManager::AddTile(Tile* tile)
-{
-	tiles.push_back(tile);
-}
-
-Tile* TileManager::GetTile(SpriteName spriteName)
+#pragma region GetTiles
+Tile* TileManager::GetTileWithSprite(SpriteName spriteName)
 {
 	for (Tile* t : tiles)
 	{
@@ -62,7 +54,7 @@ Tile* TileManager::GetTile(SpriteName spriteName)
 	return nullptr;
 }
 
-std::vector<Tile*> TileManager::GetTiles(SpriteName spriteName)
+std::vector<Tile*> TileManager::GetTilesWithSprite(SpriteName spriteName)
 {
 	std::vector<Tile*> tempTiles;
 
@@ -154,19 +146,26 @@ int TileManager::GetTileIndexInList(Tile* tile)
 	return -1;
 }
 
-void TileManager::DebugPositions()
+Tile* TileManager::GetInactiveTile()
 {
-	for (Tile* t : tiles)
+	for (auto tile : tiles)
 	{
-		std::cout << "X position: " << t->GetPosition().x << " Y position: " << t->GetPosition().y << std::endl;
+		if (tile->IsActive() == false)
+		{
+			return tile;
+		}
 	}
+	std::cout << "Could not find an tile that is inactive, returning nullptr" << std::endl;
+	return nullptr;
 }
+#pragma endregion GetTiles
 
+#pragma region ManageTiles
 void TileManager::CreateTilesFromMap(Managers* managers, int mapIndex)
 {
 	MapManager* mapManager = managers->GetManager<MapManager>(ManagerName::MapManager);
 	SpriteManager* spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
-	std::vector<std::vector<int>> tempTileNumbers = mapManager->GetMap(mapIndex)->GetTileNumbers();
+	std::vector<std::vector<int>> tempTileNumbers = mapManager->GetMapAtIndex(mapIndex)->GetTileNumbers();
 
 	for (unsigned int col = 0; col < tempTileNumbers.size(); col++)
 	{
@@ -176,7 +175,7 @@ void TileManager::CreateTilesFromMap(Managers* managers, int mapIndex)
 
 			//Set which tiles are walkable or not
 			bool tempWalkable = false;
-			if (tempSpriteName == SpriteName::StartPosition || tempSpriteName == SpriteName::EndPosition || tempSpriteName == SpriteName::Grass)
+			if (tempSpriteName == SpriteName::EnemyBase || tempSpriteName == SpriteName::PlayerBase || tempSpriteName == SpriteName::Grass)
 			{
 				tempWalkable = true;
 			}
@@ -198,15 +197,26 @@ void TileManager::CreateTilesFromMap(Managers* managers, int mapIndex)
 	}
 }
 
-Tile* TileManager::GetInactiveTile()
+void TileManager::ClearTiles()
 {
 	for (auto tile : tiles)
 	{
-		if (tile->IsActive() == false)
-		{
-			return tile;
-		}
+		tile->Disable();
 	}
-	std::cout << "Could not find an tile that is inactive, returning nullptr" << std::endl;
-	return nullptr;
 }
+
+void TileManager::AddTile(Tile* tile)
+{
+	tiles.push_back(tile);
+}
+#pragma endregion ManageTiles
+
+#pragma region Debug
+void TileManager::DebugPositions()
+{
+	for (Tile* t : tiles)
+	{
+		std::cout << "X position: " << t->GetPosition().x << " Y position: " << t->GetPosition().y << std::endl;
+	}
+}
+#pragma endregion Debug

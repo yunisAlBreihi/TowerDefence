@@ -1,9 +1,10 @@
-#include "Explosion.h"
+#include "RegularExplosion.h"
 #include "Globals.h"
 
-Explosion::Explosion(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale)
+#pragma region Construction
+RegularExplosion::RegularExplosion(BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale)
 {
-	this->managers = managers;
+	managers = managers->GetInstance();
 	this->bulletType = bulletType;
 	this->sprite = sprite;
 	this->position = position;
@@ -20,7 +21,14 @@ Explosion::Explosion(Managers* managers, BulletType bulletType, Sprite* sprite, 
 	this->isActive = true;
 }
 
-void Explosion::OnHit(Enemy* enemy)
+RegularExplosion::~RegularExplosion()
+{
+}
+#pragma endregion Construction
+
+#pragma region Action
+void RegularExplosion::OnHit(Enemy* enemy)
 {
 	enemy->TakeDamage(Globals::dRand(0.1, 0.5));
 }
+#pragma endregion Action

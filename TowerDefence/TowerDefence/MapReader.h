@@ -1,17 +1,12 @@
 #pragma once
-#include <vector>
 #include <string>
 #include "Map.h"
 
 class MapReader
 {
-private:
-
 public:
-
-private:
-
-public:
+	MapReader();
+	~MapReader();
 
 	Map* ReadMap(std::string filePath);
 };

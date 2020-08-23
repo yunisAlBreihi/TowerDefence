@@ -1,14 +1,13 @@
 #include "BulletBase.h"
-#include "GameManager.h"
-#include "Explosion.h"
-#include "FrostExplosion.h"
 
+#pragma region Construction
 BulletBase::BulletBase()
 {
 }
 
-BulletBase::BulletBase(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale) : managers(managers), bulletType(bulletType), sprite(sprite), position(startPosition), endPosition(endPosition), scale(scale)
+BulletBase::BulletBase(BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale) : bulletType(bulletType), sprite(sprite), position(startPosition), endPosition(endPosition), scale(scale)
 {
+	managers = Managers::GetInstance();
 	this->startPosition = startPosition;
 	dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
 	isActive = true;
@@ -17,7 +16,9 @@ BulletBase::BulletBase(Managers* managers, BulletType bulletType, Sprite* sprite
 BulletBase::~BulletBase()
 {
 }
+#pragma endregion Construction
 
+#pragma region GameLoop
 void BulletBase::Start()
 {
 }
@@ -41,10 +42,12 @@ void BulletBase::Render()
 void BulletBase::Destroy()
 {
 }
+#pragma endregion GameLoop
 
-void BulletBase::Reset(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale)
+#pragma region Disable
+void BulletBase::Reset(BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale)
 {
-	this->managers = managers;
+	managers = Managers::GetInstance();
 	this->bulletType = bulletType;
 	this->sprite = sprite;
 	this->position = startPosition;
@@ -61,14 +64,19 @@ void BulletBase::Clear()
 	movementDelta = 0.0f;
 	isActive = false;
 }
+#pragma endregion Disable
 
+#pragma region Set
 void BulletBase::SetPosition(Vector2D vector2D)
 {
-	position = vector2D;
+	//Round the values, since SDL_Rect is in int, otherwise get Stutter
+	position = Vector2D(round(vector2D.x),round(vector2D.y));
 	dstRect.x = position.x;
 	dstRect.y = position.y;
 }
+#pragma endregion Set
 
+#pragma region Move
 void BulletBase::OnMove(float deltaTime)
 {
 	SetPosition(Vector2D::Lerp(startPosition, endPosition, movementDelta));
@@ -82,3 +90,4 @@ void BulletBase::OnMove(float deltaTime)
 		Clear();
 	}
 }
+#pragma endregion Move

@@ -2,10 +2,17 @@
 #include <iostream>
 #include <sstream>
 
+#pragma region Construction
 Map::Map(std::vector<std::string> mapData) : mapData(mapData)
 {
 }
 
+Map::~Map()
+{
+}
+#pragma  endregion Construction
+
+#pragma region GetData
 std::vector<std::vector<int>> Map::GetTileNumbers()
 {
 	std::vector<std::vector<int>> tempTileNumbers;
@@ -60,18 +67,11 @@ std::vector<std::vector<int>> Map::GetEnemyNumbers()
 		}
 
 	}
-	//Prints out the enemy numbers for the map
-	//for (std::vector<int> row : tempEnemyNumbers)
-	//{
-	//	for(int number : row)
-	//	{
-	//		std::cout << number;
-	//	}
-	//	std::cout << std::endl;
-	//}
 	return tempEnemyNumbers;
 }
+#pragma endregion GetData
 
+#pragma region Debug
 void Map::DebugMapData()
 {
 	for (std::string row : mapData)
@@ -79,3 +79,4 @@ void Map::DebugMapData()
 		std::cout << row << std::endl;
 	}
 }
+#pragma endregion Debug

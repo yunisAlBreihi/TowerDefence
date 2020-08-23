@@ -10,16 +10,14 @@
 class TowerManager : public IRenderable, public ManagerBase
 {
 private:
-	std::vector<Sprite*> sprites;
-	std::vector<TowerBase*> towers;
 	Managers* managers = nullptr;
 	TileManager* tileManager = nullptr;
 	EnemyManager* enemyManager = nullptr;
 	SpriteManager* spriteManager = nullptr;
 	BulletManager* bulletManager = nullptr;
-	EffectsManager* effectsManager = nullptr;
+	EffectManager* effectsManager = nullptr;
 
-public:
+	std::vector<TowerBase*> towers;
 
 private:
 	void CreateTower(Sprite* sprite, Vector2D position, Vector2D scale);
@@ -33,8 +31,8 @@ public:
 	void Render() override;
 	void Destroy() override;
 
-	TowerBase* GetInactiveTowerOfType(BulletType bulletType);
-
 	void CreateTowers();
 	void ClearTowers();
+
+	TowerBase* GetInactiveTowerOfType(BulletType bulletType);
 };

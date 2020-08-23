@@ -12,21 +12,24 @@ class Enemy : public IRenderable
 private:
 	Managers* managers = nullptr;
 	std::vector<Tile*> path;
-	int pathIndex = 0;
+
+	//Attributes
 	Sprite* sprite = nullptr;
 	Vector2D position = { 0,0 };
 	Vector2D scale = { 0,0 };
 	Vector2D currentStartPosition = { 0,0 };
 	SDL_Rect dstRect = { 0,0,0,0 };
 	std::string name = "";
-	float delta = 0;
-	bool hasReachedEnd = false;
-
+	float speed = 2.0f;
 	float maxHealth = 3.0f;
 	float health = 0.0f;
 
+	//For movement
+	int pathIndex = 0;
+	float movementDelta = 0;
+	bool hasReachedEnd = false;
+
 	//For when the enemy is frozen
-	float speed = 2.0f;
 	float originalSpeed = 0.0f;
 	float frozenSpeed = 0.5f;
 	float freezeTimer = 0.0f;
@@ -34,15 +37,11 @@ private:
 	bool isFrozen = false;
 	bool hasCountedDeath = false;
 
-public:
-
 private:
-
 	void MoveToEnd(float deltaTime);
 	void FreezeTimer(float deltaTime);
 
 public:
-
 	Enemy(Managers* managers, std::vector<Tile*> path,std::string name, Sprite* sprite, Vector2D position, Vector2D scale,float maxHealth);
 	~Enemy();
 
