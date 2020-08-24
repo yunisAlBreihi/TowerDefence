@@ -18,7 +18,7 @@ void UIManager::Update(float deltaTime)
 
 void UIManager::Render()
 {
-	for (UIBase* ui : uiObjects)
+	for (const auto& ui : uiObjects)
 	{
 		RenderEndScreen(ui);
 	}

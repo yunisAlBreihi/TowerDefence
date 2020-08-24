@@ -83,7 +83,7 @@ void ExplosionBase::Disable()
 #pragma region ExpandExplosion
 void ExplosionBase::Expand(float deltaTime)
 {
-	for (Enemy* enemy : enemyManager->GetEnemies())
+	for (const auto& enemy : enemyManager->GetEnemies())
 	{
 		if (enemy->IsActive() == true)
 		{
@@ -136,7 +136,7 @@ void ExplosionBase::LerpExplosionScale(float deltaTime)
 void ExplosionBase::SetPosition(Vector2D position)
 {
 	//Round the values, since SDL_Rect is in int, otherwise get Stutter
-	this->position = Vector2D(round(position.x),round(position.y));
+	this->position = Vector2D(round(position.x), round(position.y));
 	dstRect.x = this->position.x;
 	dstRect.y = this->position.y;
 }

@@ -19,7 +19,7 @@ void EnemyManager::Start()
 {
 	CreateEnemies();
 
-	for (Enemy* enemy : enemies)
+	for (const auto& enemy : enemies)
 	{
 		enemy->Start();
 	}
@@ -29,7 +29,7 @@ void EnemyManager::Update(float deltaTime)
 {
 	SpawnEnemyWaves(deltaTime);
 
-	for (Enemy* enemy : enemies)
+	for (const auto& enemy : enemies)
 	{
 		enemy->Update(deltaTime);
 	}
@@ -37,7 +37,7 @@ void EnemyManager::Update(float deltaTime)
 
 void EnemyManager::Render()
 {
-	for (Enemy* enemy : enemies)
+	for (const auto& enemy : enemies)
 	{
 		enemy->Render();
 	}
@@ -47,7 +47,7 @@ void EnemyManager::Render()
 #pragma region Disable
 void EnemyManager::ClearEnemies()
 {
-	for (Enemy* enemy : enemies)
+	for (const auto& enemy : enemies)
 	{
 		if (enemy->IsActive() == true)
 		{
@@ -180,9 +180,9 @@ void EnemyManager::SpawnEnemyWaves(float deltaTime)
 void EnemyManager::SetEnemyCountFromMap()
 {
 	ResetEnemyCount();
-	for (std::vector<int> enemyType : mapEnemyNumbers)
+	for (const auto& enemyType : mapEnemyNumbers)
 	{
-		for (int enemyNumbers : enemyType)
+		for (const auto& enemyNumbers : enemyType)
 		{
 			enemyCount += enemyNumbers;
 		}
@@ -191,7 +191,7 @@ void EnemyManager::SetEnemyCountFromMap()
 
 Enemy* EnemyManager::GetInactiveEnemy()
 {
-	for (Enemy* enemy : enemies)
+	for (const auto& enemy : enemies)
 	{
 		if (enemy->IsActive() == false)
 		{
@@ -206,7 +206,7 @@ Enemy* EnemyManager::GetInactiveEnemy()
 #pragma region Debug
 void EnemyManager::DebugPositions()
 {
-	for (Enemy* enemy : enemies)
+	for (const auto& enemy : enemies)
 	{
 		std::cout << "X position: " << enemy->GetPosition().x << " Y position: " << enemy->GetPosition().y << std::endl;
 	}

@@ -15,7 +15,7 @@ void SpriteManager::AddSprite(Sprite* sprite)
 
 Sprite* SpriteManager::GetSprite(SpriteName spriteName)
 {
-	for (Sprite* sprite : sprites)
+	for (const auto& sprite : sprites)
 	{
 		if (sprite->GetSpriteName() == spriteName)
 		{

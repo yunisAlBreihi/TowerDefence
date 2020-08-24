@@ -10,42 +10,33 @@ EffectManager::EffectManager()
 #pragma region GameLoop
 void EffectManager::Start()
 {
-	if (effects.empty() == false)
+	for (const auto& effect : effects)
 	{
-		for (ExplosionBase* effect : effects)
-		{
-			effect->Start();
-		}
+		effect->Start();
 	}
 }
 
 void EffectManager::Update(float deltaTime)
 {
-	if (effects.empty() == false)
+	for (const auto& effect : effects)
 	{
-		for (ExplosionBase* effect : effects)
-		{
-			effect->Update(deltaTime);
-		}
+		effect->Update(deltaTime);
 	}
 }
 
 void EffectManager::Render()
 {
-	if (effects.empty() == false)
-	{
-		for (ExplosionBase* effect : effects)
+		for (const auto& effect : effects)
 		{
 			effect->Render();
 		}
-	}
 }
 #pragma endregion GameLoop
 
 #pragma region ManageEffects
 ExplosionBase* EffectManager::GetInactiveEffectOfType(BulletType bulletType)
 {
-	for (auto effect : effects)
+	for (const auto& effect : effects)
 	{
 		if (effect->IsActive() == false)
 		{

@@ -47,9 +47,6 @@ void TowerBase::Render()
 	if (isActive == true)
 	{
 		SDL_RenderCopy(managers->GetRenderer(), sprite->GetTexture(), nullptr, &dstRect);
-
-		//Draw a circle for the collisions
-		//DrawDebugCircle();
 	}
 
 }
@@ -68,7 +65,7 @@ void TowerBase::Reset(Managers* managers, BulletType bulletType, Sprite* sprite,
 	this->position = position;
 	this->scale = scale;
 	dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
-	collider = &Collider(this->position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2), 90.0f);
+	collider = new Collider(this->position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2), 90.0f);
 	this->isActive = true;
 }
 
@@ -84,7 +81,7 @@ void TowerBase::SetEnemyTarget()
 	//Find new target
 	if (currentEnemyTarget == nullptr)
 	{
-		for (Enemy* enemy : enemyManager->GetEnemies())
+		for (const auto& enemy : enemyManager->GetEnemies())
 		{
 			if (collider->isPointInCircle(enemy->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2)))
 			{
@@ -135,7 +132,7 @@ void TowerBase::DrawDebugRange()
 {
 	if (collisionRadius > 0)
 	{
-		for (size_t i = 0; i < 360; i += debugCircleQuality)
+		for (unsigned int i = 0; i < 360; i += debugCircleQuality)
 		{
 			circlePosition = Vector2D(GetPosition().x + collisionRadius * std::cos(i), GetPosition().y + collisionRadius * std::sin(i));
 			SDL_SetRenderDrawColor(managers->GetRenderer(), 230, 0, 126, 255);

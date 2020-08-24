@@ -28,7 +28,7 @@ public:
 	template<typename Manager>
 	Manager* GetManager(ManagerName managerName)
 	{
-		for (ManagerBase* managerBase : managers)
+		for (const auto& managerBase : managers)
 		{
 			if (managerName == managerBase->GetName())
 			{

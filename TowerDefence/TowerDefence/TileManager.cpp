@@ -21,9 +21,9 @@ void TileManager::Update(float deltaTime)
 
 void TileManager::Render()
 {
-	for (Tile* t : tiles)
+	for (const auto& tile : tiles)
 	{
-		t->Render();
+		tile->Render();
 	}
 }
 #pragma endregion GameLoop
@@ -31,11 +31,11 @@ void TileManager::Render()
 #pragma region GetTiles
 Tile* TileManager::GetTileWithSprite(SpriteName spriteName)
 {
-	for (Tile* t : tiles)
+	for (const auto& tile : tiles)
 	{
-		if (t->GetSprite()->GetSpriteName() == spriteName)
+		if (tile->GetSprite()->GetSpriteName() == spriteName)
 		{
-			return t;
+			return tile;
 		}
 	}
 	std::cout << "Could not find the specified tile" << std::endl;
@@ -46,7 +46,7 @@ std::vector<Tile*> TileManager::GetTilesWithSprite(SpriteName spriteName)
 {
 	std::vector<Tile*> tempTiles;
 
-	for (Tile* tile : tiles)
+	for (const auto& tile : tiles)
 	{
 		if (tile->GetSprite()->GetSpriteName() == spriteName)
 		{
@@ -67,7 +67,7 @@ std::vector<Tile*> TileManager::GetWalkableTiles()
 {
 	std::vector<Tile*> walkables;
 
-	for (Tile* tile : tiles)
+	for (const auto& tile : tiles)
 	{
 		if (tile->IsWalkable() == true)
 		{
@@ -112,7 +112,7 @@ std::vector<Tile*> TileManager::GetWalkableNeighboursOfTile(Tile* tile)
 
 Tile* TileManager::GetTileAtPosition(Vector2D position)
 {
-	for (Tile* tile : tiles)
+	for (const auto& tile : tiles)
 	{
 		if (tile->GetPosition() == position)
 		{
@@ -136,7 +136,7 @@ int TileManager::GetTileIndexInList(Tile* tile)
 
 Tile* TileManager::GetInactiveTile()
 {
-	for (auto tile : tiles)
+	for (const auto& tile : tiles)
 	{
 		if (tile->IsActive() == false)
 		{
@@ -187,7 +187,7 @@ void TileManager::CreateTilesFromMap(Managers* managers, int mapIndex)
 
 void TileManager::ClearTiles()
 {
-	for (auto tile : tiles)
+	for (const auto& tile : tiles)
 	{
 		tile->Disable();
 	}
@@ -202,7 +202,7 @@ void TileManager::AddTile(Tile* tile)
 #pragma region Debug
 void TileManager::DebugPositions()
 {
-	for (Tile* t : tiles)
+	for (const auto& t : tiles)
 	{
 		std::cout << "X position: " << t->GetPosition().x << " Y position: " << t->GetPosition().y << std::endl;
 	}

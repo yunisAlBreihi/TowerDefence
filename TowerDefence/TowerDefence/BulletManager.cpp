@@ -11,7 +11,7 @@ BulletManager::BulletManager()
 #pragma region GameLoop
 void BulletManager::Start()
 {
-    for (BulletBase* bullet : bullets)
+    for (const auto& bullet : bullets)
     {
         bullet->Start();
     }
@@ -19,7 +19,7 @@ void BulletManager::Start()
 
 void BulletManager::Update(float deltaTime)
 {
-	for (BulletBase* bullet : bullets)
+	for (const auto& bullet : bullets)
 	{
 		bullet->Update(deltaTime);
 	}
@@ -27,7 +27,7 @@ void BulletManager::Update(float deltaTime)
 
 void BulletManager::Render()
 {
-	for (BulletBase* bullet : bullets)
+	for (const auto& bullet : bullets)
 	{
 		bullet->Render();
 	}
@@ -37,7 +37,7 @@ void BulletManager::Render()
 #pragma region ManageBullets
 BulletBase* BulletManager::GetInactiveBulletOfType(BulletType bulletType)
 {
-	for (auto bullet : bullets)
+	for (const auto& bullet : bullets)
 	{
 		if (bullet->IsActive() == false)
 		{
@@ -60,7 +60,7 @@ void BulletManager::ClearBullets()
 {
 	if (bullets.empty() == false)
 	{
-		for (auto bullet : bullets)
+		for (const auto& bullet : bullets)
 		{
 			bullet->Disable();
 		}

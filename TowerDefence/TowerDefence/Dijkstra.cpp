@@ -16,7 +16,7 @@ std::vector<Tile*> Dijkstra::FindShortestPath(Tile* start, Tile* goal)
 
 	std::unordered_map<Tile*, Tile*> came_from;
 	came_from[start] = start;
-	
+
 	std::vector<Tile*> walkables = tileManager->GetWalkableTiles();
 
 	while (frontier.empty() == false)
@@ -32,7 +32,7 @@ std::vector<Tile*> Dijkstra::FindShortestPath(Tile* start, Tile* goal)
 		std::vector<Tile*> neighbours = tileManager->GetWalkableNeighboursOfTile(current);
 		if (neighbours.empty() == false)
 		{
-			for (auto next : neighbours)
+			for (const auto& next : neighbours)
 			{
 				if (came_from.find(next) == came_from.end())
 				{

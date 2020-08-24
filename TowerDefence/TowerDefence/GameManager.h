@@ -14,6 +14,8 @@
 #include "BulletBase.h"
 #include "Managers.h"
 #include "UIBase.h"
+#include "Sprite.h"
+#include "ScreenImageUI.h"
 
 class GameManager : public IRenderable, public ManagerBase
 {
@@ -35,6 +37,24 @@ private:
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
 	SDL_Surface* surface = nullptr;
+
+	//Sprites
+	Sprite* grass = nullptr;
+	Sprite* water = nullptr;
+	Sprite* tower01 = nullptr;
+	Sprite* tower02 = nullptr;
+	Sprite* startPosition = nullptr;
+	Sprite* endPosition = nullptr;
+	Sprite* congratulations = nullptr;
+	Sprite* gameOver = nullptr;
+	Sprite* enemySmallSprite = nullptr;
+	Sprite* enemyBigSprite = nullptr;
+	Sprite* towerSmallSprite = nullptr;
+	Sprite* towerBigSprite = nullptr;
+
+	//UI
+	ScreenImageUI* gameOverUI = nullptr;
+	ScreenImageUI* congratulationsUI = nullptr;
 
 	//For Game loop
 	bool isRunning = false;

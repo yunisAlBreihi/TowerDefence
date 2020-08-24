@@ -13,14 +13,14 @@ std::vector<std::vector<int>> Map::GetTileNumbers()
 {
 	std::vector<std::vector<int>> tempTileNumbers;
 
-	for (std::string row : mapData)
+	for (const auto& row : mapData)
 	{
 		if (row.at(0) == '#')
 		{
 			break;
 		}
 		std::vector<int> tempTileNumberRow;
-		for (char number : row)
+		for (const auto& number : row)
 		{
 			tempTileNumberRow.push_back((int)(number - 48));
 		}
@@ -42,7 +42,7 @@ std::vector<std::vector<int>> Map::GetEnemyNumbers()
 	bool isOnEnemyNumbers = false;
 	int enemyNumber = INT_MAX;
 
-	for (std::string row : mapData)
+	for (const auto& row : mapData)
 	{
 		std::stringstream input(row);
 		if (isOnEnemyNumbers == true)
@@ -70,7 +70,7 @@ std::vector<std::vector<int>> Map::GetEnemyNumbers()
 #pragma region Debug
 void Map::DebugMapData()
 {
-	for (std::string row : mapData)
+	for (const auto& row : mapData)
 	{
 		std::cout << row << std::endl;
 	}

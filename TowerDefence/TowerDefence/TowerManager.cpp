@@ -18,25 +18,25 @@ TowerManager::TowerManager()
 #pragma region GameLoop
 void TowerManager::Start()
 {
-	for (const auto& t : towers)
+	for (const auto& tower : towers)
 	{
-		t->Start();
+		tower->Start();
 	}
 }
 
 void TowerManager::Update(float deltaTime)
 {
-	for (const auto& t : towers)
+	for (const auto& tower : towers)
 	{
-		t->Update(deltaTime);
+		tower->Update(deltaTime);
 	}
 }
 
 void TowerManager::Render()
 {
-	for (const auto& t : towers)
+	for (const auto& tower : towers)
 	{
-		t->Render();
+		tower->Render();
 	}
 }
 #pragma endregion GameLoop
@@ -75,7 +75,7 @@ void TowerManager::CreateTower(Sprite* sprite, Vector2D position, Vector2D scale
 void TowerManager::CreateTowers()
 {
 	Sprite* sprite = nullptr;
-	for (Tile* tile : tileManager->GetTilesWithSprite(SpriteName::RegularTowerGround))
+	for (const auto& tile : tileManager->GetTilesWithSprite(SpriteName::RegularTowerGround))
 	{
 		if (tile->IsActive() == true)
 		{
@@ -84,7 +84,7 @@ void TowerManager::CreateTowers()
 		}
 	}
 
-	for (Tile* tile : tileManager->GetTilesWithSprite(SpriteName::FrostTowerGround))
+	for (const auto& tile : tileManager->GetTilesWithSprite(SpriteName::FrostTowerGround))
 	{
 		if (tile->IsActive() == true)
 		{
@@ -96,9 +96,9 @@ void TowerManager::CreateTowers()
 
 void TowerManager::ClearTowers()
 {
-	for (TowerBase* t : towers)
+	for (const auto& tile : towers)
 	{
-		t->Disable();
+		tile->Disable();
 	}
 }
 #pragma endregion ManageTowers
@@ -106,7 +106,7 @@ void TowerManager::ClearTowers()
 #pragma region Get
 TowerBase* TowerManager::GetInactiveTowerOfType(BulletType bulletType)
 {
-	for (auto tower : towers)
+	for (const auto& tower : towers)
 	{
 		if (tower->GetType() == bulletType)
 		{
