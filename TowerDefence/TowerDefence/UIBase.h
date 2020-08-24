@@ -24,7 +24,6 @@ public:
 	void Start() override;
 	void Update(float deltaTime) override;
 	void Render() override;
-	void Destroy() override;
 
 	void Disable();
 	void Reset(Sprite* sprite, Vector2D position, Vector2D scale);

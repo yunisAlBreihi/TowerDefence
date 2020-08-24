@@ -5,16 +5,6 @@
 #include "Managers.h"
 #include "TileManager.h"
 
-#pragma region Construction
-Dijkstra::Dijkstra()
-{
-}
-
-Dijkstra::~Dijkstra()
-{
-}
-#pragma endregion Construction
-
 #pragma region FindPath
 std::vector<Tile*> Dijkstra::FindShortestPath(Tile* start, Tile* goal)
 {

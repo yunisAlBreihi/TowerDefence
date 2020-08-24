@@ -2,16 +2,6 @@
 #include <SDL.h>
 #include <iostream>
 
-#pragma region Construction
-Timer::Timer()
-{
-}
-
-Timer::~Timer()
-{
-}
-#pragma endregion Construction
-
 #pragma region ManageTime
 void Timer::Tick()
 {

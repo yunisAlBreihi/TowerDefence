@@ -54,7 +54,6 @@ public:
 	void HandleEvent();
 	void Update(float deltaTime) override;
 	void Render() override;
-	void Destroy() override;
 
 	bool IsRunning() { return isRunning; }
 	bool GameHasEnded() { return gameHasEnded; }

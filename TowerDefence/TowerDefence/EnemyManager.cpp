@@ -12,10 +12,6 @@ EnemyManager::EnemyManager(Dijkstra* dijkstra) : dijkstra(dijkstra)
 	tileManager = managers->GetManager<TileManager>(ManagerName::TileManager);
 	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
 }
-
-EnemyManager::~EnemyManager()
-{
-}
 #pragma endregion Construction
 
 #pragma region GameLoop
@@ -46,17 +42,7 @@ void EnemyManager::Render()
 		enemy->Render();
 	}
 }
-
-void EnemyManager::Destroy()
-{
-	for (Enemy* enemy : enemies)
-	{
-		enemy->Destroy();
-	}
-}
 #pragma endregion GameLoop
-
-
 
 #pragma region Disable
 void EnemyManager::ClearEnemies()
@@ -83,8 +69,7 @@ void EnemyManager::ResetEnemyCount()
 }
 #pragma endregion Disable
 
-
-
+#pragma region ManageEnemies
 void EnemyManager::IncreaseEnemyDeathCount(int increaseBy)
 {
 	enemyDeathCount += increaseBy;
@@ -94,6 +79,7 @@ void EnemyManager::IncreaseEnemyDeathCount(int increaseBy)
 		levelManager->LoadNextLevel();
 	}
 }
+#pragma endregion ManageEnemies
 
 #pragma region Create
 void EnemyManager::CreateEnemies()

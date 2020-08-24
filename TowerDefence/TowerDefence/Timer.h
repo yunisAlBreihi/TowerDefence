@@ -13,9 +13,6 @@ private:
 	uint64_t oldTime = 0;
 
 public:
-	Timer();
-	~Timer();
-
 	void Tick();
 
 	float GetDeltaTime() { return deltaTime; }

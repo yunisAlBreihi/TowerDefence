@@ -5,10 +5,6 @@ MapManager::MapManager()
 {
 	name = ManagerName::MapManager;
 }
-
-MapManager::~MapManager()
-{
-}
 #pragma endregion Construction
 
 #pragma region ManageMaps

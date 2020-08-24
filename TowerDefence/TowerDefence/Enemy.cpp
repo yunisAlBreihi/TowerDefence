@@ -13,10 +13,6 @@ Enemy::Enemy(Managers* managers, std::vector<Tile*> path,std::string name, Sprit
 	health = this->maxHealth;
 	originalSpeed = speed;
 }
-
-Enemy::~Enemy()
-{
-}
 #pragma endregion Construction
 
 #pragma region GameLoop
@@ -47,10 +43,6 @@ void Enemy::Render()
 	{
 		SDL_RenderCopy(managers->GetRenderer(), sprite->GetTexture(), nullptr, &dstRect);
 	}
-}
-
-void Enemy::Destroy()
-{
 }
 #pragma endregion GameLoop
 

@@ -15,7 +15,6 @@ int main(int argc, char* argv[])
 		managerGame->Render();
 		timer->Tick();
 	}
-	managerGame->Destroy();
 
 	return 0;
 }

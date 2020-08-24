@@ -13,10 +13,6 @@ TowerManager::TowerManager()
 	bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
 	effectsManager = managers->GetManager<EffectManager>(ManagerName::EffectsManager);
 }
-
-TowerManager::~TowerManager()
-{
-}
 #pragma endregion Construction
 
 #pragma region GameLoop
@@ -41,14 +37,6 @@ void TowerManager::Render()
 	for (const auto& t : towers)
 	{
 		t->Render();
-	}
-}
-
-void TowerManager::Destroy()
-{
-	for (const auto& t : towers)
-	{
-		t->Destroy();
 	}
 }
 #pragma endregion GameLoop

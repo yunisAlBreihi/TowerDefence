@@ -20,10 +20,6 @@ RegularExplosion::RegularExplosion(BulletType bulletType, Sprite* sprite, Vector
 	this->collider = new Collider(this->startPosition, this->startScale.x * 0.5f);
 	this->isActive = true;
 }
-
-RegularExplosion::~RegularExplosion()
-{
-}
 #pragma endregion Construction
 
 #pragma region Action

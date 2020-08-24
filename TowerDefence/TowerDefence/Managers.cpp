@@ -10,6 +10,7 @@ Managers::Managers(SDL_Renderer* renderer)
 
 Managers::~Managers()
 {
+	delete instance;
 }
 #pragma endregion Construction
 

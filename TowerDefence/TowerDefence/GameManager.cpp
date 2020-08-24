@@ -42,6 +42,24 @@ GameManager::GameManager(const char* title, int posX, int posY, int width, int h
 
 GameManager::~GameManager()
 {
+	delete uiManager;
+	delete towerManager;
+	delete enemyManager;
+	delete levelManager;
+	delete bulletManager;
+	delete effectsManager;
+	delete mapReader;
+	delete mapManager;
+	delete tileManager;
+	delete spriteManager;
+	delete dijkstra;
+
+	SDL_DestroyRenderer(renderer);
+	renderer = nullptr;
+	SDL_DestroyWindow(window);
+	window = nullptr;
+
+	SDL_Quit();
 }
 #pragma endregion Construction
 
@@ -49,50 +67,50 @@ GameManager::~GameManager()
 void GameManager::Start()
 {
 	//Creates sprites for background tiles
-	Sprite* grass = new Sprite(renderer, SpriteName::Grass, "Sprites/grass.jpg");
-	Sprite* water = new Sprite(renderer, SpriteName::Water, "Sprites/water.jpg");
-	Sprite* tower01 = new Sprite(renderer, SpriteName::RegularTowerGround, "Sprites/RegularTowerGround.jpg");
-	Sprite* tower02 = new Sprite(renderer, SpriteName::FrostTowerGround, "Sprites/FrostTowerGround.jpg");
-	Sprite* startPosition = new Sprite(renderer, SpriteName::EnemyBase, "Sprites/EnemyBase.jpg");
-	Sprite* endPosition = new Sprite(renderer, SpriteName::PlayerBase, "Sprites/PlayerBase.jpg");
+	Sprite grass =  Sprite(renderer, SpriteName::Grass, "Sprites/grass.jpg");
+	Sprite water =  Sprite(renderer, SpriteName::Water, "Sprites/water.jpg");
+	Sprite tower01 = Sprite(renderer, SpriteName::RegularTowerGround, "Sprites/RegularTowerGround.jpg");
+	Sprite tower02 = Sprite(renderer, SpriteName::FrostTowerGround, "Sprites/FrostTowerGround.jpg");
+	Sprite startPosition = Sprite(renderer, SpriteName::EnemyBase, "Sprites/EnemyBase.jpg");
+	Sprite endPosition =  Sprite(renderer, SpriteName::PlayerBase, "Sprites/PlayerBase.jpg");
 
 	//Create Sprites for Congratulations and GameOver
-	Sprite* congratulations = new Sprite(renderer, SpriteName::Congratulations, "Sprites/Congratulations.jpg");
-	Sprite* gameOver = new Sprite(renderer, SpriteName::GameOver, "Sprites/GameOver.jpg");
+	Sprite congratulations = Sprite(renderer, SpriteName::Congratulations, "Sprites/Congratulations.jpg");
+	Sprite gameOver =  Sprite(renderer, SpriteName::GameOver, "Sprites/GameOver.jpg");
 
 	//Add sprites to ManagerSprites
-	spriteManager->AddSprite(grass);
-	spriteManager->AddSprite(water);
-	spriteManager->AddSprite(tower01);
-	spriteManager->AddSprite(tower02);
-	spriteManager->AddSprite(startPosition);
-	spriteManager->AddSprite(endPosition);
-	spriteManager->AddSprite(congratulations);
-	spriteManager->AddSprite(gameOver);
+	spriteManager->AddSprite(&grass);
+	spriteManager->AddSprite(&water);
+	spriteManager->AddSprite(&tower01);
+	spriteManager->AddSprite(&tower02);
+	spriteManager->AddSprite(&startPosition);
+	spriteManager->AddSprite(&endPosition);
+	spriteManager->AddSprite(&congratulations);
+	spriteManager->AddSprite(&gameOver);
 
 	//Creates sprites for enemies
-	Sprite* enemySmallSprite = new Sprite(renderer, SpriteName::SmallEnemy, "Sprites/SmallEnemy.jpg");
-	Sprite* enemyBigSprite = new Sprite(renderer, SpriteName::BigEnemy, "Sprites/BigEnemy.jpg");
+	Sprite enemySmallSprite =  Sprite(renderer, SpriteName::SmallEnemy, "Sprites/SmallEnemy.jpg");
+	Sprite enemyBigSprite =  Sprite(renderer, SpriteName::BigEnemy, "Sprites/BigEnemy.jpg");
 
 	//Creates sprites for towers
-	Sprite* towerSmallSprite = new Sprite(renderer, SpriteName::RegularTower, "Sprites/RegularTower.jpg");
-	Sprite* towerBigSprite = new Sprite(renderer, SpriteName::FrostTower, "Sprites/FrostTower.jpg");
+	Sprite towerSmallSprite = Sprite(renderer, SpriteName::RegularTower, "Sprites/RegularTower.jpg");
+	Sprite towerBigSprite = Sprite(renderer, SpriteName::FrostTower, "Sprites/FrostTower.jpg");
 
 	//Add enemy sprites to the sprite manager
-	spriteManager->AddSprite(enemySmallSprite);
-	spriteManager->AddSprite(enemyBigSprite);
+	spriteManager->AddSprite(&enemySmallSprite);
+	spriteManager->AddSprite(&enemyBigSprite);
 
 	//Add tower sprites to the sprite manager
-	spriteManager->AddSprite(towerSmallSprite);
-	spriteManager->AddSprite(towerBigSprite);
+	spriteManager->AddSprite(&towerSmallSprite);
+	spriteManager->AddSprite(&towerBigSprite);
 
 	//Creates UI objects for Congratulations and Game Over
-	ScreenImageUI* gameOverUI = new ScreenImageUI(managers, spriteManager->GetSprite(SpriteName::GameOver), Vector2D::Zero(), Vector2D(1280, 720));
-	ScreenImageUI* congratulationsUI = new ScreenImageUI(managers, spriteManager->GetSprite(SpriteName::Congratulations), Vector2D::Zero(), Vector2D(1280, 720));
+	ScreenImageUI gameOverUI = ScreenImageUI(managers, spriteManager->GetSprite(SpriteName::GameOver), Vector2D::Zero(), Vector2D(1280, 720));
+	ScreenImageUI congratulationsUI = ScreenImageUI(managers, spriteManager->GetSprite(SpriteName::Congratulations), Vector2D::Zero(), Vector2D(1280, 720));
 
 	//Add UI to the UI Manager
-	uiManager->AddUIObject(gameOverUI);
-	uiManager->AddUIObject(congratulationsUI);
+	uiManager->AddUIObject(&gameOverUI);
+	uiManager->AddUIObject(&congratulationsUI);
 
 	//Create and add the maps to the map manager
 	mapManager->AddMap(mapReader->ReadMap("Maps/Map_1.txt"));
@@ -149,16 +167,6 @@ void GameManager::Render()
 	}
 	uiManager->Render();
 	SDL_RenderPresent(renderer);
-}
-
-void GameManager::Destroy()
-{
-	SDL_DestroyRenderer(renderer);
-	renderer = nullptr;
-	SDL_DestroyWindow(window);
-	window = nullptr;
-
-	SDL_Quit();
 }
 #pragma endregion GameLoop
 

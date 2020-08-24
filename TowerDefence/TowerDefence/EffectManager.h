@@ -12,16 +12,12 @@ private:
 	Managers* managers = nullptr;
 	std::vector<ExplosionBase*> effects;
 
-private:
-
 public:
 	EffectManager();
-	~EffectManager();
 
 	void Start() override;
 	void Update(float deltaTime) override;
 	void Render() override;
-	void Destroy() override;
 
 	void AddEffect(ExplosionBase* effect);
 	void ClearEffects();

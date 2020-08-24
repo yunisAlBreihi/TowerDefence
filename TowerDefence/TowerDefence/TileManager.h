@@ -11,12 +11,10 @@ private:
 
 public:
 	TileManager();
-	~TileManager();
 
 	void Start() override;
 	void Update(float deltaTime) override;
 	void Render() override;
-	void Destroy() override;
 
 	Tile* GetInactiveTile();
 	void DebugPositions();

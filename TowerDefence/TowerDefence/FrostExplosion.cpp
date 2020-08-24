@@ -20,10 +20,6 @@ FrostExplosion::FrostExplosion(BulletType bulletType, Sprite* sprite, Vector2D p
 	this->collider = new Collider(this->startPosition, this->startScale.x * 0.5f);
 	this->isActive = true;
 }
-
-FrostExplosion::~FrostExplosion()
-{
-}
 #pragma endregion Construction;
 
 #pragma region Action

@@ -5,10 +5,6 @@ EffectManager::EffectManager()
 {
 	name = ManagerName::EffectsManager;
 }
-
-EffectManager::~EffectManager()
-{
-}
 #pragma endregion Construction
 
 #pragma region GameLoop
@@ -41,17 +37,6 @@ void EffectManager::Render()
 		for (ExplosionBase* effect : effects)
 		{
 			effect->Render();
-		}
-	}
-}
-
-void EffectManager::Destroy()
-{
-	if (effects.empty() == false)
-	{
-		for (ExplosionBase* effect : effects)
-		{
-			effect->Destroy();
 		}
 	}
 }

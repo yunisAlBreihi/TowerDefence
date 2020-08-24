@@ -4,7 +4,6 @@ class RegularExplosion : public ExplosionBase
 {
 public:
 	RegularExplosion(BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D startScale, Vector2D endScale);
-	~RegularExplosion();
 
 	void OnHit(Enemy* enemy) override;
 };

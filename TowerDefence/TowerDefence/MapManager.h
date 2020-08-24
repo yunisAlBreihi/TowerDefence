@@ -9,7 +9,6 @@ private:
 
 public:
 	MapManager();
-	~MapManager();
 
 	void AddMap(Map* map);
 	Map* GetMapAtIndex(int index) { return maps[index]; }

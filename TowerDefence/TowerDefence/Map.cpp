@@ -6,10 +6,6 @@
 Map::Map(std::vector<std::string> mapData) : mapData(mapData)
 {
 }
-
-Map::~Map()
-{
-}
 #pragma  endregion Construction
 
 #pragma region GetData

@@ -5,10 +5,6 @@ UIManager::UIManager()
 {
 	name = ManagerName::UIManager;
 }
-
-UIManager::~UIManager()
-{
-}
 #pragma endregion Construction
 
 #pragma region GameLoop
@@ -26,10 +22,6 @@ void UIManager::Render()
 	{
 		RenderEndScreen(ui);
 	}
-}
-
-void UIManager::Destroy()
-{
 }
 #pragma endregion GameLoop
 

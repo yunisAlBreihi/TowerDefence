@@ -43,12 +43,10 @@ private:
 
 public:
 	Enemy(Managers* managers, std::vector<Tile*> path,std::string name, Sprite* sprite, Vector2D position, Vector2D scale,float maxHealth);
-	~Enemy();
 
 	void Start() override;
 	void Update(float deltaTime) override;
 	void Render() override;
-	void Destroy() override;
 
 	void Reset(Managers* managers, std::vector<Tile*> path, std::string name, Sprite* sprite, Vector2D position, Vector2D scale,float maxHealth);
 	void Disable();

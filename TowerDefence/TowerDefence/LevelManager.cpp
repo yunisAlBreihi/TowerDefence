@@ -11,10 +11,6 @@ LevelManager::LevelManager()
 	name = ManagerName::LevelManager;
 	mapManager = managers->GetManager<MapManager>(ManagerName::MapManager);
 }
-
-LevelManager::~LevelManager()
-{
-}
 #pragma endregion Construction
 
 #pragma region GameLoop
@@ -40,10 +36,6 @@ void LevelManager::Update(float deltaTime)
 }
 
 void LevelManager::Render()
-{
-}
-
-void LevelManager::Destroy()
 {
 }
 #pragma endregion GameLoop

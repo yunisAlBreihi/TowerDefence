@@ -41,12 +41,11 @@ protected:
 public:
 	TowerBase();
 	TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale);
-	virtual ~TowerBase() = 0;
+	~TowerBase();
 
 	void Start() override;
 	void Update(float deltaTime) override;
 	void Render() override;
-	void Destroy() override;
 
 	void Reset(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale);
 	void Disable();

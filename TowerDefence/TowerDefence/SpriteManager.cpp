@@ -5,10 +5,6 @@ SpriteManager::SpriteManager()
 {
 	name = ManagerName::SpriteManager;
 }
-
-SpriteManager::~SpriteManager()
-{
-}
 #pragma endregion Construction
 
 #pragma region ManageSprites

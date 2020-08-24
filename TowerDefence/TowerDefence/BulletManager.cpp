@@ -6,10 +6,6 @@ BulletManager::BulletManager()
 	managers = Managers::GetInstance();
 	name = ManagerName::BulletManager;
 }
-
-BulletManager::~BulletManager()
-{
-}
 #pragma endregion Construction
 
 #pragma region GameLoop
@@ -34,14 +30,6 @@ void BulletManager::Render()
 	for (BulletBase* bullet : bullets)
 	{
 		bullet->Render();
-	}
-}
-
-void BulletManager::Destroy()
-{
-	for (BulletBase* bullet : bullets)
-	{
-		bullet->Destroy();
 	}
 }
 #pragma endregion GameLoop
@@ -74,7 +62,7 @@ void BulletManager::ClearBullets()
 	{
 		for (auto bullet : bullets)
 		{
-			bullet->Destroy();
+			bullet->Disable();
 		}
 	}
 	bullets.clear();

@@ -5,9 +5,5 @@
 class MapReader
 {
 public:
-	MapReader();
-	~MapReader();
-
 	Map* ReadMap(std::string filePath);
 };
-

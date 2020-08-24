@@ -5,10 +5,6 @@
 Collider::Collider(Vector2D position, float radius) : position(position), radius(radius)
 {
 }
-
-Collider::~Collider()
-{
-}
 #pragma endregion Construction
 
 #pragma region CollisionChecks

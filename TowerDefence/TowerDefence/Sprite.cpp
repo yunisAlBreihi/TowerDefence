@@ -10,5 +10,7 @@ Sprite::Sprite(SDL_Renderer* renderer, SpriteName spriteName, std::string filePa
 
 Sprite::~Sprite()
 {
+	SDL_DestroyTexture(texture);
+	SDL_FreeSurface(surface);
 }
 #pragma endregion Construction

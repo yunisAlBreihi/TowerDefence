@@ -24,6 +24,7 @@ public:
 
 	SDL_Renderer* GetRenderer() { return renderer; }
 
+
 	template<typename Manager>
 	Manager* GetManager(ManagerName managerName)
 	{

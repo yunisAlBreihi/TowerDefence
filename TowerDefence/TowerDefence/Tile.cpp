@@ -1,18 +1,10 @@
 #include "Tile.h"
 
 #pragma region Construction
-Tile::Tile()
-{
-}
-
 Tile::Tile(Managers* managers, Sprite* sprite, Vector2D position, Vector2D scale, bool isWalkable) : managers(managers), sprite(sprite), position(position), scale(scale), isWalkable(isWalkable)
 {
 	dstRect = { (int)this->position.x,(int)this->position.y,(int)this->scale.x, (int)this->scale.y };
 	isActive = true;
-}
-
-Tile::~Tile()
-{
 }
 #pragma endregion Construction
 
@@ -31,11 +23,6 @@ void Tile::Render()
 	{
 		SDL_RenderCopy(managers->GetRenderer(), sprite->GetTexture(), nullptr, &dstRect);
 	}
-}
-
-void Tile::Destroy()
-{
-	managers = nullptr;
 }
 #pragma endregion GameLoop;
 

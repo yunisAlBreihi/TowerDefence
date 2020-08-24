@@ -33,10 +33,6 @@ void UIBase::Render()
 		SDL_RenderCopy(managers->GetRenderer(), sprite->GetTexture(), nullptr, &dstRect);
 	}
 }
-
-void UIBase::Destroy()
-{
-}
 #pragma endregion GameLoop
 
 #pragma region Disable

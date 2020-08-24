@@ -12,10 +12,6 @@ BulletBase::BulletBase(BulletType bulletType, Sprite* sprite, Vector2D startPosi
 	dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
 	isActive = true;
 }
-
-BulletBase::~BulletBase()
-{
-}
 #pragma endregion Construction
 
 #pragma region GameLoop
@@ -38,10 +34,6 @@ void BulletBase::Render()
 		SDL_RenderCopy(managers->GetRenderer(), sprite->GetTexture(), nullptr, &dstRect);
 	}
 }
-
-void BulletBase::Destroy()
-{
-}
 #pragma endregion GameLoop
 
 #pragma region Disable
@@ -59,7 +51,7 @@ void BulletBase::Reset(BulletType bulletType, Sprite* sprite, Vector2D startPosi
 	isActive = true;
 }
 
-void BulletBase::Clear()
+void BulletBase::Disable()
 {
 	movementDelta = 0.0f;
 	isActive = false;
@@ -87,7 +79,7 @@ void BulletBase::OnMove(float deltaTime)
 	else
 	{
 		OnReachedDestination();
-		Clear();
+		Disable();
 	}
 }
 #pragma endregion Move

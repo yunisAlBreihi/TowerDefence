@@ -3,16 +3,6 @@
 #include <iostream>
 #include <fstream>
 
-#pragma region Construction
-MapReader::MapReader()
-{
-}
-
-MapReader::~MapReader()
-{
-}
-#pragma endregion Construction
-
 #pragma region ReadMaps
 Map* MapReader::ReadMap(std::string filePath)
 {

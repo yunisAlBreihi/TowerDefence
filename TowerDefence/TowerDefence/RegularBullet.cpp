@@ -16,10 +16,6 @@ RegularBullet::RegularBullet( BulletType bulletType, Sprite* sprite, Vector2D st
 	dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
 	isActive = true;
 }
-
-RegularBullet::~RegularBullet()
-{
-}
 #pragma endregion Construction
 
 #pragma region Action

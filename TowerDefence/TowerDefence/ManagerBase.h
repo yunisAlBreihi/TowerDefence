@@ -9,7 +9,6 @@ protected:
 protected:
 
 public:
-	ManagerBase();
 	virtual ~ManagerBase() = 0;
 
 	ManagerName GetName() { return name; }

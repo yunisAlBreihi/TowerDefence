@@ -14,12 +14,10 @@ private:
 
 public:
 	BulletManager();
-	~BulletManager();
 
 	void Start() override;
 	void Update(float deltaTime) override;
 	void Render() override;
-	void Destroy() override;
 
 	void AddBullet(BulletBase* bullet);
 	void ClearBullets();

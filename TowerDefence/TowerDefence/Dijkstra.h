@@ -5,8 +5,5 @@
 class Dijkstra
 {
 public:
-	Dijkstra();
-	~Dijkstra();
-
 	std::vector<Tile*> FindShortestPath(Tile* start, Tile* goal);
 };

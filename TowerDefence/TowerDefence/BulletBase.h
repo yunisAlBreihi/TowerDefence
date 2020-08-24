@@ -29,18 +29,17 @@ protected:
 protected:
 	BulletBase();
 
-	void Clear();
 	void OnMove(float deltaTime);
 
 public:
 	BulletBase(BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale);
-	~BulletBase();
 
 	void Start() override;
 	void Update(float deltaTime) override;
 	void Render() override;
-	void Destroy() override;
 	void Reset(BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale);
+
+	void Disable();
 
 	void SetPosition(Vector2D vector2D);
 	Vector2D GetPosition() { return Vector2D(dstRect.x, dstRect.y); }

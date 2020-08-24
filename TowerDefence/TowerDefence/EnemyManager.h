@@ -58,7 +58,6 @@ private:
 
 public:
 	EnemyManager(Dijkstra* dijkstra);
-	~EnemyManager();
 
 	void IncreaseEnemyDeathCount(int increaseBy);
 	void SpawnEnemyWaves(float deltaTime);
@@ -66,7 +65,6 @@ public:
 	void Start() override;
 	void Update(float deltaTime) override;
 	void Render() override;
-	void Destroy() override;
 
 	void CreateEnemies();
 	void ClearEnemies();

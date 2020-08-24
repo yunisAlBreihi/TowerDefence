@@ -7,7 +7,6 @@ struct Vector2D
 	float y;
 
 	Vector2D(float x, float y) : x(x), y(y) {}
-	~Vector2D() {}
 
 	static Vector2D Zero() { return Vector2D(0, 0); }
 	static Vector2D One() { return Vector2D(1, 1); }

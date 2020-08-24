@@ -11,8 +11,4 @@ ScreenImageUI::ScreenImageUI(Managers* managers, Sprite* sprite, Vector2D positi
 	this->dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
 	this->isActive = true;
 }
-
-ScreenImageUI::~ScreenImageUI()
-{
-}
 #pragma endregion Construction

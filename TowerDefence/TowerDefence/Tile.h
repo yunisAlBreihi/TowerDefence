@@ -18,14 +18,11 @@ private:
 	bool isWalkable = false;
 
 public:
-	Tile();
 	Tile(Managers* managers, Sprite* sprite, Vector2D position, Vector2D scale, bool isWalkable);
-	~Tile();
 
 	void Start() override;
 	void Update(float deltaTime) override;
 	void Render() override;
-	void Destroy() override;
 
 	void Disable();
 	void Reset(Managers* managers, Sprite* sprite, Vector2D position, Vector2D scale, bool isWalkable);

@@ -16,7 +16,6 @@ private:
 
 public:
 	Collider(Vector2D position, float radius);
-	~Collider();
 
 	bool isPointInCircle(Vector2D targetPosition);
 	void DrawDebugCircle(SDL_Renderer* renderer);

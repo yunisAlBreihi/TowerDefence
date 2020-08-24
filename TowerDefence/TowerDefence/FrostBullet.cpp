@@ -16,10 +16,6 @@ FrostBullet::FrostBullet(BulletType bulletType, Sprite* sprite, Vector2D startPo
 	dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
 	isActive = true;
 }
-
-FrostBullet::~FrostBullet()
-{
-}
 #pragma endregion Construction
 
 #pragma region Action

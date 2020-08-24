@@ -8,10 +8,6 @@ TileManager::TileManager()
 {
 	name = ManagerName::TileManager;
 }
-
-TileManager::~TileManager()
-{
-}
 #pragma endregion Construction
 
 #pragma region GameLoop
@@ -28,14 +24,6 @@ void TileManager::Render()
 	for (Tile* t : tiles)
 	{
 		t->Render();
-	}
-}
-
-void TileManager::Destroy()
-{
-	for (Tile* t : tiles)
-	{
-		t->Destroy();
 	}
 }
 #pragma endregion GameLoop

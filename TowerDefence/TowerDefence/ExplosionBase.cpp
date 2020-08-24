@@ -49,10 +49,6 @@ void ExplosionBase::Render()
 		//collider->DrawDebugCircle(managers->GetRenderer());
 	}
 }
-
-void ExplosionBase::Destroy()
-{
-}
 #pragma endregion GameLoop
 
 #pragma region Disable
@@ -109,7 +105,6 @@ void ExplosionBase::Expand(float deltaTime)
 						enemiesHit.push_back(enemy);
 					}
 				}
-
 			}
 		}
 	}

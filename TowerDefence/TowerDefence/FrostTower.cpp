@@ -18,9 +18,9 @@ FrostTower::FrostTower(Managers* managers, BulletType bulletType, Sprite* sprite
 	collider = new Collider(this->position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2), 90.0f);
 	this->isActive = true;
 }
-
 FrostTower::~FrostTower()
 {
+	delete collider;
 }
 #pragma endregion Construction
 

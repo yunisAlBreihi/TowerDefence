@@ -24,6 +24,7 @@ TowerBase::TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, 
 
 TowerBase::~TowerBase()
 {
+	delete collider;
 }
 #pragma endregion Construction
 
@@ -52,10 +53,6 @@ void TowerBase::Render()
 	}
 
 }
-
-void TowerBase::Destroy()
-{
-}
 #pragma endregion GameLoop
 
 #pragma region Disable
@@ -71,7 +68,7 @@ void TowerBase::Reset(Managers* managers, BulletType bulletType, Sprite* sprite,
 	this->position = position;
 	this->scale = scale;
 	dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
-	collider = new Collider(this->position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2), 90.0f);
+	collider = &Collider(this->position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2), 90.0f);
 	this->isActive = true;
 }
 

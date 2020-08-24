@@ -10,7 +10,6 @@ private:
 
 public:
 	SpriteManager();
-	~SpriteManager();
 
 	void AddSprite(Sprite* sprite);
 	Sprite* GetSprite(SpriteName spriteName);

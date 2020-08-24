@@ -12,7 +12,7 @@ private:
 
 	//Level Attributes
 	int KillsToChangeLevel = 10;
-	int currentLevelIndex = 2;
+	int currentLevelIndex = 0;
 
 	//For loading levels
 	bool loadNextLevel = false;
@@ -31,12 +31,10 @@ private:
 
 public:
 	LevelManager();
-	~LevelManager();
 
 	void Start() override;
 	void Update(float deltaTime) override;
 	void Render() override;
-	void Destroy() override;
 
 	void LoadNextLevel();
 	void LoadGameOverScreen();

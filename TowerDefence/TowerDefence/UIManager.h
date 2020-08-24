@@ -18,12 +18,10 @@ private:
 
 public:
 	UIManager();
-	~UIManager();
 
 	void Start() override;
 	void Update(float deltaTime) override;
 	void Render() override;
-	void Destroy() override;
 
 	void AddUIObject(UIBase* uiBase);
 
