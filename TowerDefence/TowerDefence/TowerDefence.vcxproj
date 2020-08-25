@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="BulletBase.cpp" />
     <ClCompile Include="BulletManager.cpp" />
+    <ClCompile Include="CodeConventions.h" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Dijkstra.cpp" />
     <ClCompile Include="EffectManager.cpp" />

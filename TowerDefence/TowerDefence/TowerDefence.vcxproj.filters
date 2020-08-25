@@ -73,6 +73,9 @@
     <Filter Include="Source Files\Towers">
       <UniqueIdentifier>{635aa599-d858-4c0c-ad2f-a104b3664165}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Information">
+      <UniqueIdentifier>{f1b415b7-ea9d-49b1-90b4-5a4eb5e72d40}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -170,6 +173,9 @@
     </ClCompile>
     <ClCompile Include="RegularTower.cpp">
       <Filter>Source Files\Towers</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeConventions.h">
+      <Filter>Header Files\Information</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
