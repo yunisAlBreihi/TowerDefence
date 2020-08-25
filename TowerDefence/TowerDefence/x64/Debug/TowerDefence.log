@@ -1,3 +1,110 @@
-﻿  Map.cpp
-C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Map.cpp(31,45): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+﻿  BulletBase.cpp
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.cpp(66,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.cpp(67,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  BulletManager.cpp
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  CodeConventions.h
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.h(60,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.h(60,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  EffectManager.cpp
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Enemy.cpp
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.h(60,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.h(60,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.cpp(97,99): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.cpp(140,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.cpp(141,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  FrostBullet.cpp
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  GameManager.cpp
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.h(60,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.h(60,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\GameManager.cpp(44,15): warning C4150: deletion of pointer to incomplete type 'SDL_Window'; no destructor called
+C:\Repos\Git\TowerDefence\TowerDefence\packages\sdl2.nuget.2.0.12\build\native\include\SDL_video.h(90): message : see declaration of 'SDL_Window'
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\GameManager.cpp(45,17): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+C:\Repos\Git\TowerDefence\TowerDefence\packages\sdl2.nuget.2.0.12\build\native\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
+  LevelManager.cpp
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.h(60,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.h(60,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  main.cpp
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.h(60,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.h(60,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  RegularBullet.cpp
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  TileManager.cpp
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TileManager.cpp(174,55): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TileManager.cpp(174,19): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TileManager.cpp(181,55): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TileManager.cpp(181,19): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+  TowerBase.cpp
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.h(60,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.h(60,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.cpp(21,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.cpp(114,33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.cpp(125,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.cpp(126,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.cpp(137,95): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.cpp(137,46): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.cpp(139,98): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.cpp(139,66): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  FrostTower.cpp
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.h(60,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.h(60,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  TowerManager.cpp
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.h(60,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.h(60,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  RegularTower.cpp
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\Enemy.h(61,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\BulletBase.h(45,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.h(60,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Repos\Git\TowerDefence\TowerDefence\TowerDefence\TowerBase.h(60,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
   TowerDefence.vcxproj -> C:\Repos\Git\TowerDefence\TowerDefence\x64\Debug\TowerDefence.exe
