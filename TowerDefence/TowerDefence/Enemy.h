@@ -58,7 +58,7 @@ public:
 	bool IsFrozen();
 
 	void SetPosition(Vector2D vector2D);
-	Vector2D GetPosition() { return Vector2D(dstRect.x, dstRect.y); }
+	Vector2D GetPosition() { return { (float)dstRect.x, (float)dstRect.y }; }
 	void SetSpeed(float speed);
 	float GetSpeed() { return speed; }
 	Sprite* GetSprite() { return sprite; }

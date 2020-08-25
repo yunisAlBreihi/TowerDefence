@@ -25,6 +25,6 @@ RegularExplosion::RegularExplosion(BulletType bulletType, Sprite* sprite, Vector
 #pragma region Action
 void RegularExplosion::OnHit(Enemy* enemy)
 {
-	enemy->TakeDamage(Globals::dRand(0.1, 0.5));
+	enemy->TakeDamage((float)Globals::dRand(0.1, 0.5));
 }
 #pragma endregion Action

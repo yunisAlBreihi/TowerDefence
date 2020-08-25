@@ -48,15 +48,15 @@ void Tile::Reset(Managers* managers, Sprite* sprite, Vector2D position, Vector2D
 #pragma region Set
 void Tile::SetPosition(Vector2D position)
 {
-	this->position = position;
-	dstRect.x = this->position.x;
-	dstRect.y = this->position.y;
+	this->position = { round(position.x), round(position.y)};
+	dstRect.x = (int)this->position.x;
+	dstRect.y = (int)this->position.y;
 }
 
 void Tile::SetScale(Vector2D scale)
 {
-	this->scale = scale;
-	dstRect.w = this->scale.x;
-	dstRect.h = this->scale.y;
+	this->scale = { round(scale.x), round(scale.y)};
+	dstRect.w = (int)this->scale.x;
+	dstRect.h = (int)this->scale.y;
 }
 #pragma endregion Set

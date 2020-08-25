@@ -39,18 +39,22 @@ private:
 	SDL_Surface* surface = nullptr;
 
 	//Sprites
-	Sprite* grass = nullptr;
-	Sprite* water = nullptr;
-	Sprite* tower01 = nullptr;
-	Sprite* tower02 = nullptr;
-	Sprite* startPosition = nullptr;
-	Sprite* endPosition = nullptr;
-	Sprite* congratulations = nullptr;
-	Sprite* gameOver = nullptr;
-	Sprite* enemySmallSprite = nullptr;
-	Sprite* enemyBigSprite = nullptr;
-	Sprite* towerSmallSprite = nullptr;
-	Sprite* towerBigSprite = nullptr;
+	Sprite* grassSprite = nullptr;
+	Sprite* waterSprite = nullptr;
+	Sprite* regularTowerGroundSprite = nullptr;
+	Sprite* frostTowerGroundSprite = nullptr;
+	Sprite* enemyBaseSprite = nullptr;
+	Sprite* playerBaseSprite = nullptr;
+	Sprite* congratulationsSprite = nullptr;
+	Sprite* gameOverSprite = nullptr;
+	Sprite* smallEnemySprite = nullptr;
+	Sprite* bigEnemySprite = nullptr;
+	Sprite* regularTowerSprite = nullptr;
+	Sprite* frostTowerSprite = nullptr;
+	Sprite* regularBulletSprite = nullptr;
+	Sprite* frostBulletSprite = nullptr;
+	Sprite* regularExplosionSprite = nullptr;
+	Sprite* frostExplosionSprite = nullptr;
 
 	//UI
 	ScreenImageUI* gameOverUI = nullptr;

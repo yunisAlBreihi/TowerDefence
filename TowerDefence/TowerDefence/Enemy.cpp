@@ -94,7 +94,7 @@ void Enemy::MoveToEnd(float deltaTime)
 			else
 			{
 				hasReachedEnd = true;
-				managers->GetManager<GameManager>(ManagerName::GameManager)->ReducePlayerHealth(Globals::dRand(0.3,1.2));
+				managers->GetManager<GameManager>(ManagerName::GameManager)->ReducePlayerHealth((float)Globals::dRand(0.3,1.2));
 				Disable();
 			}
 		}
@@ -136,9 +136,9 @@ void Enemy::FreezeTimer(float deltaTime)
 void Enemy::SetPosition(Vector2D vector2D)
 {
 	//Round the values, since SDL_Rect values is in int, otherwise get Stutter
-	position = Vector2D(round(vector2D.x), round(vector2D.y));
-	dstRect.x = position.x;
-	dstRect.y = position.y;
+	position = { round(vector2D.x), round(vector2D.y) };
+	dstRect.x = (int)position.x;
+	dstRect.y = (int)position.y;
 }
 
 void Enemy::SetSpeed(float speed)

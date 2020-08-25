@@ -8,6 +8,8 @@ BulletBase::BulletBase()
 BulletBase::BulletBase(BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale) : bulletType(bulletType), sprite(sprite), position(startPosition), endPosition(endPosition), scale(scale)
 {
 	managers = Managers::GetInstance();
+	spriteManager = managers->GetManager<SpriteManager>( ManagerName::SpriteManager);
+
 	this->startPosition = startPosition;
 	dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
 	isActive = true;
@@ -62,9 +64,9 @@ void BulletBase::Disable()
 void BulletBase::SetPosition(Vector2D vector2D)
 {
 	//Round the values, since SDL_Rect is in int, otherwise get Stutter
-	position = Vector2D(round(vector2D.x),round(vector2D.y));
-	dstRect.x = position.x;
-	dstRect.y = position.y;
+	position = { round(vector2D.x),round(vector2D.y) };
+	dstRect.x = (int)position.x;
+	dstRect.y = (int)position.y;
 }
 #pragma endregion Set
 

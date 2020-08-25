@@ -40,24 +40,24 @@ protected:
 
 public:
 	TowerBase();
-	TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale);
+	TowerBase(BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale);
 	~TowerBase();
 
 	void Start() override;
 	void Update(float deltaTime) override;
 	void Render() override;
 
-	void Reset(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale);
+	void Reset(BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale);
 	void Disable();
 
 	void SetEnemyTarget();
 	void Shoot(float deltaTime);
 	virtual void OnShoot() = 0;
 
-	void SetPosition(Vector2D vector2D);
+	void SetPosition(Vector2D position);
 	void DrawDebugRange();
 
-	Vector2D GetPosition() { return Vector2D(dstRect.x, dstRect.y); }
+	Vector2D GetPosition() { return { (float)dstRect.x, (float)dstRect.y }; }
 	BulletType GetType() { return bulletType; }
 	Sprite* GetSprite() { return sprite; }
 	SDL_Rect GetDstRect() { return dstRect; }

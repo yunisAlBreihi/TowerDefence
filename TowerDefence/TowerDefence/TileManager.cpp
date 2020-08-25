@@ -171,15 +171,15 @@ void TileManager::CreateTilesFromMap(Managers* managers, int mapIndex)
 			if (tempTile == nullptr)
 			{
 				tempTile = new Tile(managers, spriteManager->GetSprite(tempSpriteName),
-					Vector2D(row * Globals::DEFAULT_SPRITE_SIZE, col * Globals::DEFAULT_SPRITE_SIZE),
-					Vector2D(Globals::DEFAULT_SPRITE_SIZE, Globals::DEFAULT_SPRITE_SIZE), tempWalkable);
+					{ (float)(row * Globals::DEFAULT_SPRITE_SIZE), (float)(col * Globals::DEFAULT_SPRITE_SIZE) },
+					{ (float)Globals::DEFAULT_SPRITE_SIZE, (float)Globals::DEFAULT_SPRITE_SIZE }, tempWalkable);
 				AddTile(tempTile);
 			}
 			else
 			{
 				tempTile->Reset(managers, spriteManager->GetSprite(tempSpriteName),
-					Vector2D(row * Globals::DEFAULT_SPRITE_SIZE, col * Globals::DEFAULT_SPRITE_SIZE),
-					Vector2D(Globals::DEFAULT_SPRITE_SIZE, Globals::DEFAULT_SPRITE_SIZE), tempWalkable);
+					{ (float)(row * Globals::DEFAULT_SPRITE_SIZE), (float)(col * Globals::DEFAULT_SPRITE_SIZE) },
+					{ (float)Globals::DEFAULT_SPRITE_SIZE, (float)Globals::DEFAULT_SPRITE_SIZE }, tempWalkable);
 			}
 		}
 	}

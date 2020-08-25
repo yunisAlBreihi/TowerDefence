@@ -6,6 +6,8 @@
 FrostBullet::FrostBullet(BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale)
 {
 	managers = Managers::GetInstance();
+	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
+
 	this->bulletType = bulletType;
 	this->sprite = sprite;
 	this->position = startPosition;
@@ -25,12 +27,12 @@ void FrostBullet::OnReachedDestination()
 	FrostExplosion* frostExplosion = (FrostExplosion*)effectsManager->GetInactiveEffectOfType(bulletType);
 	if (frostExplosion == nullptr)
 	{
-		frostExplosion = new FrostExplosion(bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (Globals::DEFAULT_SPRITE_SIZE * 2.0f));
+		frostExplosion = new FrostExplosion(bulletType, spriteManager->GetSprite(SpriteName::FrostExplostion), position, Vector2D::Zero(), Vector2D::One() * (Globals::DEFAULT_SPRITE_SIZE * 2.0f));
 		effectsManager->AddEffect(frostExplosion);
 	}
 	else
 	{
-		frostExplosion->Reset(bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (Globals::DEFAULT_SPRITE_SIZE * 2.0f));
+		frostExplosion->Reset(bulletType, spriteManager->GetSprite(SpriteName::FrostExplostion), position, Vector2D::Zero(), Vector2D::One() * (Globals::DEFAULT_SPRITE_SIZE * 2.0f));
 	}
 }
 #pragma endregion Action

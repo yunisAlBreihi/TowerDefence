@@ -13,7 +13,7 @@ class BulletBase : public IRenderable
 {
 protected:
 	Managers* managers = nullptr;
-	SDL_Renderer* renderer = nullptr;
+	SpriteManager* spriteManager = nullptr;
 
 	//Attributes
 	Sprite* sprite = nullptr;
@@ -24,8 +24,8 @@ protected:
 	Vector2D endPosition = { 0,0 };
 	Vector2D scale = { 0,0 };
 	SDL_Rect dstRect = { 0,0,0,0 };
-
 	float movementDelta = 0.0f;
+
 protected:
 	BulletBase();
 
@@ -42,7 +42,7 @@ public:
 	void Disable();
 
 	void SetPosition(Vector2D vector2D);
-	Vector2D GetPosition() { return Vector2D(dstRect.x, dstRect.y); }
+	Vector2D GetPosition() { return { (float)dstRect.x, (float)dstRect.y }; }
 	Sprite* GetSprite() { return sprite; }
 	SDL_Rect GetDstRect() { return dstRect; }
 	BulletType GetType() { return bulletType; }

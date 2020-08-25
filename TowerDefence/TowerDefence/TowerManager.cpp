@@ -49,12 +49,12 @@ void TowerManager::CreateTower(Sprite* sprite, Vector2D position, Vector2D scale
 		RegularTower* towerSmall = (RegularTower*)GetInactiveTowerOfType(BulletType::Regular);
 		if (towerSmall == nullptr)
 		{
-			towerSmall = new RegularTower(managers, BulletType::Regular, sprite, position, scale);
+			towerSmall = new RegularTower(BulletType::Regular, sprite, position, scale);
 			towers.push_back(towerSmall);
 		}
 		else
 		{
-			towerSmall->Reset(managers, BulletType::Regular, sprite, position, scale);
+			towerSmall->Reset(BulletType::Regular, sprite, position, scale);
 		}
 	}
 	else if (sprite->GetSpriteName() == SpriteName::FrostTower)
@@ -62,12 +62,12 @@ void TowerManager::CreateTower(Sprite* sprite, Vector2D position, Vector2D scale
 		FrostTower* towerBig = (FrostTower*)GetInactiveTowerOfType(BulletType::Freezing);
 		if (towerBig == nullptr)
 		{
-			towerBig = new FrostTower(managers, BulletType::Freezing, sprite, position, scale);
+			towerBig = new FrostTower(BulletType::Freezing, sprite, position, scale);
 			towers.push_back(towerBig);
 		}
 		else
 		{
-			towerBig->Reset(managers, BulletType::Freezing, sprite, position, scale);
+			towerBig->Reset(BulletType::Freezing, sprite, position, scale);
 		}
 	}
 }

@@ -12,6 +12,10 @@ enum class SpriteName
 	BigEnemy = 21,
 	RegularTower = 30,
 	FrostTower = 31,
+	RegularBullet = 40,
+	FrostBullet = 41,
+	RegularExplosion = 50,
+	FrostExplostion = 51,
 	Congratulations = 80,
 	GameOver = 90,
 };

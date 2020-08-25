@@ -7,9 +7,9 @@ TowerBase::TowerBase()
 {
 }
 
-TowerBase::TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale) :
-	managers(managers), bulletType(bulletType), sprite(sprite), position(position), scale(scale)
+TowerBase::TowerBase(BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale) : bulletType(bulletType), sprite(sprite), position(position), scale(scale)
 {
+	managers = Managers::GetInstance();
 	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
 	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
 	bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
@@ -18,7 +18,7 @@ TowerBase::TowerBase(Managers* managers, BulletType bulletType, Sprite* sprite, 
 	dstRect = { (int)this->position.x, (int)this->position.y, (int)this->scale.x, (int)this->scale.y };
 	collider = new Collider(this->position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2), 90.0f);
 
-	shootMaxTime = Globals::dRand(0.7, 1.5);
+	shootMaxTime = (float)Globals::dRand(0.7, 1.5);
 	isActive = true;
 }
 
@@ -53,9 +53,8 @@ void TowerBase::Render()
 #pragma endregion GameLoop
 
 #pragma region Disable
-void TowerBase::Reset(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale)
+void TowerBase::Reset(BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale)
 {
-	this->managers = managers;
 	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
 	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
 	bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
@@ -111,7 +110,7 @@ void TowerBase::Shoot(float deltaTime)
 		if (shootTimer >= shootMaxTime)
 		{
 			OnShoot();
-			shootMaxTime = Globals::dRand(0.7, 1.5);
+			shootMaxTime = (float)Globals::dRand(0.7, 1.5);
 			shootTimer = 0.0f;
 		}
 	}
@@ -119,11 +118,11 @@ void TowerBase::Shoot(float deltaTime)
 #pragma endregion Shoot
 
 #pragma region Set
-void TowerBase::SetPosition(Vector2D vector2D)
+void TowerBase::SetPosition(Vector2D position)
 {
-	position = vector2D;
-	dstRect.x = position.x;
-	dstRect.y = position.y;
+	this->position = {round(position.x),round(position.y)};
+	dstRect.x = (int)this->position.x;
+	dstRect.y = (int)this->position.y;
 }
 #pragma endregion Set
 
@@ -134,9 +133,9 @@ void TowerBase::DrawDebugRange()
 	{
 		for (unsigned int i = 0; i < 360; i += debugCircleQuality)
 		{
-			circlePosition = Vector2D(GetPosition().x + collisionRadius * std::cos(i), GetPosition().y + collisionRadius * std::sin(i));
+			circlePosition = Vector2D(GetPosition().x + (float)(collisionRadius * std::cos(i)), GetPosition().y + (float)(collisionRadius * std::sin(i)));
 			SDL_SetRenderDrawColor(managers->GetRenderer(), 230, 0, 126, 255);
-			SDL_RenderDrawPoint(managers->GetRenderer(), circlePosition.x + scale.x / 2, circlePosition.y + scale.y / 2);
+			SDL_RenderDrawPoint(managers->GetRenderer(), (int)(circlePosition.x + round(scale.x / 2)), (int)(circlePosition.y + round(scale.y / 2)));
 			SDL_SetRenderDrawColor(managers->GetRenderer(), 0, 0, 0, 255);
 		}
 	}

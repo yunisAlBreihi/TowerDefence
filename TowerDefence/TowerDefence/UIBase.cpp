@@ -59,15 +59,15 @@ void UIBase::SetPosition(Vector2D position)
 {
 	//Round the values, since SDL_Rect values is in int, otherwise get Stutter
 	this->position = Vector2D(round(position.x),round(position.y));
-	dstRect.x = this->position.x;
-	dstRect.y = this->position.y;
+	dstRect.x = (int)this->position.x;
+	dstRect.y = (int)this->position.y;
 }
 
 void UIBase::SetScale(Vector2D scale)
 {
 	//Round the values, since SDL_Rect values is in int, otherwise get Stutter
 	this->scale = Vector2D(round(scale.x), round(scale.y));
-	dstRect.w = this->scale.x;
-	dstRect.h = this->scale.y;
+	dstRect.w = (int)this->scale.x;
+	dstRect.h = (int)this->scale.y;
 }
 #pragma endregion Set

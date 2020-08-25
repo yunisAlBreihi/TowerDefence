@@ -25,7 +25,7 @@ FrostExplosion::FrostExplosion(BulletType bulletType, Sprite* sprite, Vector2D p
 #pragma region Action
 void FrostExplosion::OnHit(Enemy* enemy)
 {
-	enemy->TakeDamage(Globals::dRand(0.1, 0.3));
-	enemy->Freeze(Globals::dRand(1.5f, 3.0f), Globals::dRand(0.5, 0.95));
+	enemy->TakeDamage((float)Globals::dRand(0.1, 0.3));
+	enemy->Freeze((float)Globals::dRand(1.5f, 3.0f), (float)Globals::dRand(0.5, 0.95));
 }
 #pragma endregion Action

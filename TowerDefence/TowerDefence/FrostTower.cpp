@@ -3,13 +3,14 @@
 #include "Globals.h"
 
 #pragma region Construction
-FrostTower::FrostTower(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale)
+FrostTower::FrostTower(BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale)
 {
-	this->managers = managers;
+	managers = Managers::GetInstance();
 	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
 	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
 	bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
 	effectsManager = managers->GetManager<EffectManager>(ManagerName::EffectsManager);
+
 	this->bulletType = bulletType;
 	this->sprite = sprite;
 	this->position = position;
@@ -31,7 +32,7 @@ void FrostTower::OnShoot()
 	FrostBullet* frostBullet = (FrostBullet*)bulletManager->GetInactiveBulletOfType(bulletType);
 	if (frostBullet == nullptr)
 	{
-		frostBullet = new FrostBullet(bulletType, spriteManager->GetSprite(SpriteName::EnemyBase),
+		frostBullet = new FrostBullet(bulletType, spriteManager->GetSprite(SpriteName::FrostBullet),
 			position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			currentEnemyTarget->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			Vector2D(Globals::DEFAULT_SPRITE_SIZE / 4, Globals::DEFAULT_SPRITE_SIZE / 4));
@@ -39,7 +40,7 @@ void FrostTower::OnShoot()
 	}
 	else
 	{
-		frostBullet->Reset(bulletType, spriteManager->GetSprite(SpriteName::EnemyBase),
+		frostBullet->Reset(bulletType, spriteManager->GetSprite(SpriteName::FrostBullet),
 			position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			currentEnemyTarget->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			Vector2D(Globals::DEFAULT_SPRITE_SIZE / 4, Globals::DEFAULT_SPRITE_SIZE / 4));

@@ -3,13 +3,14 @@
 #include "Globals.h"
 
 #pragma region Construction
-RegularTower::RegularTower(Managers* managers, BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale)
+RegularTower::RegularTower(BulletType bulletType, Sprite* sprite, Vector2D position, Vector2D scale)
 {
-	this->managers = managers;
+	managers = Managers::GetInstance();
 	enemyManager = managers->GetManager<EnemyManager>(ManagerName::EnemyManager);
 	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
 	bulletManager = managers->GetManager<BulletManager>(ManagerName::BulletManager);
 	effectsManager = managers->GetManager<EffectManager>(ManagerName::EffectsManager);
+
 	this->bulletType = bulletType;
 	this->sprite = sprite;
 	this->position = position;
@@ -31,7 +32,7 @@ void RegularTower::OnShoot()
 	RegularBullet* regularBullet = (RegularBullet*)bulletManager->GetInactiveBulletOfType(bulletType);
 	if (regularBullet == nullptr)
 	{
-		regularBullet = new RegularBullet(bulletType, spriteManager->GetSprite(SpriteName::EnemyBase),
+		regularBullet = new RegularBullet(bulletType, spriteManager->GetSprite(SpriteName::RegularBullet),
 			position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			currentEnemyTarget->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			Vector2D(Globals::DEFAULT_SPRITE_SIZE / 4, Globals::DEFAULT_SPRITE_SIZE / 4));
@@ -39,7 +40,7 @@ void RegularTower::OnShoot()
 	}
 	else
 	{
-		regularBullet->Reset(bulletType, spriteManager->GetSprite(SpriteName::EnemyBase),
+		regularBullet->Reset(bulletType, spriteManager->GetSprite(SpriteName::RegularBullet),
 			position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			currentEnemyTarget->GetPosition() + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2),
 			Vector2D(Globals::DEFAULT_SPRITE_SIZE / 4, Globals::DEFAULT_SPRITE_SIZE / 4));

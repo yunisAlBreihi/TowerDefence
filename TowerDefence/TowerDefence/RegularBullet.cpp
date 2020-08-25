@@ -6,6 +6,8 @@
 RegularBullet::RegularBullet( BulletType bulletType, Sprite* sprite, Vector2D startPosition, Vector2D endPosition, Vector2D scale)
 {
 	managers = Managers::GetInstance();
+	spriteManager = managers->GetManager<SpriteManager>(ManagerName::SpriteManager);
+
 	this->bulletType = bulletType;
 	this->sprite = sprite;
 	this->position = startPosition;
@@ -25,12 +27,12 @@ void RegularBullet::OnReachedDestination()
 	RegularExplosion* explosion = (RegularExplosion*)effectsManager->GetInactiveEffectOfType(bulletType);
 	if (explosion == nullptr)
 	{
-		explosion = new RegularExplosion(bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (Globals::DEFAULT_SPRITE_SIZE * 2.0f));
+		explosion = new RegularExplosion(bulletType, spriteManager->GetSprite(SpriteName::RegularExplosion), position, Vector2D::Zero(), Vector2D::One() * (Globals::DEFAULT_SPRITE_SIZE * 2.0f));
 		effectsManager->AddEffect(explosion);
 	}
 	else
 	{
-		explosion->Reset(bulletType, sprite, position, Vector2D::Zero(), Vector2D::One() * (Globals::DEFAULT_SPRITE_SIZE * 2.0f));
+		explosion->Reset(bulletType, spriteManager->GetSprite(SpriteName::RegularExplosion), position, Vector2D::Zero(), Vector2D::One() * (Globals::DEFAULT_SPRITE_SIZE * 2.0f));
 	}
 }
 #pragma endregion Action
