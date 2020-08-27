@@ -1,4 +1,38 @@
 ﻿  BulletBase.cpp
-  RegularBullet.cpp
+  BulletManager.cpp
+  CodeConventions.h
+  Collider.cpp
+  Dijkstra.cpp
+  EffectManager.cpp
+  Enemy.cpp
+  EnemyManager.cpp
+  ExplosionBase.cpp
+  RegularExplosion.cpp
+  FrostBullet.cpp
+  FrostExplosion.cpp
+  GameManager.cpp
+  LevelManager.cpp
+  main.cpp
+  ManagerBase.cpp
+  Managers.cpp
+  Map.cpp
+C:\Repos\Git\CPlusPlus\TowerDefence\TowerDefence\TowerDefence\Map.cpp(31,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  MapManager.cpp
+  MapReader.cpp
   Generating Code...
-  TowerDefence.vcxproj -> C:\Repos\Git\TowerDefence\TowerDefence\x64\Debug\TowerDefence.exe
+  Compiling...
+  RegularBullet.cpp
+  ScreenImageUI.cpp
+  Sprite.cpp
+  SpriteManager.cpp
+  Tile.cpp
+  TileManager.cpp
+  Timer.cpp
+  TowerBase.cpp
+  FrostTower.cpp
+  TowerManager.cpp
+  RegularTower.cpp
+  UIBase.cpp
+  UIManager.cpp
+  Generating Code...
+  TowerDefence.vcxproj -> C:\Repos\Git\CPlusPlus\TowerDefence\TowerDefence\x64\Debug\TowerDefence.exe

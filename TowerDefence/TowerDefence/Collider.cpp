@@ -34,9 +34,9 @@ void Collider::DrawDebugCircle(SDL_Renderer* renderer)
 	{
 		for (unsigned int i = 0; i < 360; i += debugCircleQuality)
 		{
-			debugCirclePosition = Vector2D(position.x + radius * std::cos(i), position.y + radius * std::sin(i));
+			debugCirclePosition = Vector2D((float)(position.x + radius * std::cos(i)), (float)(position.y + radius * std::sin(i)));
 			SDL_SetRenderDrawColor(renderer, 230, 0, 126, 255);
-			SDL_RenderDrawPoint(renderer, debugCirclePosition.x + radius, debugCirclePosition.y + radius);
+			SDL_RenderDrawPoint(renderer, (int)round(debugCirclePosition.x + radius), (int)round(debugCirclePosition.y + radius));
 			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		}
 	}
