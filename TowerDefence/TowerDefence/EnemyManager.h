@@ -44,12 +44,11 @@ private:
 	//EnemySmall
 	std::string ES_name = "EnemySmall";
 	SpriteName ES_spriteName = SpriteName::SmallEnemy;
-	float ES_health = 3.0f;
+	float ES_health = 5.0f;
 	//EnemyBig
 	std::string EB_name = "EnemyBig";
 	SpriteName EB_spriteName = SpriteName::BigEnemy;
-	float EB_health = 10.0f;
-
+	float EB_health = 12.0f;
 
 private:
 	void CreateEnemy(int waveIndex, int enemyIndex);

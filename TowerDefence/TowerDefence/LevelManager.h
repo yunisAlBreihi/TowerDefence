@@ -11,7 +11,7 @@ private:
 	MapManager* mapManager = nullptr;
 
 	//Level Attributes
-	int KillsToChangeLevel = 10;
+	int KillsToChangeLevel = 20;
 	int currentLevelIndex = 0;
 
 	//For loading levels
