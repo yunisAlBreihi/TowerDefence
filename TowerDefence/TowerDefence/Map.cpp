@@ -56,12 +56,10 @@ std::vector<std::vector<int>> Map::GetEnemyNumbers()
 			}
 			tempEnemyNumbers.push_back(tempEnemyNumberRow);
 		}
-
 		if (row.at(0) == '#')
 		{
 			isOnEnemyNumbers = true;
 		}
-
 	}
 	return tempEnemyNumbers;
 }

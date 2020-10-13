@@ -19,6 +19,7 @@ RegularTower::RegularTower(BulletType bulletType, Sprite* sprite, Vector2D posit
 	collider = new Collider(this->position + Vector2D(Globals::DEFAULT_SPRITE_SIZE / 2, Globals::DEFAULT_SPRITE_SIZE / 2), 90.0f);
 	this->isActive = true;
 }
+
 RegularTower::~RegularTower()
 {
 	delete collider;

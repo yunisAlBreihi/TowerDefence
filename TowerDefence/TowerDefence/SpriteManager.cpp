@@ -22,7 +22,6 @@ Sprite* SpriteManager::GetSprite(SpriteName spriteName)
 			return sprite;
 		}
 	}
-
 	std::cout << "Could not find the sprite you specified in the spriteManager" << std::endl;
 	return nullptr;
 }

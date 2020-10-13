@@ -6,8 +6,6 @@ class ManagerBase
 protected:
 	ManagerName name = ManagerName::NONE;
 
-protected:
-
 public:
 	virtual ~ManagerBase() = 0;
 

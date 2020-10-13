@@ -15,6 +15,5 @@ int main(int argc, char* argv[])
 		managerGame->Render();
 		timer->Tick();
 	}
-
 	return 0;
 }
