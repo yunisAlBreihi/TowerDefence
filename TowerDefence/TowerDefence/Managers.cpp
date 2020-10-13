@@ -30,10 +30,10 @@ void Managers::SetRenderer(SDL_Renderer* renderer)
 }
 #pragma endregion GetSet
 
-#pragma region Manage
+#pragma region Manager
 void Managers::AddManager(ManagerBase* managerBase)
 {
 	managers.push_back(managerBase);
 }
-#pragma endregion Manage
+#pragma endregion Manager
 

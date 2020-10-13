@@ -3,18 +3,16 @@
   CodeConventions.h
   EffectManager.cpp
   Enemy.cpp
-  EnemyManager.cpp
   ExplosionBase.cpp
+  RegularExplosion.cpp
   FrostBullet.cpp
   FrostExplosion.cpp
-  FrostTower.cpp
   GameManager.cpp
   LevelManager.cpp
-  RegularBullet.cpp
-  RegularExplosion.cpp
-  RegularTower.cpp
-  TowerBase.cpp
-  TowerManager.cpp
   main.cpp
+  RegularBullet.cpp
+  ScreenImageUI.cpp
+  FrostTower.cpp
+  RegularTower.cpp
   Generating Code...
   TowerDefence.vcxproj -> C:\Repos\Git\TowerDefence\TowerDefence\x64\Debug\TowerDefence.exe

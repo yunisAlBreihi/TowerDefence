@@ -115,7 +115,6 @@ void Enemy::Freeze(float freezeTime, float freezeSpeed)
 	speed = freezeSpeed;
 }
 
-
 bool Enemy::IsFrozen()
 {
 	return isFrozen;

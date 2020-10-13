@@ -10,8 +10,6 @@ private:
 	Managers* managers = nullptr;
 	std::vector<BulletBase*> bullets;
 
-private:
-
 public:
 	BulletManager();
 
